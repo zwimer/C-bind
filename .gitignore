@@ -1,5 +1,7 @@
-# Peda
+# Other
 peda-*
+.gdb*
+.*.swp
 
 # Prerequisites
 *.d
