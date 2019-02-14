@@ -60,3 +60,6 @@ mkdir C-bind/src/build && cd C-bind/src/build && \
 cmake .. && make && \
 ./main.out
 ```
+
+# Restrictions
+Currently this only works on 64-bit `x86`.
