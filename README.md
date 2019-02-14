@@ -64,6 +64,13 @@ cmake .. && make && \
 ./test.out
 ```
 
+# Documentation
+
+Documentation is stored in `./docs`, it is generated via [doxygen](http://www.doxygen.nl/). To manually generate it install doxygen (from `apt-get` if you have it) then
+```bash
+cd C-bind && doxygen
+```
+
 # Future Plans
 
 ### Removing the signature requirement

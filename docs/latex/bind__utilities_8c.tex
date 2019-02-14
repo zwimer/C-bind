@@ -1,0 +1,84 @@
+\hypertarget{bind__utilities_8c}{}\section{src/bind\+\_\+utilities.c File Reference}
+\label{bind__utilities_8c}\index{src/bind\+\_\+utilities.\+c@{src/bind\+\_\+utilities.\+c}}
+{\ttfamily \#include \char`\"{}bind\+\_\+utilities.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{bind__utilities_8c_ab374e97f3b19a808aa0232648d7ebcc4}{bind\+\_\+err} (const char $\ast$Msg)
+\begin{DoxyCompactList}\small\item\em This functions prints Msg and exits the program. \end{DoxyCompactList}\item 
+void \hyperlink{bind__utilities_8c_a621d92bc3950d698be37ce62452128da}{bind\+\_\+p\+\_\+err} (const char $\ast$Msg)
+\begin{DoxyCompactList}\small\item\em This function calls perror then err. \end{DoxyCompactList}\item 
+void \hyperlink{bind__utilities_8c_af4aaa27dade38bbf1f1570ed4a37e329}{bind\+\_\+assert} (const int b, const char $\ast$Msg)
+\begin{DoxyCompactList}\small\item\em err if !b \end{DoxyCompactList}\item 
+void \hyperlink{bind__utilities_8c_aa4000740cfe380412978282ae8ce9603}{bind\+\_\+mem\+\_\+check} (void $\ast$pnt, const char $\ast$Msg)
+\begin{DoxyCompactList}\small\item\em This function errors and prints Msg if pnt is null. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{bind__utilities_8c_a3e495f49bce6a5edbe2c2af691013fb5}{bind\+\_\+safe\+\_\+malloc} (size\+\_\+t c, size\+\_\+t s)
+\begin{DoxyCompactList}\small\item\em Malloc, but check to see if failed. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{bind__utilities_8c_a89174c1631373cb8d9d73de79f5b2bd5}{bind\+\_\+safe\+\_\+realloc} (void $\ast$p, size\+\_\+t c, size\+\_\+t s)
+\begin{DoxyCompactList}\small\item\em Realloc, but check to see if failed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{bind__utilities_8c_af4aaa27dade38bbf1f1570ed4a37e329}\label{bind__utilities_8c_af4aaa27dade38bbf1f1570ed4a37e329}} 
+\index{bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}!bind\+\_\+assert@{bind\+\_\+assert}}
+\index{bind\+\_\+assert@{bind\+\_\+assert}!bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}}
+\subsubsection{\texorpdfstring{bind\+\_\+assert()}{bind\_assert()}}
+{\footnotesize\ttfamily void bind\+\_\+assert (\begin{DoxyParamCaption}\item[{const int}]{b,  }\item[{const char $\ast$}]{Msg }\end{DoxyParamCaption})}
+
+
+
+err if !b 
+
+\mbox{\Hypertarget{bind__utilities_8c_ab374e97f3b19a808aa0232648d7ebcc4}\label{bind__utilities_8c_ab374e97f3b19a808aa0232648d7ebcc4}} 
+\index{bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}!bind\+\_\+err@{bind\+\_\+err}}
+\index{bind\+\_\+err@{bind\+\_\+err}!bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}}
+\subsubsection{\texorpdfstring{bind\+\_\+err()}{bind\_err()}}
+{\footnotesize\ttfamily void bind\+\_\+err (\begin{DoxyParamCaption}\item[{const char $\ast$}]{Msg }\end{DoxyParamCaption})}
+
+
+
+This functions prints Msg and exits the program. 
+
+\mbox{\Hypertarget{bind__utilities_8c_aa4000740cfe380412978282ae8ce9603}\label{bind__utilities_8c_aa4000740cfe380412978282ae8ce9603}} 
+\index{bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}!bind\+\_\+mem\+\_\+check@{bind\+\_\+mem\+\_\+check}}
+\index{bind\+\_\+mem\+\_\+check@{bind\+\_\+mem\+\_\+check}!bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}}
+\subsubsection{\texorpdfstring{bind\+\_\+mem\+\_\+check()}{bind\_mem\_check()}}
+{\footnotesize\ttfamily void bind\+\_\+mem\+\_\+check (\begin{DoxyParamCaption}\item[{void $\ast$}]{pnt,  }\item[{const char $\ast$}]{Msg }\end{DoxyParamCaption})}
+
+
+
+This function errors and prints Msg if pnt is null. 
+
+\mbox{\Hypertarget{bind__utilities_8c_a621d92bc3950d698be37ce62452128da}\label{bind__utilities_8c_a621d92bc3950d698be37ce62452128da}} 
+\index{bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}!bind\+\_\+p\+\_\+err@{bind\+\_\+p\+\_\+err}}
+\index{bind\+\_\+p\+\_\+err@{bind\+\_\+p\+\_\+err}!bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}}
+\subsubsection{\texorpdfstring{bind\+\_\+p\+\_\+err()}{bind\_p\_err()}}
+{\footnotesize\ttfamily void bind\+\_\+p\+\_\+err (\begin{DoxyParamCaption}\item[{const char $\ast$}]{Msg }\end{DoxyParamCaption})}
+
+
+
+This function calls perror then err. 
+
+\mbox{\Hypertarget{bind__utilities_8c_a3e495f49bce6a5edbe2c2af691013fb5}\label{bind__utilities_8c_a3e495f49bce6a5edbe2c2af691013fb5}} 
+\index{bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}!bind\+\_\+safe\+\_\+malloc@{bind\+\_\+safe\+\_\+malloc}}
+\index{bind\+\_\+safe\+\_\+malloc@{bind\+\_\+safe\+\_\+malloc}!bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}}
+\subsubsection{\texorpdfstring{bind\+\_\+safe\+\_\+malloc()}{bind\_safe\_malloc()}}
+{\footnotesize\ttfamily void$\ast$ bind\+\_\+safe\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{c,  }\item[{size\+\_\+t}]{s }\end{DoxyParamCaption})}
+
+
+
+Malloc, but check to see if failed. 
+
+\mbox{\Hypertarget{bind__utilities_8c_a89174c1631373cb8d9d73de79f5b2bd5}\label{bind__utilities_8c_a89174c1631373cb8d9d73de79f5b2bd5}} 
+\index{bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}!bind\+\_\+safe\+\_\+realloc@{bind\+\_\+safe\+\_\+realloc}}
+\index{bind\+\_\+safe\+\_\+realloc@{bind\+\_\+safe\+\_\+realloc}!bind\+\_\+utilities.\+c@{bind\+\_\+utilities.\+c}}
+\subsubsection{\texorpdfstring{bind\+\_\+safe\+\_\+realloc()}{bind\_safe\_realloc()}}
+{\footnotesize\ttfamily void$\ast$ bind\+\_\+safe\+\_\+realloc (\begin{DoxyParamCaption}\item[{void $\ast$}]{p,  }\item[{size\+\_\+t}]{c,  }\item[{size\+\_\+t}]{s }\end{DoxyParamCaption})}
+
+
+
+Realloc, but check to see if failed. 
+
