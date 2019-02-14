@@ -53,7 +53,7 @@ printf( "Total sum = %d\n", (int) bound_func(300) );  // Prints out 600
 ```
 
 ## Thread Safety
-Yes :)
+Yes, after the first bind. :)
 
 ## How to test
 To test that this works:
@@ -61,7 +61,7 @@ To test that this works:
 git clone https://github.com/zwimer/C-bind && \
 mkdir C-bind/src/build && cd C-bind/src/build && \
 cmake .. && make && \
-./main.out
+./test.out
 ```
 
 # Future Plans

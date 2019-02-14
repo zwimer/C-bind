@@ -4,7 +4,12 @@ project(${PROGRAM_NAME} C)
 
 # Requirements
 cmake_minimum_required(VERSION 3.5)
-
+set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+find_package(Threads REQUIRED)
+if (NOT ${CMAKE_USE_PTHREADS_INIT})
+	message(FATAL_ERROR "*** Pthreads not found ***")
+endif()
 
 #################################################
 #												#
@@ -34,7 +39,7 @@ set (CMAKE_C_FLAGS "-O0 -g -Wall -Wextra -Werror")
 
 # Name things
 set(BIND bind.so)
-set(MAIN main.out)
+set(TEST test.out)
 
 
 #################################################
@@ -52,10 +57,8 @@ endif()
 
 
 # Shared Libraries
-add_library(${BIND} SHARED bind.c bind_vector.c bind_blank.c bind_utilities.c )
+add_library(${BIND} SHARED bind.c bind_vec.c bind_utilities.c )
 
 # Executables
-add_executable(${MAIN} main.c )
-
-# Link shared librares
-target_link_libraries(${MAIN} ${BIND})
+add_executable(${TEST} test.c )
+target_link_libraries(${TEST} ${BIND} Threads::Threads)
