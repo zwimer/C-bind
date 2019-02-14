@@ -2,7 +2,7 @@
 peda-*
 .gdb*
 .*.swp
-*build/*
+**/build/*
 
 # Prerequisites
 *.d
