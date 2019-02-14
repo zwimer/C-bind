@@ -77,6 +77,8 @@ void * same(void ** in) {
 }
 int main() {
 	void * (*f) () = full_bind(same, 1, 0x41424344);
+	void * (*f2) () = full_bind(same, 1, 0x45464748);
 	printf("%p\n", f());
+	printf("%p\n", f2());
 }
 #endif

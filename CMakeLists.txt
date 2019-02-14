@@ -52,7 +52,8 @@ endif()
 
 
 # Shared Libraries
-add_library(${BIND} SHARED bind.c bind_vector.c bind_blank.c bind_utilities.c )
+add_library(${BIND} bind.c bind_vector.c bind_blank.c bind_utilities.c )
+# TODO: add_library(${BIND} SHARED bind.c bind_vector.c bind_blank.c bind_utilities.c )
 
 # Executables
 add_executable(${MAIN} main.c )
