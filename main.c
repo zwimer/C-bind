@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if 0
 // Vector structure
 typedef struct vector_t {
 
@@ -47,8 +46,8 @@ StringVec* make_vector() {
 	v->data = NULL;
 	v->len = 0;
 
-	v->push_back = (void (*) (char *)) partial_bind(vec_push_back, 2, 1, v);
-	v->size = (int (*) ()) full_bind(vec_size, 1, v);
+	v->push_back = partial_bind((void*)vec_push_back, 2, 1, v);
+	v->size = (int (*) ()) full_bind((void*)vec_size, 1, v);
 	return v;
 }
 
@@ -71,14 +70,3 @@ int main() {
 		printf("v->data[%d] = %s\n", i, (char*) v->data[i]);
 	}
 }
-#else
-void * same(void ** in) {
-	return in[0];
-}
-int main() {
-	void * (*f) () = full_bind(same, 1, 0x41424344);
-	void * (*f2) () = full_bind(same, 1, 0x45464748);
-	printf("%p\n", f());
-	printf("%p\n", f2());
-}
-#endif

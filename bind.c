@@ -18,7 +18,6 @@ bind_vec * get_global_bv() {
 	return ret;
 }
 
-int gl; // TODO
 void * invoke_full_bound() {
 	uint64_t index;
 	asm("mov %%r11, %0" : "=m" (index) );
@@ -26,9 +25,21 @@ void * invoke_full_bound() {
 	return bb->fn(bb->args);
 }
 
-void stub() { gl = 0; invoke_full_bound(); }
+void * invoke_partial_bound( void * a1, ... ) {
+	uint64_t index;
+	asm("mov %%r11, %0" : "=m" (index) );
+	bind_blank_t * bb = bv_get(get_global_bv(), index);
+	bb->args[bb->n_bound] = a1;
+	va_list args;
+	va_start(args, a1);
+	for ( uint64_t i = bb->n_bound + 1; i < bb->n_total; ++i ) {
+		bb->args[i] = va_arg(args, void *);
+	}
+	va_end(args);
+	return bb->fn(bb->args);
+}
 
-void * gen_stub_full(const uint64_t index) {
+void * gen_stub(const uint64_t index, void * const invoker) {
 	/* mov r11, func
 	push r11
 	mov r11, index
@@ -39,15 +50,17 @@ void * gen_stub_full(const uint64_t index) {
 	const char stub[] = "\x49\xBB" "AAAAAAAA" "\x41\x53\x49\xBB" "BBBBBBBB" "\xC3";
 	memcpy(func, stub, sizeof(stub));
 	memcpy(strstr(func, "BBBBBBBB"), & index, 8 );
-	void * (*invoke_ptr)() = & invoke_full_bound;
-	memcpy(strstr(func, "AAAAAAAA"), & invoke_ptr, 8 );
+	memcpy(strstr(func, "AAAAAAAA"), & invoker, 8 );
 	bind_assert(mprotect(func, size, PROT_READ | PROT_EXEC) == 0, "mprotect() failed.");
 	return func;
 }
 
+void * gen_stub_full(const uint64_t index) {
+	return gen_stub(index, invoke_full_bound);
+}
+
 void * gen_stub_partial(const uint64_t index) {
-	(void) index;
-	return stub;
+	return gen_stub(index, invoke_partial_bound);
 }
 
 
@@ -71,6 +84,7 @@ FullBound full_bind(Bindable func, const uint64_t n_total,  ...) {
 	return gen_stub_full(index);
 }
 PartBound partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound, ...) {
+	bind_assert(n_total > n_bound, "partial_bind() called improperly");
 	STORE_ARGS_RETURN_BOUND(n_bound);
 	return gen_stub_partial(index);
 }
