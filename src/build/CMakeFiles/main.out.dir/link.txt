@@ -1,0 +1,1 @@
+/usr/bin/cc -O0 -g -Wall -Wextra -Werror   CMakeFiles/main.out.dir/main.c.o  -o main.out -Wl,-rpath,/home/zwimer/Desktop/C-bind/src/build libbind.so.so 

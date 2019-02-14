@@ -1,5 +1,4 @@
 #include "bind.h"
-#include "check_bits.h"
 #include "bind_vector.h"
 #include "bind_utilities.h"
 

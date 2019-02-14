@@ -20,6 +20,6 @@
 // Check
 #ifndef BIT_64
 
-	Error: Only 64-bit currently supported!
+	*** Error: Only 64-bit currently supported! ***
 
 #endif
