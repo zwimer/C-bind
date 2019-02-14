@@ -3,23 +3,25 @@ dist: bionic
 sudo: required
 language: C
 
-before_install:
+stages:
+    - init_s
+    - build_s
+    - name: deploy_s
+      if: branch = master
+
+init_t:
+    - stage: init_s
     - sudo apt-get update -q
     - sudo apt-get install -qy cmake make doxygen valgrind
 
-stages:
-    - build
-    - name: deploy
-      if: branch = master
-
-build:
-    - stage: build
+build_s:
+    - stage: build_s
     - pwd
     - cd ./C-bind/src
     - mkdir ./build && cd ./build
     - cmake ..
     - make
 
-deploy:
-    - stage: deploy
+deploy_s:
+    - stage: deploy_s
     - pwd
