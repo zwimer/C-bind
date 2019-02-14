@@ -9,7 +9,7 @@ To invoke the bound version of `my_func`, one could simply invoke it as
 bound_func( arg1, arg2, arg3 )
 ```
 *Despite the odd function signature of the function to be bound, it can be invoked like a standard function.*
-Note, if you pass extra unexpected arguments to `bound\_func` they will be ignored.
+Note, if you pass extra unexpected arguments to `bound_func` they will be ignored.
 
 ## Signature
 Functions to be bound must have a unique signature, however when calling them they may be called as standard functions.
@@ -19,15 +19,15 @@ void * my_func( void ** args )
 ```
 The return value may simply be any other primitive so you cast it properly during the binding call.
 You can think of `args` as an array of arguments!
-Parsing the `args` array is the job of `my\_func`. `my\_func` must have a defined maximum number of 'arguments'. 
-*That is, `my\_func` must expect that no more `num\_args` number of elements in the `args` array to be passed.*
+Parsing the `args` array is the job of `my_func`. `my_func` must have a defined maximum number of 'arguments'. 
+*That is, `my_func` must expect that no more `num_args` number of elements in the `args` array to be passed.*
 
 ## Fully binding
 To fully bind a functon, invoke
 ```C
 bound_func = full_bind(my_func, num_args, arg1, arg2, arg3 )
 ```
-Here `num\_args` is the number of elements in the `args` array `my\_func` expects to be passed. Notice that if you pass in more arguments `num\_args` they will be ignored.
+Here `num_args` is the number of elements in the `args` array `my_func` expects to be passed. Notice that if you pass in more arguments `num_args` they will be ignored.
 
 ### Example
 ```C
@@ -42,7 +42,7 @@ To partially bind a function, invoke
 ```C
 bound_func = partial_bind( my_func, num_args, num_args_to_bind, arg1, arg2);
 ```
-Here `num\_args\_to\_bind` is the number of arguments currently being bound!
+Here `num_args_to_bind` is the number of arguments currently being bound!
 
 ### Example
 ```C
@@ -57,6 +57,6 @@ To test that this works:
 ```bash
 git clone https://github.com/zwimer/C-bind && \
 mkdir C-bind/src/build && cd C-bind/src/build && \
-cmake .. && make &&
+cmake .. && make && \
 ./main.out
 ```
