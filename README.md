@@ -49,7 +49,7 @@ Here `num_args_to_bind` is the number of arguments currently being bound!
 // This function expects exactly 3 arguments
 void * sum3( void ** args ) { return args[0] + args[1] + args[2]; }
 bound_func = partial_bind( sum3, 3, 2, /* Arguments begin */ 100, 200 );
-printf("Total sum = %d\n", (int) bound_func(300)); // Prints out 300
+printf("Total sum = %d\n", (int) bound_func(300)); // Prints out 600
 ```
 
 ## How to test
