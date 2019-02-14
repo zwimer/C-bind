@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+#if 0
 // Vector structure
 typedef struct vector_t {
 
@@ -71,3 +71,12 @@ int main() {
 		printf("v->data[%d] = %s\n", i, (char*) v->data[i]);
 	}
 }
+#else
+void * same(void ** in) {
+	return in[0];
+}
+int main() {
+	void * (*f) () = full_bind(same, 1, 0x41424344);
+	printf("%p\n", f());
+}
+#endif
