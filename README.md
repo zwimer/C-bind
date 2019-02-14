@@ -25,7 +25,7 @@ Parsing the `args` array is the job of `my_func`. `my_func` must have a defined 
 ## Fully binding
 To fully bind a functon, invoke
 ```C
-bound_func = full_bind(my_func, num_args, arg1, arg2, arg3 )
+bound_func = full_bind( my_func, num_args, arg1, arg2, arg3 )
 ```
 Here `num_args` is the number of elements in the `args` array `my_func` expects to be passed. Notice that if you pass in more arguments `num_args` they will be ignored.
 
@@ -33,14 +33,14 @@ Here `num_args` is the number of elements in the `args` array `my_func` expects 
 ```C
 // This function expects exactly 1 argument!
 void * id( void ** args ) { return args[0]; }
-bound_func = full_bind(id, 1, /* Arguments begin */ 0x41414141);
-printf("My id = %d\n", (int) bound_func());	// Prints out 0x41414141
+bound_func = full_bind( id, 1, /* Arguments begin */ 0x41414141 );
+printf( "My id = %d\n", (int) bound_func() );  // Prints out 0x41414141
 ```
 
 ### Partial binding
 To partially bind a function, invoke
 ```C
-bound_func = partial_bind( my_func, num_args, num_args_to_bind, arg1, arg2);
+bound_func = partial_bind( my_func, num_args, num_args_to_bind, arg1, arg2 );
 ```
 Here `num_args_to_bind` is the number of arguments currently being bound!
 
@@ -49,7 +49,7 @@ Here `num_args_to_bind` is the number of arguments currently being bound!
 // This function expects exactly 3 arguments
 void * sum3( void ** args ) { return args[0] + args[1] + args[2]; }
 bound_func = partial_bind( sum3, 3, 2, /* Arguments begin */ 100, 200 );
-printf("Total sum = %d\n", (int) bound_func(300)); // Prints out 600
+printf( "Total sum = %d\n", (int) bound_func(300) );  // Prints out 600
 ```
 
 ## Thread Safety
