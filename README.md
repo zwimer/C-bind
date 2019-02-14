@@ -52,6 +52,9 @@ bound_func = partial_bind( sum3, 3, 2, /* Arguments begin */ 100, 200 );
 printf("Total sum = %d\n", (int) bound_func(300)); // Prints out 600
 ```
 
+## Thread Safety
+Yes :)
+
 ## How to test
 To test that this works:
 ```bash
@@ -60,6 +63,14 @@ mkdir C-bind/src/build && cd C-bind/src/build && \
 cmake .. && make && \
 ./main.out
 ```
+
+# Future Plans
+
+### Removing the signature requirement
+By emulating the `x86_64` calling convention I can remove the requirement of needing that special signature to bind a functon.
+
+### Memory efficiency
+Right now the `get_stub` function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page.
 
 # Restrictions
 Currently this only works on 64-bit `x86`.
