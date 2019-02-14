@@ -1,4 +1,0 @@
-/home/zwimer/Desktop/C-bind/src/build/CMakeFiles/edit_cache.dir
-/home/zwimer/Desktop/C-bind/src/build/CMakeFiles/bind.so.dir
-/home/zwimer/Desktop/C-bind/src/build/CMakeFiles/rebuild_cache.dir
-/home/zwimer/Desktop/C-bind/src/build/CMakeFiles/main.out.dir
