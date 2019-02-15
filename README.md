@@ -1,6 +1,4 @@
-# C-bind
-Function binding in C !!!
-
+# C-bind: Function binding in C !!!
 [![Build Status](https://api.travis-ci.org/zwimer/C-bind.svg?branch=master)](https://travis-ci.org/zwimer/C-bind)
 
 # How to use
