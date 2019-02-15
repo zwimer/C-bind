@@ -1,8 +1,8 @@
 \hypertarget{bind__vec_8c}{}\section{src/bind\+\_\+vec.c File Reference}
 \label{bind__vec_8c}\index{src/bind\+\_\+vec.\+c@{src/bind\+\_\+vec.\+c}}
-{\ttfamily \#include \char`\"{}bind\+\_\+vec.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}bind\+\_\+utilities.\+h\char`\"{}}\newline
-{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}bind\+\_\+vec.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}bind\+\_\+utilities.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$pthread.\+h$>$}\\*
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -24,52 +24,59 @@ uint64\+\_\+t \hyperlink{bind__vec_8c_a99f15769dba5a78755d63238954d183c}{bv\+\_\
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{bind__vec_8c_a99f15769dba5a78755d63238954d183c}\label{bind__vec_8c_a99f15769dba5a78755d63238954d183c}} 
 \index{bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}!bv\+\_\+consume\+\_\+add\+\_\+blank@{bv\+\_\+consume\+\_\+add\+\_\+blank}}
 \index{bv\+\_\+consume\+\_\+add\+\_\+blank@{bv\+\_\+consume\+\_\+add\+\_\+blank}!bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}}
-\subsubsection{\texorpdfstring{bv\+\_\+consume\+\_\+add\+\_\+blank()}{bv\_consume\_add\_blank()}}
-{\footnotesize\ttfamily uint64\+\_\+t bv\+\_\+consume\+\_\+add\+\_\+blank (\begin{DoxyParamCaption}\item[{\hyperlink{structbind__vec}{bind\+\_\+vec} $\ast$const}]{bv,  }\item[{\hyperlink{structbound__internals__t}{bound\+\_\+internals\+\_\+t} $\ast$const}]{add }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{bv\+\_\+consume\+\_\+add\+\_\+blank(bind\+\_\+vec $\ast$const bv, bound\+\_\+internals\+\_\+t $\ast$const add)}{bv_consume_add_blank(bind_vec *const bv, bound_internals_t *const add)}}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t bv\+\_\+consume\+\_\+add\+\_\+blank (
+\begin{DoxyParamCaption}
+\item[{{\bf bind\+\_\+vec} $\ast$const}]{bv, }
+\item[{{\bf bound\+\_\+internals\+\_\+t} $\ast$const}]{add}
+\end{DoxyParamCaption}
+)}\hypertarget{bind__vec_8c_a99f15769dba5a78755d63238954d183c}{}\label{bind__vec_8c_a99f15769dba5a78755d63238954d183c}
 
 
 Consume a bound\+\_\+internals and append it to the vector. 
 
-\mbox{\Hypertarget{bind__vec_8c_a9d3da74ceae0a2d8ea67b5098d3f9d0a}\label{bind__vec_8c_a9d3da74ceae0a2d8ea67b5098d3f9d0a}} 
 \index{bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}!bv\+\_\+get@{bv\+\_\+get}}
 \index{bv\+\_\+get@{bv\+\_\+get}!bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}}
-\subsubsection{\texorpdfstring{bv\+\_\+get()}{bv\_get()}}
-{\footnotesize\ttfamily \hyperlink{structbound__internals__t}{bound\+\_\+internals\+\_\+t}$\ast$ bv\+\_\+get (\begin{DoxyParamCaption}\item[{\hyperlink{structbind__vec}{bind\+\_\+vec} $\ast$const}]{bv,  }\item[{const uint64\+\_\+t}]{index }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{bv\+\_\+get(bind\+\_\+vec $\ast$const bv, const uint64\+\_\+t index)}{bv_get(bind_vec *const bv, const uint64_t index)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bound\+\_\+internals\+\_\+t}$\ast$ bv\+\_\+get (
+\begin{DoxyParamCaption}
+\item[{{\bf bind\+\_\+vec} $\ast$const}]{bv, }
+\item[{const uint64\+\_\+t}]{index}
+\end{DoxyParamCaption}
+)}\hypertarget{bind__vec_8c_a9d3da74ceae0a2d8ea67b5098d3f9d0a}{}\label{bind__vec_8c_a9d3da74ceae0a2d8ea67b5098d3f9d0a}
 
 
 The subscript operator. 
 
-\mbox{\Hypertarget{bind__vec_8c_ab53411d4e2ce807d47d6e08bd15e9ebb}\label{bind__vec_8c_ab53411d4e2ce807d47d6e08bd15e9ebb}} 
 \index{bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}!lock@{lock}}
 \index{lock@{lock}!bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}}
-\subsubsection{\texorpdfstring{lock()}{lock()}}
-{\footnotesize\ttfamily void lock (\begin{DoxyParamCaption}\item[{\hyperlink{structbind__vec}{bind\+\_\+vec} $\ast$const}]{bv }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{lock(bind\+\_\+vec $\ast$const bv)}{lock(bind_vec *const bv)}}]{\setlength{\rightskip}{0pt plus 5cm}void lock (
+\begin{DoxyParamCaption}
+\item[{{\bf bind\+\_\+vec} $\ast$const}]{bv}
+\end{DoxyParamCaption}
+)}\hypertarget{bind__vec_8c_ab53411d4e2ce807d47d6e08bd15e9ebb}{}\label{bind__vec_8c_ab53411d4e2ce807d47d6e08bd15e9ebb}
 
 
 Lock a \hyperlink{structbind__vec}{bind\+\_\+vec}\textquotesingle{}s mutex. 
 
-\mbox{\Hypertarget{bind__vec_8c_a91df1dd1b6f05ce53150a27c6c1c51b7}\label{bind__vec_8c_a91df1dd1b6f05ce53150a27c6c1c51b7}} 
 \index{bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}!make\+\_\+bind\+\_\+vec@{make\+\_\+bind\+\_\+vec}}
 \index{make\+\_\+bind\+\_\+vec@{make\+\_\+bind\+\_\+vec}!bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}}
-\subsubsection{\texorpdfstring{make\+\_\+bind\+\_\+vec()}{make\_bind\_vec()}}
-{\footnotesize\ttfamily \hyperlink{structbind__vec}{bind\+\_\+vec}$\ast$ make\+\_\+bind\+\_\+vec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{make\+\_\+bind\+\_\+vec()}{make_bind_vec()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bind\+\_\+vec}$\ast$ make\+\_\+bind\+\_\+vec (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{bind__vec_8c_a91df1dd1b6f05ce53150a27c6c1c51b7}{}\label{bind__vec_8c_a91df1dd1b6f05ce53150a27c6c1c51b7}
 
 
 Create a \hyperlink{structbind__vec}{bind\+\_\+vec}. 
 
-\mbox{\Hypertarget{bind__vec_8c_ae5ad8973e9126f887659a27447dde748}\label{bind__vec_8c_ae5ad8973e9126f887659a27447dde748}} 
 \index{bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}!unlock@{unlock}}
 \index{unlock@{unlock}!bind\+\_\+vec.\+c@{bind\+\_\+vec.\+c}}
-\subsubsection{\texorpdfstring{unlock()}{unlock()}}
-{\footnotesize\ttfamily void unlock (\begin{DoxyParamCaption}\item[{\hyperlink{structbind__vec}{bind\+\_\+vec} $\ast$const}]{bv }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{unlock(bind\+\_\+vec $\ast$const bv)}{unlock(bind_vec *const bv)}}]{\setlength{\rightskip}{0pt plus 5cm}void unlock (
+\begin{DoxyParamCaption}
+\item[{{\bf bind\+\_\+vec} $\ast$const}]{bv}
+\end{DoxyParamCaption}
+)}\hypertarget{bind__vec_8c_ae5ad8973e9126f887659a27447dde748}{}\label{bind__vec_8c_ae5ad8973e9126f887659a27447dde748}
 
 
 Unlock a \hyperlink{structbind__vec}{bind\+\_\+vec}\textquotesingle{}s mutex. 

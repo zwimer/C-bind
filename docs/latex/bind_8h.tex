@@ -1,7 +1,7 @@
 \hypertarget{bind_8h}{}\section{src/bind.h File Reference}
 \label{bind_8h}\index{src/bind.\+h@{src/bind.\+h}}
-{\ttfamily \#include \char`\"{}bind\+\_\+defs.\+h\char`\"{}}\newline
-{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}bind\+\_\+defs.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -17,12 +17,16 @@ const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{bind_8h_aff4db9a0bb0f6dbb9322481a51f7e392}\label{bind_8h_aff4db9a0bb0f6dbb9322481a51f7e392}} 
 \index{bind.\+h@{bind.\+h}!partial\+\_\+bind@{partial\+\_\+bind}}
 \index{partial\+\_\+bind@{partial\+\_\+bind}!bind.\+h@{bind.\+h}}
-\subsubsection{\texorpdfstring{partial\+\_\+bind()}{partial\_bind()}}
-{\footnotesize\ttfamily const uint64\+\_\+t \hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} partial\+\_\+bind (\begin{DoxyParamCaption}\item[{\hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable}}]{func,  }\item[{const uint64\+\_\+t}]{n\+\_\+total,  }\item[{const uint64\+\_\+t}]{n\+\_\+bound,  }\item[{}]{... }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{partial\+\_\+bind(\+Bindable func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)}{partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound,...)}}]{\setlength{\rightskip}{0pt plus 5cm}const uint64\+\_\+t {\bf Part\+Bound} partial\+\_\+bind (
+\begin{DoxyParamCaption}
+\item[{{\bf Bindable}}]{func, }
+\item[{const uint64\+\_\+t}]{n\+\_\+total, }
+\item[{const uint64\+\_\+t}]{n\+\_\+bound, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8h_aff4db9a0bb0f6dbb9322481a51f7e392}{}\label{bind_8h_aff4db9a0bb0f6dbb9322481a51f7e392}
 
 
 Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. 
@@ -30,19 +34,13 @@ Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound a
 
 
 \subsection{Variable Documentation}
-\mbox{\Hypertarget{bind_8h_aab29f50497cba1a9833b98e380f89a18}\label{bind_8h_aab29f50497cba1a9833b98e380f89a18}} 
 \index{bind.\+h@{bind.\+h}!Error@{Error}}
 \index{Error@{Error}!bind.\+h@{bind.\+h}}
-\subsubsection{\texorpdfstring{Error}{Error}}
-{\footnotesize\ttfamily $\ast$$\ast$$\ast$ Error}
-
+\subsubsection[{\texorpdfstring{Error}{Error}}]{\setlength{\rightskip}{0pt plus 5cm}$\ast$$\ast$$\ast$ Error}\hypertarget{bind_8h_aab29f50497cba1a9833b98e380f89a18}{}\label{bind_8h_aab29f50497cba1a9833b98e380f89a18}
 
 
 Only allow 64 bit. 
 
-\mbox{\Hypertarget{bind_8h_acb55ca7603b51493ee95b739018513e3}\label{bind_8h_acb55ca7603b51493ee95b739018513e3}} 
 \index{bind.\+h@{bind.\+h}!n\+\_\+total@{n\+\_\+total}}
 \index{n\+\_\+total@{n\+\_\+total}!bind.\+h@{bind.\+h}}
-\subsubsection{\texorpdfstring{n\+\_\+total}{n\_total}}
-{\footnotesize\ttfamily const uint64\+\_\+t n\+\_\+total}
-
+\subsubsection[{\texorpdfstring{n\+\_\+total}{n_total}}]{\setlength{\rightskip}{0pt plus 5cm}const uint64\+\_\+t n\+\_\+total}\hypertarget{bind_8h_acb55ca7603b51493ee95b739018513e3}{}\label{bind_8h_acb55ca7603b51493ee95b739018513e3}
