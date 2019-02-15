@@ -37,6 +37,6 @@ after_success:
     - git add ./docs/
     - git config user.name "Travis CI"
     - git config user.email "travis@travis-ci.org"
-    - git commit -m 'Travis-CI Documentation update'
+    - git commit -m 'Travis-CI Documentation update' | true
     - git config --global push.default simple
     - git push -u origin gh-pages
