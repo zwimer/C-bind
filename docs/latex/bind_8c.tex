@@ -1,0 +1,146 @@
+\hypertarget{bind_8c}{}\section{src/bind.c File Reference}
+\label{bind_8c}\index{src/bind.\+c@{src/bind.\+c}}
+{\ttfamily \#include \char`\"{}bind.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bind\+\_\+vec.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bind\+\_\+utilities.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{bind_8c_a9b90a9d8aa055125508ff6e300bd5082}{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}(L\+A\+S\+T\+\_\+\+A\+RG)
+\begin{DoxyCompactList}\small\item\em A macro to set up a bound\+\_\+internals This macro exists to ensure consistency. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbind__vec}{bind\+\_\+vec} $\ast$ \hyperlink{bind_8c_ad3cf8f65fa323fffcc4750e5bbf0f6a2}{get\+\_\+global\+\_\+bv} ()
+\begin{DoxyCompactList}\small\item\em A function that returns the global bv The first call to this function is not thread safe After completion of the first call, subsequent calls are. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{bind_8c_ade25fe604fab02fb5068056d16f12592}{invoke\+\_\+full\+\_\+bound} ()
+\begin{DoxyCompactList}\small\item\em Invoke a fully bound function The function index is stored in r11. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{bind_8c_a58c4e4371fd84e7d1ee955333c19ee76}{invoke\+\_\+partial\+\_\+bound} (void $\ast$a1,...)
+\begin{DoxyCompactList}\small\item\em Invoke a partially bound function with the additional args of a1, ... \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{bind_8c_aaa4909d5b4e11a29328a759311f03d37}{gen\+\_\+stub} (const uint64\+\_\+t index, void $\ast$const invoker)
+\begin{DoxyCompactList}\small\item\em Generate a stub for a bound function Use invoker as the invoke function. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{bind_8c_a5ccd8e1cb7b1935e7f8e8c0d897dcc40}{gen\+\_\+stub\+\_\+full} (const uint64\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Generate a stub for a fully bound function. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{bind_8c_a03dce846f7b577fe5920b6aed38cb807}{gen\+\_\+stub\+\_\+partial} (const uint64\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Generate a stub for a partially bound function. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a35b1524d8ed85a8548e841b1f6225695}{Full\+Bound} \hyperlink{bind_8c_aba8492ffd71864427a5cddc0c3888454}{full\+\_\+bind} (\hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable} func, const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total},...)
+\item 
+\hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8c_a749a103d16b748b8aecff011472a0881}{partial\+\_\+bind} (\hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable} func, const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total}, const uint64\+\_\+t n\+\_\+bound,...)
+\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bind_8c_a9b90a9d8aa055125508ff6e300bd5082}\label{bind_8c_a9b90a9d8aa055125508ff6e300bd5082}} 
+\index{bind.\+c@{bind.\+c}!S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND@{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}}
+\index{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND@{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}{STORE\_ARGS\_RETURN\_BOUND}}
+{\footnotesize\ttfamily \#define S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{L\+A\+S\+T\+\_\+\+A\+RG }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\(\backslash\)                                        \(\backslash\)
+    bound\_internals\_t * bb = \hyperlink{bind__utilities_8c_a3e495f49bce6a5edbe2c2af691013fb5}{bind\_safe\_malloc}(1, \textcolor{keyword}{sizeof}(
+      \hyperlink{structbound__internals__t}{bound\_internals\_t}));  \(\backslash\)
+    bb->args = \hyperlink{bind__utilities_8c_a3e495f49bce6a5edbe2c2af691013fb5}{bind\_safe\_malloc}(\hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\_total}, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void}*));                      \(\backslash\)
+    bb->n\_total = \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\_total};                                                    \(\backslash\)
+    bb->n\_bound = n\_bound;                                                    \(\backslash\)
+    bb->fn = func;                                                            \(\backslash\)
+                                                                              \(\backslash\)                            
+                 \(\backslash\)
+    va\_list args;                                                             \(\backslash\)
+    va\_start(args, LAST\_ARG);                                                 \(\backslash\)
+    for ( uint64\_t i = 0; i < n\_bound; ++i ) \{                                \(\backslash\)
+        bb->args[i] = va\_arg(args, \textcolor{keywordtype}{void} *);                                   \(\backslash\)
+    \}                                                                         \(\backslash\)
+    va\_end(args);                                                             \(\backslash\)
+                                                                              \(\backslash\)                     \(\backslash\)
+    const \textcolor{keywordtype}{int} index = \hyperlink{bind__vec_8c_a99f15769dba5a78755d63238954d183c}{bv\_consume\_add\_blank}(\hyperlink{bind_8c_ad3cf8f65fa323fffcc4750e5bbf0f6a2}{get\_global\_bv}(), bb);
+\end{DoxyCode}
+
+
+A macro to set up a bound\+\_\+internals This macro exists to ensure consistency. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{bind_8c_aba8492ffd71864427a5cddc0c3888454}\label{bind_8c_aba8492ffd71864427a5cddc0c3888454}} 
+\index{bind.\+c@{bind.\+c}!full\+\_\+bind@{full\+\_\+bind}}
+\index{full\+\_\+bind@{full\+\_\+bind}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{full\+\_\+bind()}{full\_bind()}}
+{\footnotesize\ttfamily \hyperlink{bind__defs_8h_a35b1524d8ed85a8548e841b1f6225695}{Full\+Bound} full\+\_\+bind (\begin{DoxyParamCaption}\item[{\hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable}}]{func,  }\item[{const uint64\+\_\+t}]{n\+\_\+total,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bind_8c_aaa4909d5b4e11a29328a759311f03d37}\label{bind_8c_aaa4909d5b4e11a29328a759311f03d37}} 
+\index{bind.\+c@{bind.\+c}!gen\+\_\+stub@{gen\+\_\+stub}}
+\index{gen\+\_\+stub@{gen\+\_\+stub}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{gen\+\_\+stub()}{gen\_stub()}}
+{\footnotesize\ttfamily void$\ast$ gen\+\_\+stub (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{index,  }\item[{void $\ast$const}]{invoker }\end{DoxyParamCaption})}
+
+
+
+Generate a stub for a bound function Use invoker as the invoke function. 
+
+\mbox{\Hypertarget{bind_8c_a5ccd8e1cb7b1935e7f8e8c0d897dcc40}\label{bind_8c_a5ccd8e1cb7b1935e7f8e8c0d897dcc40}} 
+\index{bind.\+c@{bind.\+c}!gen\+\_\+stub\+\_\+full@{gen\+\_\+stub\+\_\+full}}
+\index{gen\+\_\+stub\+\_\+full@{gen\+\_\+stub\+\_\+full}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{gen\+\_\+stub\+\_\+full()}{gen\_stub\_full()}}
+{\footnotesize\ttfamily void$\ast$ gen\+\_\+stub\+\_\+full (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+
+
+Generate a stub for a fully bound function. 
+
+\mbox{\Hypertarget{bind_8c_a03dce846f7b577fe5920b6aed38cb807}\label{bind_8c_a03dce846f7b577fe5920b6aed38cb807}} 
+\index{bind.\+c@{bind.\+c}!gen\+\_\+stub\+\_\+partial@{gen\+\_\+stub\+\_\+partial}}
+\index{gen\+\_\+stub\+\_\+partial@{gen\+\_\+stub\+\_\+partial}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{gen\+\_\+stub\+\_\+partial()}{gen\_stub\_partial()}}
+{\footnotesize\ttfamily void$\ast$ gen\+\_\+stub\+\_\+partial (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+
+
+Generate a stub for a partially bound function. 
+
+\mbox{\Hypertarget{bind_8c_ad3cf8f65fa323fffcc4750e5bbf0f6a2}\label{bind_8c_ad3cf8f65fa323fffcc4750e5bbf0f6a2}} 
+\index{bind.\+c@{bind.\+c}!get\+\_\+global\+\_\+bv@{get\+\_\+global\+\_\+bv}}
+\index{get\+\_\+global\+\_\+bv@{get\+\_\+global\+\_\+bv}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+global\+\_\+bv()}{get\_global\_bv()}}
+{\footnotesize\ttfamily \hyperlink{structbind__vec}{bind\+\_\+vec}$\ast$ get\+\_\+global\+\_\+bv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A function that returns the global bv The first call to this function is not thread safe After completion of the first call, subsequent calls are. 
+
+\mbox{\Hypertarget{bind_8c_ade25fe604fab02fb5068056d16f12592}\label{bind_8c_ade25fe604fab02fb5068056d16f12592}} 
+\index{bind.\+c@{bind.\+c}!invoke\+\_\+full\+\_\+bound@{invoke\+\_\+full\+\_\+bound}}
+\index{invoke\+\_\+full\+\_\+bound@{invoke\+\_\+full\+\_\+bound}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{invoke\+\_\+full\+\_\+bound()}{invoke\_full\_bound()}}
+{\footnotesize\ttfamily void$\ast$ invoke\+\_\+full\+\_\+bound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Invoke a fully bound function The function index is stored in r11. 
+
+\mbox{\Hypertarget{bind_8c_a58c4e4371fd84e7d1ee955333c19ee76}\label{bind_8c_a58c4e4371fd84e7d1ee955333c19ee76}} 
+\index{bind.\+c@{bind.\+c}!invoke\+\_\+partial\+\_\+bound@{invoke\+\_\+partial\+\_\+bound}}
+\index{invoke\+\_\+partial\+\_\+bound@{invoke\+\_\+partial\+\_\+bound}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{invoke\+\_\+partial\+\_\+bound()}{invoke\_partial\_bound()}}
+{\footnotesize\ttfamily void$\ast$ invoke\+\_\+partial\+\_\+bound (\begin{DoxyParamCaption}\item[{void $\ast$}]{a1,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Invoke a partially bound function with the additional args of a1, ... 
+
+The function index is stored in r11 \mbox{\Hypertarget{bind_8c_a749a103d16b748b8aecff011472a0881}\label{bind_8c_a749a103d16b748b8aecff011472a0881}} 
+\index{bind.\+c@{bind.\+c}!partial\+\_\+bind@{partial\+\_\+bind}}
+\index{partial\+\_\+bind@{partial\+\_\+bind}!bind.\+c@{bind.\+c}}
+\subsubsection{\texorpdfstring{partial\+\_\+bind()}{partial\_bind()}}
+{\footnotesize\ttfamily \hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} partial\+\_\+bind (\begin{DoxyParamCaption}\item[{\hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable}}]{func,  }\item[{const uint64\+\_\+t}]{n\+\_\+total,  }\item[{const uint64\+\_\+t}]{n\+\_\+bound,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. 
+
