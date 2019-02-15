@@ -2,24 +2,41 @@ os: linux
 dist: bionic
 sudo: required
 language: C
+compiler: gcc
+
+branches:
+    only: master
+
+env:
+    global:
+        - GH_REPO_NAME: C-bind
+        - GH_REPO_REF: github.com/zwimer/C-bind.git
 
 before_install:
-    - sudo apt-get update -q
-    - sudo apt-get install -qy cmake make doxygen valgrind
+    - sudo apt-get install -qy gcc cmake make doxygen valgrind
+addons:
+    apt:
+        update: true
 
-stages:
-    - build
-    - name: deploy
-      if: branch = master
-
-build:
-    - stage: build
-    - pwd
-    - cd ./C-bind/src
-    - mkdir ./build && cd ./build
+script:
+    - set -e
+    - mkdir ./src/build
+    - cd ./src/build
     - cmake ..
     - make
 
-deploy:
-    - stage: deploy
-    - pwd
+after_success:
+    - set -e
+    - cd ${TRAVIS_BUILD_DIR}
+    - doxygen
+    - git clone "https://zwimer:$GH_REPO_TOKEN@github.com/zwimer/$GH_REPO_NAME"
+    - cd "$GH_REPO_NAME"
+    - git checkout gh-pages
+    - rm -rf ./docs
+    - mv ../docs .
+    - git add ./docs/
+    - git config user.name "Travis CI"
+    - git config user.email "travis@travis-ci.org"
+    - git commit -m 'Travis-CI Documentation update' | true
+    - git config --global push.default simple
+    - git push -u origin gh-pages
