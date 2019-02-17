@@ -35,7 +35,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
 # Required complication flags
-set (CMAKE_C_FLAGS "-O0 -g -Wall -Wextra -Werror")
+# set (CMAKE_C_FLAGS "-O0 -g -Wall -Wextra")
+set (CMAKE_C_FLAGS "-O0 -g -Wall -Wextra")
 
 # Name things
 set(BIND bind.so)
@@ -55,8 +56,9 @@ if(DEFINED DEBUG_MODE)
 	add_definitions(-DDEBUG_MODE)
 endif()
 
+# set_source_files_properties(bind.c PROPERTIES COMPILE_FLAGS "-w -O0")
 
-# Shared Libraries
+# Bind library
 add_library(${BIND} SHARED bind.c bind_vec.c bind_utilities.c )
 
 # Executables

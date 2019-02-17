@@ -53,7 +53,7 @@ printf( "Total sum = %d\n", (int) bound_func(300) );  // Prints out 600
 ```
 
 ## Thread Safety
-Yes, after the first bind. :)
+Yes.
 
 ## How to test
 To test that this works:

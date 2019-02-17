@@ -13,7 +13,7 @@ typedef struct vector_t {
 } StringVec;
 
 // A vector push_back function
-void vec_push_back( void ** args ) {
+void vec_push_back( arg_t * args ) {
 	StringVec * vec = args[0];
 	char * add = args[1];
 	if ( vec->data == 0 ) {
@@ -29,7 +29,7 @@ void vec_push_back( void ** args ) {
 }
 
 // A vector size function
-int vec_size( void ** args ) {
+int vec_size( arg_t * args ) {
 	return ((StringVec *) args[0])->len;
 }
 

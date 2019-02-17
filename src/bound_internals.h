@@ -8,13 +8,15 @@
 /** A structure that holds all data needed to bind a function */
 typedef struct bound_internals_t {
 	/** A data array to store the bound arguments */
-	void ** args;
+	arg_t * args;
 	/** The function being bound */
 	Bindable fn;
 	/** The total number of arguments */
 	uint64_t n_total;
 	/** The number of arguments currently bound */
 	uint64_t n_bound;
+	/** A boolean, trust if systemv, false otherwise */
+	unsigned char systemv;
 } bound_internals_t;
 
 #endif

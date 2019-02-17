@@ -2,6 +2,7 @@
 #define __BIND_VECTOR_H__
 
 #include "bind_defs.h"
+#include "bind_utilities.h"
 #include "bound_internals.h"
 
 #include <stdint.h>
@@ -18,7 +19,7 @@ typedef struct bind_vec_t {
 	/** The max size of the vector allocated */
 	uint64_t msize;
 	/** An obscurred thread-safe lock */
-	struct obscurred_mutex * lock;
+	bind_lock_t * lock;
 } bind_vec;
 
 /** Create a bind_vec */
