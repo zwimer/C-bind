@@ -5,10 +5,11 @@
 
 1. [Requirements](#requirements)
 1. [Usage](#usage)
-  - [General](#general)
-  - [SystemV] (#systemv)
-  - [Non-SystemV] (#non-systemv)
+	- [General](#general)
+	- [SystemV](#systemv)
+	- [Non-SystemV](#non-systemv)
 1. [Testing](#testing)
+1. [Compilation](#compilation)
 1. [CI](#ci)
 1. [Documentation](#documentation)
 1. [Future Plans](#future-plans)
@@ -21,6 +22,9 @@ Currently `C-bind` requires `pthread` to be installed, and requires `x86_64`. `C
 # Usage
 
 ## General
+
+### Includes
+To link the `C-bind` library simply include the header file ```bind.h```.
 
 ### Setup
 To setup the bind library, the `bind_setup` function must be invoked first!
@@ -51,28 +55,26 @@ The most common calling convention of `x86_64` / `amd64` is called SystemV. Unle
 
 Currently only full binding is support for SystemV.
 
-### Signature
+### Function Signature
 SystemV functions to be bound must return an object of type `ret_t` or smaller. Do not attempt to return a large struct as it may fail!
 
-The return value may simply be any other primitive so you cast it properly during the binding call.
-You can think of `args` as an array of arguments!
-Parsing the `args` array is the job of `my_func`. `my_func` must have a defined maximum number of 'arguments'. 
-*That is, `my_func` must expect that no more `num_args` number of elements in the `args` array to be passed.*
+The return value may simply be any other primitive so you cast it properly during the binding call. As for the arguments of the function, there are no restrictions except that the function may not be variadic! Consequently, `my_func` must have a defined maximum number of 'arguments'. *That is, `my_func` must expect that no more `num_args` number of elements to be passed.*
+For more info look in the `bind_defs.h` file.
 
 ### Full binding
 To fully bind a functon, invoke
 ```C
 bound_func = full_bind( my_func, num_args, arg1, arg2, arg3 )
 ```
-Here `num_args` is the number of elements in the `args` array `my_func` expects to be passed. If you pass in more arguments `num_args` they will be ignored.
+Here `num_args` is the number arguments to pass to be passed to `my_func`. If you pass in more arguments `num_args` they will be ignored.
 
 ### Full binding example
 ```C
-// This function expects exactly 1 argument!
 int sum( int a, int b ) { return a + b; }
 bound_func = full_systemv_bind( id, 1, /* Arguments begin */ 1, 2 );
-printf( "My id = %d\n", (int) bound_func() );  // Prints out 3
+printf( "sum(1,2) = %d\m", (int) bound_func() );
 ```
+The output of this code is: `sum(1,2) = 3\n`.
 
 ### Partial binding
 This is currently not supported by `C-bind`.
@@ -89,6 +91,7 @@ The return value may simply be any other primitive so you cast it properly durin
 You can think of `args` as an array of arguments!
 Parsing the `args` array is the job of `my_func`. `my_func` must have a defined maximum number of 'arguments'. 
 *That is, `my_func` must expect that no more `num_args` number of elements in the `args` array to be passed.*
+For more info look in the `bind_defs.h` file.
 
 ### Full binding
 To fully bind a functon, invoke
@@ -99,11 +102,11 @@ Here `num_args` is the number of elements in the `args` array `my_func` expects 
 
 ### Full binding Example
 ```C
-// This function expects exactly 1 argument!
 ret_t id( arg_t * args ) { return args[0]; }
-bound_func = full_bind( id, 1, /* Arguments begin */ 0x41414141 );
-printf( "My id = %x\n", (int) bound_func() );  // Prints out 0x41414141
+bound_func = full_bind( id, 1, /* Arguments begin */ 17 );
+printf( "My id = %d\n", (int) bound_func() );
 ```
+The output of this code is: `My id = 17\n`
 
 ### Partial binding
 To partially bind a function, invoke
@@ -114,22 +117,26 @@ Here `num_args_to_bind` is the number of arguments currently being bound!
 
 ### Partial binding Example
 ```C
-// This function expects exactly 3 arguments
 ret_t sum3( arg_t * args ) { return args[0] + args[1] + args[2]; }
 bound_func = partial_bind( sum3, 3, 2, /* Arguments begin */ 100, 200 );
 printf( "Total sum = %d\n", (int) bound_func(300) );  // Prints out 600
 ```
+The output of this code is: `Total sum = 600\n`
 
 ---
 
 # Testing
-To test that this works:
+To test that this works first compile the code
 ```bash
 git clone https://github.com/zwimer/C-bind && \
 mkdir C-bind/src/build && cd C-bind/src/build && \
-cmake .. && make && \
-./test.out
+cmake .. && make
 ```
+
+After that, run your desired test. Either `./test-systemv.out` or `./test-non-systemv.out`.
+
+# Compilation
+This library should be compiled as a shared object without optimizations! See the `CMake` file for more details.
 
 # CI
 
