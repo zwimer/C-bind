@@ -51,7 +51,7 @@ Yes.
 
 ### Restrictions
 1. This library cannot bind variadic functions
-1. This library *may* fail if registers other than `rdi`, `rsi,` `rdx`, `rcx`, `r8`, and `r9` are used to pass arguments. Howevere this is exceedingly rare.
+1. This library *may* fail if registers other than `rdi`, `rsi,` `rdx`, `rcx`, `r8`, and `r9` are used to pass arguments. However this is exceedingly rare.
 1. This library will only compile for `x86_64` / `amd64`
 
 ## SystemV
