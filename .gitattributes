@@ -1,0 +1,11 @@
+# Override local user's core.autocrlf setting so that code files will always
+# have 'lf' line endings (Unix style) as needed by Ubuntu Linux.  This is
+# particularly important for Windows developers working with a Vagrant VM.
+
+# For all important files, set default 'lf' line endings.
+*.cpp eol=lf
+*.hpp eol=lf
+*.txt eol=lf
+*.md eol=lf
+*.c eol=lf
+*.h eol=lf
