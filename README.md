@@ -72,7 +72,7 @@ Here `num_args` is the number arguments to pass to be passed to `my_func`. If yo
 ```C
 int sum( int a, int b ) { return a + b; }
 bound_func = full_systemv_bind( id, 1, /* Arguments begin */ 1, 2 );
-printf( "sum(1,2) = %d\m", (int) bound_func() );
+printf( "sum(1,2) = %d\n", (int) bound_func() );
 ```
 The output of this code is: `sum(1,2) = 3\n`.
 
