@@ -12,6 +12,7 @@ struct bind_lock_t {
 	pthread_mutex_t m;
 };
 
+
 // This functions prints Msg and exits the program
 void bind_err(const char * Msg) {
 	fprintf(stderr, "Error: %s\n", Msg);

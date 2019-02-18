@@ -39,12 +39,15 @@ bound_func( arg1, arg2, arg3 )
 ```
 *Note*: if you pass extra unexpected arguments to `bound_func` they will be ignored.
 
-### Thread Safety
-Yes.
-
 ### SystemV vs Non-SystemV
 
 The most common calling convention of `x86_64` / `amd64` is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an API for them is provided for them as well.
+
+### Thread Safety
+Yes.
+
+### Important notes
+1. This library uses a signal internally. By default this is `SIGUSR2`, however the user may change this whenever. This signal handler is install when-needed and restored when not, so for a single threaded application this is perfectly safe. However, in a multi-threaded enviornment it is important to set this signal to some (valid) unused signal! This can be done with the `bind_set_signal_number` function.
 
 ### Exceptions
 

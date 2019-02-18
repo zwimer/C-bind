@@ -20,6 +20,7 @@ typedef struct bind_vec_t {
 	bind_lock_t * lock;
 } bind_vec;
 
+
 /** Create a bind_vec */
 bind_vec * make_bind_vec();
 

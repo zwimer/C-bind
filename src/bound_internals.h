@@ -2,8 +2,8 @@
 #define __bound_internals_H__
 
 #include "bind_defs.h"
-
 #include <stdint.h>
+
 
 /** A structure that holds all data needed to bind a function */
 typedef struct bound_internals_t {
