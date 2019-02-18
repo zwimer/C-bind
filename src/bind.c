@@ -38,38 +38,40 @@ ret_t full_systemv_ret_global;
 int systemv_invoke_sig = SIGUSR2;
 
 
-/** A macro used to set an argument, used for consistency */
-#define SET_ARG(REG, INVOKE_SYM)       \
+// Functions
+
+/** A macro used to set a register argument, used for consistency */
+#define SET_ARG(REG)                   \
 	"mov (%%rax), %%" # REG "\n\t"     \
 	"add $8, %%rax\n\t"                \
 	"dec %%r12\n\t"                    \
 	"test %%r12, %%r12\n\t"            \
-	"jz " # INVOKE_SYM "%=\n\t"
+	"jz invoke_sym%=\n\t"
 
 /** The signal handler used to invoke the systemv call */
 void systemv_invoke_helper(int signo) {
 
 	// Retrieve the stored bound_internals
-	register bound_internals_t * bb asm("r15");
+	volatile register bound_internals_t * bb asm("r15");
 	bb = full_systemv_arg_global;
 	bind_unlock(full_systemv_arg_lock);
 
 	// Setup the registers and stack needed to
 	// invoke the function with the desired arguments
 	ret_t ret;
-	asm(
+	asm volatile(
 		"mov %[argsv], %%rax\n\t" /* Args */
-		"mov %[func], %%r11\n\t" /* Func */
-		"mov %[n], %%r12\n\t" /* n */
-		"mov %%rsp, %%r14\n\t" /* Store rsp */
+		"mov %[func], %%r11\n\t"  /* Func */
+		"mov %[n], %%r12\n\t"     /* n */
+		"mov %%rsp, %%r14\n\t"    /* Store rsp */
 
 		// Set first 6 args if they exist
-		SET_ARG(rdi, invoke_sym)
-		SET_ARG(rsi, invoke_sym)
-		SET_ARG(rdx, invoke_sym)
-		SET_ARG(rcx, invoke_sym)
-		SET_ARG(r8, invoke_sym)
-		SET_ARG(r9, invoke_sym)
+		SET_ARG(rdi)
+		SET_ARG(rsi)
+		SET_ARG(rdx)
+		SET_ARG(rcx)
+		SET_ARG(r8)
+		SET_ARG(r9)
 
 		// Prep to set the rest of the args
 		"mov %%r12, %%r13\n\t"
