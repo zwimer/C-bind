@@ -53,19 +53,19 @@ int main() {
 
 	// String to add
 	char * buf = malloc(0x1000);
-	strcpy(buf, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+	strcpy(buf, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
 	// The vector
 	StringVec * v = make_vector();
-	for ( int i = 0; i < 32; ++i ) {
+	for ( unsigned int i = 0; i < strlen(buf); ++i ) {
 		v->push_back( buf + i );
 	}
 
 	// Printing
-	printf("Size = %d\n", (int) v->size());
 	for ( int i = 0; i < (int) v->size(); ++i ) {
 		printf("v->data[%d] = %s\n", i, (char*) v->data[i]);
 	}
+	printf("Size = %d\n", (int) v->size());
 	return EXIT_SUCCESS;
 }
 
