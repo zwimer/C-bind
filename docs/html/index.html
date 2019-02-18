@@ -117,10 +117,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3>Setup</h3>
 <p>To setup the bind library, the <code>bind_setup</code> function must be invoked first! </p><div class="fragment"><div class="line"><a class="code" href="bind_8c.html#a57d49e18c9326489d842187e2a1e0086">bind_setup</a>();</div></div><!-- fragment --><h3>Invocation</h3>
 <p>To invoke the bound version of <code>my_func</code>, one could simply invoke it as </p><div class="fragment"><div class="line">bound_func( arg1, arg2, arg3 )</div></div><!-- fragment --><p> <em>Note</em>: if you pass extra unexpected arguments to <code>bound_func</code> they will be ignored.</p>
-<h3>Thread Safety</h3>
-<p>Yes.</p>
 <h3>SystemV vs Non-SystemV</h3>
 <p>The most common calling convention of <code>x86_64</code> / <code>amd64</code> is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an API for them is provided for them as well.</p>
+<h3>Thread Safety</h3>
+<p>Yes.</p>
+<h3>Important notes</h3>
+<ol type="1">
+<li>This library uses a signal internally. By default this is <code>SIGUSR2</code>, however the user may change this whenever. This signal handler is install when-needed and restored when not, so for a single threaded application this is perfectly safe. However, in a multi-threaded enviornment it is important to set this signal to some (valid) unused signal! This can be done with the <code>bind_set_signal_number</code> function.</li>
+</ol>
 <h3>Exceptions</h3>
 <ol type="1">
 <li>This library cannot bind variadic functions</li>

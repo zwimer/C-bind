@@ -60,13 +60,20 @@ bound\_func( arg1, arg2, arg3 )
 \end{DoxyCode}
  {\itshape Note}\+: if you pass extra unexpected arguments to {\ttfamily bound\+\_\+func} they will be ignored.
 
+\subsubsection*{SystemV vs Non-\/\+SystemV}
+
+The most common calling convention of {\ttfamily x86\+\_\+64} / {\ttfamily amd64} is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an A\+PI for them is provided for them as well.
+
 \subsubsection*{Thread Safety}
 
 Yes.
 
-\subsubsection*{SystemV vs Non-\/\+SystemV}
+\subsubsection*{Important notes}
 
-The most common calling convention of {\ttfamily x86\+\_\+64} / {\ttfamily amd64} is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an A\+PI for them is provided for them as well.
+
+\begin{DoxyEnumerate}
+\item This library uses a signal internally. By default this is {\ttfamily S\+I\+G\+U\+S\+R2}, however the user may change this whenever. This signal handler is install when-\/needed and restored when not, so for a single threaded application this is perfectly safe. However, in a multi-\/threaded enviornment it is important to set this signal to some (valid) unused signal! This can be done with the {\ttfamily bind\+\_\+set\+\_\+signal\+\_\+number} function.
+\end{DoxyEnumerate}
 
 \subsubsection*{Exceptions}
 

@@ -108,6 +108,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a62581f254513a9a7d8a88fe78f28176d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind__defs_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a62581f254513a9a7d8a88fe78f28176d">full_systemv_bind</a> (<a class="el" href="bind__defs_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a> func, const uint64_t n_total,...)</td></tr>
 <tr class="memdesc:a62581f254513a9a7d8a88fe78f28176d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully bind a function to the n_total arguments provided using the SystemV calling convention.  <a href="#a62581f254513a9a7d8a88fe78f28176d">More...</a><br /></td></tr>
 <tr class="separator:a62581f254513a9a7d8a88fe78f28176d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae832931ed64cb6278e8dbd6a4451243d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#ae832931ed64cb6278e8dbd6a4451243d">bind_set_signal_number</a> (const int signo)</td></tr>
+<tr class="memdesc:ae832931ed64cb6278e8dbd6a4451243d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-threaded application the ensures thread-safety.  <a href="#ae832931ed64cb6278e8dbd6a4451243d">More...</a><br /></td></tr>
+<tr class="separator:ae832931ed64cb6278e8dbd6a4451243d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a270375ebc8e8ed504a2dd3f12240b777"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a270375ebc8e8ed504a2dd3f12240b777">bind_get_signal_number</a> ()</td></tr>
+<tr class="memdesc:a270375ebc8e8ed504a2dd3f12240b777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the signal number used by the bind library internally.  <a href="#a270375ebc8e8ed504a2dd3f12240b777">More...</a><br /></td></tr>
+<tr class="separator:a270375ebc8e8ed504a2dd3f12240b777"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -116,6 +122,42 @@ Variables</h2></td></tr>
 <tr class="separator:aab29f50497cba1a9833b98e380f89a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a270375ebc8e8ed504a2dd3f12240b777"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int bind_get_signal_number </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the signal number used by the bind library internally. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae832931ed64cb6278e8dbd6a4451243d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bind_set_signal_number </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>signo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-threaded application the ensures thread-safety. </p>
+<p>The default is SIGUSR2. Select a signal your program does not use for the bind library to use </p>
+
+</div>
+</div>
 <a class="anchor" id="aba8492ffd71864427a5cddc0c3888454"></a>
 <div class="memitem">
 <div class="memproto">

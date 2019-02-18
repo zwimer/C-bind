@@ -10,7 +10,11 @@
 \hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8h_a749a103d16b748b8aecff011472a0881}{partial\+\_\+bind} (\hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)
 \begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. \end{DoxyCompactList}\item 
 \hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8h_a62581f254513a9a7d8a88fe78f28176d}{full\+\_\+systemv\+\_\+bind} (\hyperlink{bind__defs_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{Bindable\+SystemV} func, const uint64\+\_\+t n\+\_\+total,...)
-\begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided using the SystemV calling convention. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided using the SystemV calling convention. \end{DoxyCompactList}\item 
+void \hyperlink{bind_8h_ae832931ed64cb6278e8dbd6a4451243d}{bind\+\_\+set\+\_\+signal\+\_\+number} (const int signo)
+\begin{DoxyCompactList}\small\item\em Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-\/threaded application the ensures thread-\/safety. \end{DoxyCompactList}\item 
+int \hyperlink{bind_8h_a270375ebc8e8ed504a2dd3f12240b777}{bind\+\_\+get\+\_\+signal\+\_\+number} ()
+\begin{DoxyCompactList}\small\item\em Return the signal number used by the bind library internally. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -19,7 +23,29 @@ $\ast$$\ast$$\ast$ \hyperlink{bind_8h_aab29f50497cba1a9833b98e380f89a18}{Error}
 
 
 \subsection{Function Documentation}
-\index{bind.\+h@{bind.\+h}!full\+\_\+bind@{full\+\_\+bind}}
+\index{bind.\+h@{bind.\+h}!bind\+\_\+get\+\_\+signal\+\_\+number@{bind\+\_\+get\+\_\+signal\+\_\+number}}
+\index{bind\+\_\+get\+\_\+signal\+\_\+number@{bind\+\_\+get\+\_\+signal\+\_\+number}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{bind\+\_\+get\+\_\+signal\+\_\+number()}{bind_get_signal_number()}}]{\setlength{\rightskip}{0pt plus 5cm}int bind\+\_\+get\+\_\+signal\+\_\+number (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8h_a270375ebc8e8ed504a2dd3f12240b777}{}\label{bind_8h_a270375ebc8e8ed504a2dd3f12240b777}
+
+
+Return the signal number used by the bind library internally. 
+
+\index{bind.\+h@{bind.\+h}!bind\+\_\+set\+\_\+signal\+\_\+number@{bind\+\_\+set\+\_\+signal\+\_\+number}}
+\index{bind\+\_\+set\+\_\+signal\+\_\+number@{bind\+\_\+set\+\_\+signal\+\_\+number}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{bind\+\_\+set\+\_\+signal\+\_\+number(const int signo)}{bind_set_signal_number(const int signo)}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+set\+\_\+signal\+\_\+number (
+\begin{DoxyParamCaption}
+\item[{const int}]{signo}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8h_ae832931ed64cb6278e8dbd6a4451243d}{}\label{bind_8h_ae832931ed64cb6278e8dbd6a4451243d}
+
+
+Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-\/threaded application the ensures thread-\/safety. 
+
+The default is S\+I\+G\+U\+S\+R2. Select a signal your program does not use for the bind library to use \index{bind.\+h@{bind.\+h}!full\+\_\+bind@{full\+\_\+bind}}
 \index{full\+\_\+bind@{full\+\_\+bind}!bind.\+h@{bind.\+h}}
 \subsubsection[{\texorpdfstring{full\+\_\+bind(\+Bindable func, const uint64\+\_\+t n\+\_\+total,...)}{full_bind(Bindable func, const uint64_t n_total,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} full\+\_\+bind (
 \begin{DoxyParamCaption}
