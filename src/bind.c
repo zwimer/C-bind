@@ -48,14 +48,12 @@ void systemv_invoke_helper(int signo) {
 	bb = full_systemv_arg_global;
 	bind_unlock(full_systemv_arg_lock);
 
-	/* int mil = 0; while (mil==0) {} */
-
 	asm(
 		"mov %[argsv], %%rax\n\t" /* Args */
 #if 1
 		"mov %[func], %%r11\n\t" /* Func */
 		"mov %[n], %%r12\n\t" /* n */
-		"mov %%rsp, %%r13\n\t" /* Store rsp */
+		"mov %%rsp, %%r14\n\t" /* Store rsp */
 
 		// Set first 6 args if they exist
 		SET_ARG(rdi, invoke_sym)
@@ -68,6 +66,7 @@ void systemv_invoke_helper(int signo) {
 		// Prep to set the rest of the args
 		"mov %%r12, %%r13\n\t"
 		"shl $3, %%r13\n\t"
+		"sub $8, %%r13\n\t"
 		"add %%r13, %%rax\n\t"
 
 		// For the 7+ args, push them onto the stack in reverse
@@ -84,7 +83,7 @@ void systemv_invoke_helper(int signo) {
 		"call %%r11\n\t"
 
 		// Restore rsp and set the return value
-		"mov %%r13, %%rsp\n\t"
+		"mov %%r14, %%rsp\n\t"
 		"mov %%rax, %[retv]"
 
 		// Variable

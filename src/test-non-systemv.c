@@ -9,7 +9,7 @@ typedef struct vector_t {
 	int data_size, len, max_len;
 	void ** data;
 	void (* push_back) ( char * str );
-	int (* size) ();
+	FullBound size;
 } StringVec;
 
 // A vector push_back function
@@ -42,27 +42,15 @@ StringVec* make_vector() {
 	v->push_back = partial_bind((void*)vec_push_back, 2, 1, v);
 
 	// Fully bind size
-	v->size = (int (*) ()) full_bind((void*)vec_size, 1, v);
+	v->size = full_bind((void*)vec_size, 1, v);
 	return v;
 }
 
 
-int sum(
-	int a1,
-	int a2,
-	int a3,
-	int a4,
-	int a5,
-	int a6
-) {
-	return a1 + a2 + a3 + a4 + a5 + a6;
-}
-
-// Test C-bind
+// Test C-bind for non-systemv functions
 int main() {
 	bind_setup();
 
-#if 0
 	// String to add
 	char * buf = malloc(0x1000);
 	strcpy(buf, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
@@ -75,13 +63,8 @@ int main() {
 
 	// Printing
 	printf("Size = %d\n", (int) v->size());
-	for ( int i = 0; i < v->size(); ++i ) {
+	for ( int i = 0; i < (int) v->size(); ++i ) {
 		printf("v->data[%d] = %s\n", i, (char*) v->data[i]);
 	}
-#endif
-
-	ret_t (*f) () = full_systemv_bind((void*)sum, 6,
-		1, 2, 3, 4, 5, 6
-	);
-	printf("Result = %llu\n", f() );
+	return EXIT_SUCCESS;
 }
