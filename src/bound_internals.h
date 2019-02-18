@@ -4,6 +4,8 @@
 #include "bind_defs.h"
 #include <stdint.h>
 
+/** A boolean */
+typedef enum { false = 0, true } bool;
 
 /** A structure that holds all data needed to bind a function */
 typedef struct bound_internals_t {
@@ -15,6 +17,8 @@ typedef struct bound_internals_t {
 	uint64_t n_total;
 	/** The number of arguments currently bound */
 	uint64_t n_bound;
+	/** True if systemv calls should be used */
+	bool systemv;
 } bound_internals_t;
 
 #endif
