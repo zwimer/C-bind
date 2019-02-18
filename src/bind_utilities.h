@@ -4,9 +4,8 @@
 
 #include <stdlib.h>
 
-// A simple mutex
-struct bind_lock_t;
-/** A typedef for bind_lock_t */
+
+/** A typedef for bind_lock_t, a simple mutex */
 typedef struct bind_lock_t bind_lock_t;
 
 /** This functions prints Msg and exits the program */

@@ -50,7 +50,6 @@ void systemv_invoke_helper(int signo) {
 
 	asm(
 		"mov %[argsv], %%rax\n\t" /* Args */
-#if 1
 		"mov %[func], %%r11\n\t" /* Func */
 		"mov %[n], %%r12\n\t" /* n */
 		"mov %%rsp, %%r14\n\t" /* Store rsp */
@@ -86,15 +85,12 @@ void systemv_invoke_helper(int signo) {
 		"mov %%r14, %%rsp\n\t"
 		"mov %%rax, %[retv]"
 
-		// Variable
-#endif
-		 : [retv] "=r" (ret)
-#if 1
-		 : [argsv] "r" (bb->args),
-		   [func] "r" (bb->fn),
-		   [n] "r" (bb->n_total)
+		// Variables
+		: [retv] "=r" (ret)
+		: [argsv] "r" (bb->args),
+		  [func] "r" (bb->fn),
+		  [n] "r" (bb->n_total)
 		:
-#endif
 	);
 	bind_lock(full_systemv_ret_lock);
 	full_systemv_ret_global = ret;
@@ -105,11 +101,13 @@ void systemv_invoke_helper(int signo) {
 static long gettid() {
 	return syscall(SYS_gettid);
 }
+
 /** tkill syscall */
 static long tkill(int tid, int sig) {
 	return syscall(SYS_tkill, tid, sig);
 }
 
+/** Invoke a systemv bound_internals_t on its store arguments */
 ret_t systemv_invoke(bound_internals_t * bb) {
 
 	// Get the r11'th bound_internals then invoke it
@@ -135,10 +133,6 @@ ret_t systemv_invoke(bound_internals_t * bb) {
 	bind_unlock(full_systemv_ret_lock);
 	return ret;
 }
-/* #pragma GCC diagnostic push */
-/* #pragma GCC diagnostic ignored "-Wunused-but-set-variable" */
-/* 	INVOKE(bb); */
-/* #pragma GCC diagnostic pop */
 
 /** Invoke a fully bound function
  *  The function index is stored in r11 */

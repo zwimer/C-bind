@@ -8,6 +8,7 @@
 
 /** A simple mutex */
 struct bind_lock_t {
+	/** The mutex used internally by a bind_lock_t */
 	pthread_mutex_t m;
 };
 

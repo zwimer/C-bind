@@ -7,8 +7,6 @@
 
 #include <stdint.h>
 
-// Forward declarations
-struct obscurred_mutex;
 
 /** A thread-safe vector of bound_internals */
 typedef struct bind_vec_t {
@@ -30,5 +28,6 @@ uint64_t bv_consume_add_blank(bind_vec * const bv, bound_internals_t * const add
 
 /** The subscript operator */
 bound_internals_t * bv_get(bind_vec * const bv, const uint64_t index);
+
 
 #endif
