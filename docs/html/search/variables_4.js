@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['len',['len',['../struct_string_vec.html#a7c24f16a046318d0be2902e0b40f07e4',1,'StringVec']]],
-  ['lock',['lock',['../structbind__vec.html#aed0bfcaa51d41aa82c371ab9aad863a6',1,'bind_vec']]]
+  ['global_5fbv',['global_bv',['../bind_8c.html#a0596c2d16478119f034dfe4a68c70050',1,'bind.c']]]
 ];

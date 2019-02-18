@@ -1,39 +1,138 @@
 \href{https://travis-ci.org/zwimer/C-bind}{\tt }
 
-\section*{How to use}
+\section*{Table of Contents}
 
-\subsection*{Invocation}
+
+\begin{DoxyEnumerate}
+\item \href{#requirements}{\tt Requirements}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item \href{#usage}{\tt Usage}
+\begin{DoxyItemize}
+\item \href{#general}{\tt General}
+\item \href{#systemv}{\tt SystemV}
+\item \href{#non-systemv}{\tt Non-\/\+SystemV}
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item \href{#testing}{\tt Testing}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item \href{#compilation}{\tt Compilation}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item \href{#ci}{\tt CI}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item \href{#documentation}{\tt Documentation}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item \href{#future-plans}{\tt Future Plans} 
+
+
+\end{DoxyEnumerate}
+
+\section*{Requirements}
+
+Currently {\ttfamily C-\/bind} requires {\ttfamily pthread} to be installed, and requires {\ttfamily x86\+\_\+64}. {\ttfamily C-\/bind} has only been tested on Ubuntu 18.\+04`
+
+\section*{Usage}
+
+\subsection*{General}
+
+\subsubsection*{Includes}
+
+To link the {\ttfamily C-\/bind} library simply include the header file {\ttfamily \hyperlink{bind_8h}{bind.\+h}}.
+
+\subsubsection*{Setup}
+
+To setup the bind library, the {\ttfamily bind\+\_\+setup} function must be invoked first! 
+\begin{DoxyCode}
+\hyperlink{bind_8c_a57d49e18c9326489d842187e2a1e0086}{bind\_setup}();
+\end{DoxyCode}
+
+
+\subsubsection*{Invocation}
 
 To invoke the bound version of {\ttfamily my\+\_\+func}, one could simply invoke it as 
 \begin{DoxyCode}
 bound\_func( arg1, arg2, arg3 )
 \end{DoxyCode}
- {\itshape Despite the odd function signature of the function to be bound, it can be invoked like a standard function.} Note, if you pass extra unexpected arguments to {\ttfamily bound\+\_\+func} they will be ignored.
+ {\itshape Note}\+: if you pass extra unexpected arguments to {\ttfamily bound\+\_\+func} they will be ignored.
 
-\subsection*{Signature}
+\subsubsection*{Thread Safety}
 
-Functions to be bound must have a unique signature, however when calling them they may be called as standard functions. To bind a function, it must have the following signature\+: 
-\begin{DoxyCode}
-\textcolor{keywordtype}{void} * my\_func( \textcolor{keywordtype}{void} ** args )
-\end{DoxyCode}
- The return value may simply be any other primitive so you cast it properly during the binding call. You can think of {\ttfamily args} as an array of arguments! Parsing the {\ttfamily args} array is the job of {\ttfamily my\+\_\+func}. {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements in the {\ttfamily args} array to be passed.}
+Yes.
 
-\subsection*{Fully binding}
+\subsubsection*{SystemV vs Non-\/\+SystemV}
+
+The most common calling convention of {\ttfamily x86\+\_\+64} / {\ttfamily amd64} is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an A\+PI for them is provided for them as well.
+
+\subsubsection*{Exceptions}
+
+
+\begin{DoxyEnumerate}
+\item This library cannot bind variadic functions
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item This library {\itshape may} fail if registers other than {\ttfamily rdi}, {\ttfamily rsi,} {\ttfamily rdx}, {\ttfamily rcx}, {\ttfamily r8}, and {\ttfamily r9} are used to pass arguments. This however is exceedingly rare.
+\end{DoxyEnumerate}
+
+\subsection*{SystemV}
+
+Currently only full binding is support for SystemV.
+
+\subsubsection*{Function Signature}
+
+SystemV functions to be bound must return an object of type {\ttfamily ret\+\_\+t} or smaller. Do not attempt to return a large struct as it may fail!
+
+The return value may simply be any other primitive so you cast it properly during the binding call. As for the arguments of the function, there are no restrictions except that the function may not be variadic! Consequently, {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements to be passed.} For more info look in the {\ttfamily \hyperlink{bind__defs_8h}{bind\+\_\+defs.\+h}} file.
+
+\subsubsection*{Full binding}
 
 To fully bind a functon, invoke 
 \begin{DoxyCode}
 bound\_func = \hyperlink{bind_8c_aba8492ffd71864427a5cddc0c3888454}{full\_bind}( my\_func, num\_args, arg1, arg2, arg3 )
 \end{DoxyCode}
- Here {\ttfamily num\+\_\+args} is the number of elements in the {\ttfamily args} array {\ttfamily my\+\_\+func} expects to be passed. Notice that if you pass in more arguments {\ttfamily num\+\_\+args} they will be ignored.
+ Here {\ttfamily num\+\_\+args} is the number arguments to pass to be passed to {\ttfamily my\+\_\+func}. If you pass in more arguments {\ttfamily num\+\_\+args} they will be ignored.
 
-\#\#\# Example 
+\#\#\# Full binding example 
 \begin{DoxyCode}
-\textcolor{comment}{// This function expects exactly 1 argument!}
-\textcolor{keywordtype}{void} * id( \textcolor{keywordtype}{void} ** args ) \{ \textcolor{keywordflow}{return} args[0]; \}
-bound\_func = \hyperlink{bind_8c_aba8492ffd71864427a5cddc0c3888454}{full\_bind}( \textcolor{keywordtype}{id}, 1, \textcolor{comment}{/* Arguments begin */} 0x41414141 );
-printf( \textcolor{stringliteral}{"My id = %d\(\backslash\)n"}, (\textcolor{keywordtype}{int}) bound\_func() );  \textcolor{comment}{// Prints out 0x41414141}
+\textcolor{keywordtype}{int} \hyperlink{test-systemv_8c_ac821ce0bdb5918e7cf9ea4cd5cc29009}{sum}( \textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b ) \{ \textcolor{keywordflow}{return} a + b; \}
+bound\_func = \hyperlink{bind_8c_a62581f254513a9a7d8a88fe78f28176d}{full\_systemv\_bind}( \textcolor{keywordtype}{id}, 1, \textcolor{comment}{/* Arguments begin */} 1, 2 );
+printf( \textcolor{stringliteral}{"sum(1,2) = %d\(\backslash\)m"}, (\textcolor{keywordtype}{int}) bound\_func() );
 \end{DoxyCode}
+ The output of this code is\+: {\ttfamily sum(1,2) = 3\textbackslash{}n}.
 
+\subsubsection*{Partial binding}
+
+This is currently not supported by {\ttfamily C-\/bind}.
+
+\subsection*{Non-\/\+SystemV}
+
+\subsubsection*{Signature}
+
+Non-\/\+SystemV functions to be bound must have a unique signature, however when calling them they may be called as standard functions. To bind a function, it must have the following signature\+: 
+\begin{DoxyCode}
+\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} my\_func( \hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\_t} * args )
+\end{DoxyCode}
+ The return value may simply be any other primitive so you cast it properly during the binding call. You can think of {\ttfamily args} as an array of arguments! Parsing the {\ttfamily args} array is the job of {\ttfamily my\+\_\+func}. {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements in the {\ttfamily args} array to be passed.} For more info look in the {\ttfamily \hyperlink{bind__defs_8h}{bind\+\_\+defs.\+h}} file.
+
+\subsubsection*{Full binding}
+
+To fully bind a functon, invoke 
+\begin{DoxyCode}
+bound\_func = \hyperlink{bind_8c_aba8492ffd71864427a5cddc0c3888454}{full\_bind}( my\_func, num\_args, arg1, arg2, arg3 )
+\end{DoxyCode}
+ Here {\ttfamily num\+\_\+args} is the number of elements in the {\ttfamily args} array {\ttfamily my\+\_\+func} expects to be passed. If you pass in more arguments {\ttfamily num\+\_\+args} they will be ignored.
+
+\#\#\# Full binding Example 
+\begin{DoxyCode}
+\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} id( \hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\_t} * args ) \{ \textcolor{keywordflow}{return} args[0]; \}
+bound\_func = \hyperlink{bind_8c_aba8492ffd71864427a5cddc0c3888454}{full\_bind}( \textcolor{keywordtype}{id}, 1, \textcolor{comment}{/* Arguments begin */} 17 );
+printf( \textcolor{stringliteral}{"My id = %d\(\backslash\)n"}, (\textcolor{keywordtype}{int}) bound\_func() );
+\end{DoxyCode}
+ The output of this code is\+: {\ttfamily My id = 17\textbackslash{}n}
 
 \subsubsection*{Partial binding}
 
@@ -43,29 +142,31 @@ bound\_func = \hyperlink{bind_8c_a749a103d16b748b8aecff011472a0881}{partial\_bin
 \end{DoxyCode}
  Here {\ttfamily num\+\_\+args\+\_\+to\+\_\+bind} is the number of arguments currently being bound!
 
-\#\#\# Example 
+\#\#\# Partial binding Example 
 \begin{DoxyCode}
-\textcolor{comment}{// This function expects exactly 3 arguments}
-\textcolor{keywordtype}{void} * sum3( \textcolor{keywordtype}{void} ** args ) \{ \textcolor{keywordflow}{return} args[0] + args[1] + args[2]; \}
+\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} sum3( \hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\_t} * args ) \{ \textcolor{keywordflow}{return} args[0] + args[1] + args[2]; \}
 bound\_func = \hyperlink{bind_8c_a749a103d16b748b8aecff011472a0881}{partial\_bind}( sum3, 3, 2, \textcolor{comment}{/* Arguments begin */} 100, 200 );
 printf( \textcolor{stringliteral}{"Total sum = %d\(\backslash\)n"}, (\textcolor{keywordtype}{int}) bound\_func(300) );  \textcolor{comment}{// Prints out 600}
 \end{DoxyCode}
+ The output of this code is\+: {\ttfamily Total sum = 600\textbackslash{}n} 
 
 
-\subsection*{Thread Safety}
 
-Yes, after the first bind. \+:)
+\section*{Testing}
 
-\subsection*{How to test}
-
-To test that this works\+: 
+To test that this works first compile the code 
 \begin{DoxyCode}
 1 git clone https://github.com/zwimer/C-bind && \(\backslash\)
 2 mkdir C-bind/src/build && cd C-bind/src/build && \(\backslash\)
-3 cmake .. && make && \(\backslash\)
-4 ./test.out
+3 cmake .. && make
 \end{DoxyCode}
 
+
+After that, run your desired test. Either {\ttfamily ./test-\/systemv.out} or {\ttfamily ./test-\/non-\/systemv.out}.
+
+\section*{Compilation}
+
+This library should be compiled as a shared object without optimizations! See the {\ttfamily C\+Make} file for more details.
 
 \section*{CI}
 
@@ -83,12 +184,8 @@ Documentation is stored in on the {\ttfamily gh-\/pages} branch and hosted \href
 
 \subsubsection*{Removing the signature requirement}
 
-By emulating the {\ttfamily x86\+\_\+64} calling convention I can remove the requirement of needing that special signature to bind a functon.
+Add partial binding for SystemV.
 
 \subsubsection*{Memory efficiency}
 
-Right now the {\ttfamily get\+\_\+stub} function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page.
-
-\section*{Restrictions}
-
-Currently this only works on 64-\/bit {\ttfamily x86}. 
+Right now the {\ttfamily get\+\_\+stub} function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page. 

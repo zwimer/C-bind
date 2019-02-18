@@ -4,37 +4,103 @@
 {\ttfamily \#include \char`\"{}bind\+\_\+vec.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}bind\+\_\+utilities.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
 {\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$syscall.\+h$>$}\\*
 {\ttfamily \#include $<$sys/mman.\+h$>$}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
+\#define \hyperlink{bind_8c_a1d24a74ef5fafa4cd598fd69d62954a1}{A\+S\+S\+E\+R\+T\+\_\+\+Z\+E\+RO}(FN, ...)~\hyperlink{bind__utilities_8h_af4aaa27dade38bbf1f1570ed4a37e329}{bind\+\_\+assert}(FN(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+) == 0, \char`\"{}\char`\"{}\#FN \char`\"{}() failed.\char`\"{});
+\begin{DoxyCompactList}\small\item\em Ensure F\+N(\+A\+R\+G\+S) returns 0. \end{DoxyCompactList}\item 
+\#define \hyperlink{bind_8c_a3c7765f0e574f0de906ff3c6c003da45}{S\+E\+T\+\_\+\+A\+RG}(R\+EG,  I\+N\+V\+O\+K\+E\+\_\+\+S\+YM)
+\begin{DoxyCompactList}\small\item\em A macro used to set an argument, used for consistency. \end{DoxyCompactList}\item 
 \#define \hyperlink{bind_8c_a9b90a9d8aa055125508ff6e300bd5082}{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}(L\+A\+S\+T\+\_\+\+A\+RG)
 \begin{DoxyCompactList}\small\item\em A macro to set up a bound\+\_\+internals This macro exists to ensure consistency. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structbind__vec}{bind\+\_\+vec} $\ast$ \hyperlink{bind_8c_ad3cf8f65fa323fffcc4750e5bbf0f6a2}{get\+\_\+global\+\_\+bv} ()
-\begin{DoxyCompactList}\small\item\em A function that returns the global bv The first call to this function is not thread safe After completion of the first call, subsequent calls are. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{bind_8c_ade25fe604fab02fb5068056d16f12592}{invoke\+\_\+full\+\_\+bound} ()
+void \hyperlink{bind_8c_a57d49e18c9326489d842187e2a1e0086}{bind\+\_\+setup} ()
+\item 
+void \hyperlink{bind_8c_a9309ae5eee755b2b0b911a2787bb6b7e}{systemv\+\_\+invoke\+\_\+helper} (int signo)
+\begin{DoxyCompactList}\small\item\em The signal handler used to invoke the systemv call. \end{DoxyCompactList}\item 
+static long \hyperlink{bind_8c_af3265635bd14b26d26d650377c59946d}{gettid} ()
+\begin{DoxyCompactList}\small\item\em get tid \end{DoxyCompactList}\item 
+static long \hyperlink{bind_8c_a8cc3325de0ffb89220fac686f36ac0f1}{tkill} (int tid, int sig)
+\begin{DoxyCompactList}\small\item\em tkill syscall \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t} \hyperlink{bind_8c_a7e8065542413c2914b09b4f882baac3e}{systemv\+\_\+invoke} (\hyperlink{structbound__internals__t}{bound\+\_\+internals\+\_\+t} $\ast$bb)
+\begin{DoxyCompactList}\small\item\em Invoke a systemv \hyperlink{structbound__internals__t}{bound\+\_\+internals\+\_\+t} on its store arguments. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t} \hyperlink{bind_8c_a164ed1a54f8aafd4036e6a9223d569dc}{invoke\+\_\+full\+\_\+systemv\+\_\+bound} ()
 \begin{DoxyCompactList}\small\item\em Invoke a fully bound function The function index is stored in r11. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{bind_8c_a58c4e4371fd84e7d1ee955333c19ee76}{invoke\+\_\+partial\+\_\+bound} (void $\ast$a1,...)
+\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t} \hyperlink{bind_8c_a377bf50714cd5cce8c4481773266c655}{invoke\+\_\+full\+\_\+bound} ()
+\begin{DoxyCompactList}\small\item\em Invoke a fully bound function The function index is stored in r11. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t} \hyperlink{bind_8c_af4c2e7db3e7180644009bcefe8f91331}{invoke\+\_\+partial\+\_\+bound} (\hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\+\_\+t} a1,...)
 \begin{DoxyCompactList}\small\item\em Invoke a partially bound function with the additional args of a1, ... \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{bind_8c_aaa4909d5b4e11a29328a759311f03d37}{gen\+\_\+stub} (const uint64\+\_\+t index, void $\ast$const invoker)
 \begin{DoxyCompactList}\small\item\em Generate a stub for a bound function Use invoker as the invoke function. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{bind_8c_a5ccd8e1cb7b1935e7f8e8c0d897dcc40}{gen\+\_\+stub\+\_\+full} (const uint64\+\_\+t index)
+\hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8c_a4892f18f04989e839e21c265e206dcd4}{gen\+\_\+stub\+\_\+full\+\_\+systemv} (const uint64\+\_\+t index)
 \begin{DoxyCompactList}\small\item\em Generate a stub for a fully bound function. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{bind_8c_a03dce846f7b577fe5920b6aed38cb807}{gen\+\_\+stub\+\_\+partial} (const uint64\+\_\+t index)
+\hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8c_af752ca1496ef805e1c69bcab07d79d1e}{gen\+\_\+stub\+\_\+full} (const uint64\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Generate a stub for a fully bound function. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8c_a03db6843cbb39479497bf925a6dfc31e}{gen\+\_\+stub\+\_\+partial} (const uint64\+\_\+t index)
 \begin{DoxyCompactList}\small\item\em Generate a stub for a partially bound function. \end{DoxyCompactList}\item 
-\hyperlink{bind__defs_8h_a35b1524d8ed85a8548e841b1f6225695}{Full\+Bound} \hyperlink{bind_8c_aba8492ffd71864427a5cddc0c3888454}{full\+\_\+bind} (\hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable} func, const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total},...)
+\hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8c_aba8492ffd71864427a5cddc0c3888454}{full\+\_\+bind} (\hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t n\+\_\+total,...)
+\begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8c_a749a103d16b748b8aecff011472a0881}{partial\+\_\+bind} (\hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)
+\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8c_a62581f254513a9a7d8a88fe78f28176d}{full\+\_\+systemv\+\_\+bind} (\hyperlink{bind__defs_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{Bindable\+SystemV} func, const uint64\+\_\+t n\+\_\+total,...)
+\begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided using the SystemV calling convention. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
 \item 
-\hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8c_a749a103d16b748b8aecff011472a0881}{partial\+\_\+bind} (\hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable} func, const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total}, const uint64\+\_\+t n\+\_\+bound,...)
-\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{structbind__vec}{bind\+\_\+vec} $\ast$ \hyperlink{bind_8c_a0596c2d16478119f034dfe4a68c70050}{global\+\_\+bv} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em A global bind vec. \end{DoxyCompactList}\item 
+\hyperlink{structbind__lock__t}{bind\+\_\+lock\+\_\+t} $\ast$ \hyperlink{bind_8c_a11b2739a28c1d02da36a52099de46b70}{full\+\_\+systemv\+\_\+arg\+\_\+lock} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em A global bind\+\_\+lock for full systemv inokes\textquotesingle{} args. \end{DoxyCompactList}\item 
+\hyperlink{structbound__internals__t}{bound\+\_\+internals\+\_\+t} $\ast$ \hyperlink{bind_8c_ab71bc84d3ee20bf277140167daf214ae}{full\+\_\+systemv\+\_\+arg\+\_\+global}
+\begin{DoxyCompactList}\small\item\em The full\+\_\+system\+\_\+lock arg value protected by a lock. \end{DoxyCompactList}\item 
+\hyperlink{structbind__lock__t}{bind\+\_\+lock\+\_\+t} $\ast$ \hyperlink{bind_8c_a48e92a5e071d98b40146840b55ec92c7}{full\+\_\+systemv\+\_\+ret\+\_\+lock} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em A global bind\+\_\+lock for full systemv inokes\textquotesingle{} return. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t} \hyperlink{bind_8c_aba44839b768708c2d0497e6e8ec5f9d0}{full\+\_\+systemv\+\_\+ret\+\_\+global}
+\begin{DoxyCompactList}\small\item\em The full\+\_\+system\+\_\+lock ret value protected by a lock. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
+\index{bind.\+c@{bind.\+c}!A\+S\+S\+E\+R\+T\+\_\+\+Z\+E\+RO@{A\+S\+S\+E\+R\+T\+\_\+\+Z\+E\+RO}}
+\index{A\+S\+S\+E\+R\+T\+\_\+\+Z\+E\+RO@{A\+S\+S\+E\+R\+T\+\_\+\+Z\+E\+RO}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{A\+S\+S\+E\+R\+T\+\_\+\+Z\+E\+RO}{ASSERT_ZERO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+S\+S\+E\+R\+T\+\_\+\+Z\+E\+RO(
+\begin{DoxyParamCaption}
+\item[{}]{FN, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~{\bf bind\+\_\+assert}(FN(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+) == 0, \char`\"{}\char`\"{}\#FN \char`\"{}() failed.\char`\"{});}\hypertarget{bind_8c_a1d24a74ef5fafa4cd598fd69d62954a1}{}\label{bind_8c_a1d24a74ef5fafa4cd598fd69d62954a1}
+
+
+Ensure F\+N(\+A\+R\+G\+S) returns 0. 
+
+\index{bind.\+c@{bind.\+c}!S\+E\+T\+\_\+\+A\+RG@{S\+E\+T\+\_\+\+A\+RG}}
+\index{S\+E\+T\+\_\+\+A\+RG@{S\+E\+T\+\_\+\+A\+RG}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{S\+E\+T\+\_\+\+A\+RG}{SET_ARG}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+T\+\_\+\+A\+RG(
+\begin{DoxyParamCaption}
+\item[{}]{R\+EG, }
+\item[{}]{I\+N\+V\+O\+K\+E\+\_\+\+S\+YM}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8c_a3c7765f0e574f0de906ff3c6c003da45}{}\label{bind_8c_a3c7765f0e574f0de906ff3c6c003da45}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{stringliteral}{"mov (%%rax), %%"} # REG \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t"} \(\backslash\)
+    \textcolor{stringliteral}{"add $8, %%rax\(\backslash\)n\(\backslash\)t"} \(\backslash\)
+    \textcolor{stringliteral}{"dec %%r12\(\backslash\)n\(\backslash\)t"} \(\backslash\)
+    \textcolor{stringliteral}{"test %%r12, %%r12\(\backslash\)n\(\backslash\)t"} \(\backslash\)
+    \textcolor{stringliteral}{"jz "} # INVOKE\_SYM \textcolor{stringliteral}{"%=\(\backslash\)n\(\backslash\)t"}
+\end{DoxyCode}
+
+
+A macro used to set an argument, used for consistency. 
+
 \index{bind.\+c@{bind.\+c}!S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND@{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}}
 \index{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND@{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}!bind.\+c@{bind.\+c}}
 \subsubsection[{\texorpdfstring{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}{STORE_ARGS_RETURN_BOUND}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND(
@@ -47,8 +113,8 @@ void $\ast$ \hyperlink{bind_8c_a03dce846f7b577fe5920b6aed38cb807}{gen\+\_\+stub\
 \(\backslash\)                                        \(\backslash\)
     bound\_internals\_t * bb = \hyperlink{bind__utilities_8c_a3e495f49bce6a5edbe2c2af691013fb5}{bind\_safe\_malloc}(1, \textcolor{keyword}{sizeof}(
       \hyperlink{structbound__internals__t}{bound\_internals\_t}));  \(\backslash\)
-    bb->args = \hyperlink{bind__utilities_8c_a3e495f49bce6a5edbe2c2af691013fb5}{bind\_safe\_malloc}(\hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\_total}, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void}*));                      \(\backslash\)
-    bb->n\_total = \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\_total};                                                    \(\backslash\)
+    bb->args = \hyperlink{bind__utilities_8c_a3e495f49bce6a5edbe2c2af691013fb5}{bind\_safe\_malloc}(n\_total, \textcolor{keyword}{sizeof}(\hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\_t}));                      \(\backslash\)
+    bb->n\_total = n\_total;                                                    \(\backslash\)
     bb->n\_bound = n\_bound;                                                    \(\backslash\)
     bb->fn = func;                                                            \(\backslash\)
                                                                               \(\backslash\)                            
@@ -56,11 +122,11 @@ void $\ast$ \hyperlink{bind_8c_a03dce846f7b577fe5920b6aed38cb807}{gen\+\_\+stub\
     va\_list args;                                                             \(\backslash\)
     va\_start(args, LAST\_ARG);                                                 \(\backslash\)
     for ( uint64\_t i = 0; i < n\_bound; ++i ) \{                                \(\backslash\)
-        bb->args[i] = va\_arg(args, \textcolor{keywordtype}{void} *);                                   \(\backslash\)
+        bb->args[i] = va\_arg(args, \hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\_t});                                    \(\backslash\)
     \}                                                                         \(\backslash\)
     va\_end(args);                                                             \(\backslash\)
                                                                               \(\backslash\)                     \(\backslash\)
-    const \textcolor{keywordtype}{int} index = \hyperlink{bind__vec_8c_a99f15769dba5a78755d63238954d183c}{bv\_consume\_add\_blank}(\hyperlink{bind_8c_ad3cf8f65fa323fffcc4750e5bbf0f6a2}{get\_global\_bv}(), bb);
+    const \textcolor{keywordtype}{int} index = \hyperlink{bind__vec_8c_a99f15769dba5a78755d63238954d183c}{bv\_consume\_add\_blank}(\hyperlink{bind_8c_a0596c2d16478119f034dfe4a68c70050}{global\_bv}, bb);
 \end{DoxyCode}
 
 
@@ -69,6 +135,13 @@ A macro to set up a bound\+\_\+internals This macro exists to ensure consistency
 
 
 \subsection{Function Documentation}
+\index{bind.\+c@{bind.\+c}!bind\+\_\+setup@{bind\+\_\+setup}}
+\index{bind\+\_\+setup@{bind\+\_\+setup}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{bind\+\_\+setup()}{bind_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8c_a57d49e18c9326489d842187e2a1e0086}{}\label{bind_8c_a57d49e18c9326489d842187e2a1e0086}
 \index{bind.\+c@{bind.\+c}!full\+\_\+bind@{full\+\_\+bind}}
 \index{full\+\_\+bind@{full\+\_\+bind}!bind.\+c@{bind.\+c}}
 \subsubsection[{\texorpdfstring{full\+\_\+bind(\+Bindable func, const uint64\+\_\+t n\+\_\+total,...)}{full_bind(Bindable func, const uint64_t n_total,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} full\+\_\+bind (
@@ -78,6 +151,23 @@ A macro to set up a bound\+\_\+internals This macro exists to ensure consistency
 \item[{}]{...}
 \end{DoxyParamCaption}
 )}\hypertarget{bind_8c_aba8492ffd71864427a5cddc0c3888454}{}\label{bind_8c_aba8492ffd71864427a5cddc0c3888454}
+
+
+Fully bind a function to the n\+\_\+total arguments provided. 
+
+\index{bind.\+c@{bind.\+c}!full\+\_\+systemv\+\_\+bind@{full\+\_\+systemv\+\_\+bind}}
+\index{full\+\_\+systemv\+\_\+bind@{full\+\_\+systemv\+\_\+bind}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{full\+\_\+systemv\+\_\+bind(\+Bindable\+System\+V func, const uint64\+\_\+t n\+\_\+total,...)}{full_systemv_bind(BindableSystemV func, const uint64_t n_total,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} full\+\_\+systemv\+\_\+bind (
+\begin{DoxyParamCaption}
+\item[{{\bf Bindable\+SystemV}}]{func, }
+\item[{const uint64\+\_\+t}]{n\+\_\+total, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8c_a62581f254513a9a7d8a88fe78f28176d}{}\label{bind_8c_a62581f254513a9a7d8a88fe78f28176d}
+
+
+Fully bind a function to the n\+\_\+total arguments provided using the SystemV calling convention. 
+
 \index{bind.\+c@{bind.\+c}!gen\+\_\+stub@{gen\+\_\+stub}}
 \index{gen\+\_\+stub@{gen\+\_\+stub}!bind.\+c@{bind.\+c}}
 \subsubsection[{\texorpdfstring{gen\+\_\+stub(const uint64\+\_\+t index, void $\ast$const invoker)}{gen_stub(const uint64_t index, void *const invoker)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ gen\+\_\+stub (
@@ -92,56 +182,78 @@ Generate a stub for a bound function Use invoker as the invoke function.
 
 \index{bind.\+c@{bind.\+c}!gen\+\_\+stub\+\_\+full@{gen\+\_\+stub\+\_\+full}}
 \index{gen\+\_\+stub\+\_\+full@{gen\+\_\+stub\+\_\+full}!bind.\+c@{bind.\+c}}
-\subsubsection[{\texorpdfstring{gen\+\_\+stub\+\_\+full(const uint64\+\_\+t index)}{gen_stub_full(const uint64_t index)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ gen\+\_\+stub\+\_\+full (
+\subsubsection[{\texorpdfstring{gen\+\_\+stub\+\_\+full(const uint64\+\_\+t index)}{gen_stub_full(const uint64_t index)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} gen\+\_\+stub\+\_\+full (
 \begin{DoxyParamCaption}
 \item[{const uint64\+\_\+t}]{index}
 \end{DoxyParamCaption}
-)}\hypertarget{bind_8c_a5ccd8e1cb7b1935e7f8e8c0d897dcc40}{}\label{bind_8c_a5ccd8e1cb7b1935e7f8e8c0d897dcc40}
+)}\hypertarget{bind_8c_af752ca1496ef805e1c69bcab07d79d1e}{}\label{bind_8c_af752ca1496ef805e1c69bcab07d79d1e}
+
+
+Generate a stub for a fully bound function. 
+
+\index{bind.\+c@{bind.\+c}!gen\+\_\+stub\+\_\+full\+\_\+systemv@{gen\+\_\+stub\+\_\+full\+\_\+systemv}}
+\index{gen\+\_\+stub\+\_\+full\+\_\+systemv@{gen\+\_\+stub\+\_\+full\+\_\+systemv}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{gen\+\_\+stub\+\_\+full\+\_\+systemv(const uint64\+\_\+t index)}{gen_stub_full_systemv(const uint64_t index)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} gen\+\_\+stub\+\_\+full\+\_\+systemv (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{index}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8c_a4892f18f04989e839e21c265e206dcd4}{}\label{bind_8c_a4892f18f04989e839e21c265e206dcd4}
 
 
 Generate a stub for a fully bound function. 
 
 \index{bind.\+c@{bind.\+c}!gen\+\_\+stub\+\_\+partial@{gen\+\_\+stub\+\_\+partial}}
 \index{gen\+\_\+stub\+\_\+partial@{gen\+\_\+stub\+\_\+partial}!bind.\+c@{bind.\+c}}
-\subsubsection[{\texorpdfstring{gen\+\_\+stub\+\_\+partial(const uint64\+\_\+t index)}{gen_stub_partial(const uint64_t index)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ gen\+\_\+stub\+\_\+partial (
+\subsubsection[{\texorpdfstring{gen\+\_\+stub\+\_\+partial(const uint64\+\_\+t index)}{gen_stub_partial(const uint64_t index)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Part\+Bound} gen\+\_\+stub\+\_\+partial (
 \begin{DoxyParamCaption}
 \item[{const uint64\+\_\+t}]{index}
 \end{DoxyParamCaption}
-)}\hypertarget{bind_8c_a03dce846f7b577fe5920b6aed38cb807}{}\label{bind_8c_a03dce846f7b577fe5920b6aed38cb807}
+)}\hypertarget{bind_8c_a03db6843cbb39479497bf925a6dfc31e}{}\label{bind_8c_a03db6843cbb39479497bf925a6dfc31e}
 
 
 Generate a stub for a partially bound function. 
 
-\index{bind.\+c@{bind.\+c}!get\+\_\+global\+\_\+bv@{get\+\_\+global\+\_\+bv}}
-\index{get\+\_\+global\+\_\+bv@{get\+\_\+global\+\_\+bv}!bind.\+c@{bind.\+c}}
-\subsubsection[{\texorpdfstring{get\+\_\+global\+\_\+bv()}{get_global_bv()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bind\+\_\+vec}$\ast$ get\+\_\+global\+\_\+bv (
+\index{bind.\+c@{bind.\+c}!gettid@{gettid}}
+\index{gettid@{gettid}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{gettid()}{gettid()}}]{\setlength{\rightskip}{0pt plus 5cm}static long gettid (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{bind_8c_ad3cf8f65fa323fffcc4750e5bbf0f6a2}{}\label{bind_8c_ad3cf8f65fa323fffcc4750e5bbf0f6a2}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{bind_8c_af3265635bd14b26d26d650377c59946d}{}\label{bind_8c_af3265635bd14b26d26d650377c59946d}
 
 
-A function that returns the global bv The first call to this function is not thread safe After completion of the first call, subsequent calls are. 
+get tid 
 
 \index{bind.\+c@{bind.\+c}!invoke\+\_\+full\+\_\+bound@{invoke\+\_\+full\+\_\+bound}}
 \index{invoke\+\_\+full\+\_\+bound@{invoke\+\_\+full\+\_\+bound}!bind.\+c@{bind.\+c}}
-\subsubsection[{\texorpdfstring{invoke\+\_\+full\+\_\+bound()}{invoke_full_bound()}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ invoke\+\_\+full\+\_\+bound (
+\subsubsection[{\texorpdfstring{invoke\+\_\+full\+\_\+bound()}{invoke_full_bound()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ret\+\_\+t} invoke\+\_\+full\+\_\+bound (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{bind_8c_ade25fe604fab02fb5068056d16f12592}{}\label{bind_8c_ade25fe604fab02fb5068056d16f12592}
+)}\hypertarget{bind_8c_a377bf50714cd5cce8c4481773266c655}{}\label{bind_8c_a377bf50714cd5cce8c4481773266c655}
+
+
+Invoke a fully bound function The function index is stored in r11. 
+
+\index{bind.\+c@{bind.\+c}!invoke\+\_\+full\+\_\+systemv\+\_\+bound@{invoke\+\_\+full\+\_\+systemv\+\_\+bound}}
+\index{invoke\+\_\+full\+\_\+systemv\+\_\+bound@{invoke\+\_\+full\+\_\+systemv\+\_\+bound}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{invoke\+\_\+full\+\_\+systemv\+\_\+bound()}{invoke_full_systemv_bound()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ret\+\_\+t} invoke\+\_\+full\+\_\+systemv\+\_\+bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8c_a164ed1a54f8aafd4036e6a9223d569dc}{}\label{bind_8c_a164ed1a54f8aafd4036e6a9223d569dc}
 
 
 Invoke a fully bound function The function index is stored in r11. 
 
 \index{bind.\+c@{bind.\+c}!invoke\+\_\+partial\+\_\+bound@{invoke\+\_\+partial\+\_\+bound}}
 \index{invoke\+\_\+partial\+\_\+bound@{invoke\+\_\+partial\+\_\+bound}!bind.\+c@{bind.\+c}}
-\subsubsection[{\texorpdfstring{invoke\+\_\+partial\+\_\+bound(void $\ast$a1,...)}{invoke_partial_bound(void *a1,...)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ invoke\+\_\+partial\+\_\+bound (
+\subsubsection[{\texorpdfstring{invoke\+\_\+partial\+\_\+bound(arg\+\_\+t a1,...)}{invoke_partial_bound(arg_t a1,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ret\+\_\+t} invoke\+\_\+partial\+\_\+bound (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{a1, }
+\item[{{\bf arg\+\_\+t}}]{a1, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}\hypertarget{bind_8c_a58c4e4371fd84e7d1ee955333c19ee76}{}\label{bind_8c_a58c4e4371fd84e7d1ee955333c19ee76}
+)}\hypertarget{bind_8c_af4c2e7db3e7180644009bcefe8f91331}{}\label{bind_8c_af4c2e7db3e7180644009bcefe8f91331}
 
 
 Invoke a partially bound function with the additional args of a1, ... 
@@ -159,4 +271,76 @@ The function index is stored in r11 \index{bind.\+c@{bind.\+c}!partial\+\_\+bind
 
 
 Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. 
+
+\index{bind.\+c@{bind.\+c}!systemv\+\_\+invoke@{systemv\+\_\+invoke}}
+\index{systemv\+\_\+invoke@{systemv\+\_\+invoke}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{systemv\+\_\+invoke(bound\+\_\+internals\+\_\+t $\ast$bb)}{systemv_invoke(bound_internals_t *bb)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ret\+\_\+t} systemv\+\_\+invoke (
+\begin{DoxyParamCaption}
+\item[{{\bf bound\+\_\+internals\+\_\+t} $\ast$}]{bb}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8c_a7e8065542413c2914b09b4f882baac3e}{}\label{bind_8c_a7e8065542413c2914b09b4f882baac3e}
+
+
+Invoke a systemv \hyperlink{structbound__internals__t}{bound\+\_\+internals\+\_\+t} on its store arguments. 
+
+\index{bind.\+c@{bind.\+c}!systemv\+\_\+invoke\+\_\+helper@{systemv\+\_\+invoke\+\_\+helper}}
+\index{systemv\+\_\+invoke\+\_\+helper@{systemv\+\_\+invoke\+\_\+helper}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{systemv\+\_\+invoke\+\_\+helper(int signo)}{systemv_invoke_helper(int signo)}}]{\setlength{\rightskip}{0pt plus 5cm}void systemv\+\_\+invoke\+\_\+helper (
+\begin{DoxyParamCaption}
+\item[{int}]{signo}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8c_a9309ae5eee755b2b0b911a2787bb6b7e}{}\label{bind_8c_a9309ae5eee755b2b0b911a2787bb6b7e}
+
+
+The signal handler used to invoke the systemv call. 
+
+\index{bind.\+c@{bind.\+c}!tkill@{tkill}}
+\index{tkill@{tkill}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{tkill(int tid, int sig)}{tkill(int tid, int sig)}}]{\setlength{\rightskip}{0pt plus 5cm}static long tkill (
+\begin{DoxyParamCaption}
+\item[{int}]{tid, }
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{bind_8c_a8cc3325de0ffb89220fac686f36ac0f1}{}\label{bind_8c_a8cc3325de0ffb89220fac686f36ac0f1}
+
+
+tkill syscall 
+
+
+
+\subsection{Variable Documentation}
+\index{bind.\+c@{bind.\+c}!full\+\_\+systemv\+\_\+arg\+\_\+global@{full\+\_\+systemv\+\_\+arg\+\_\+global}}
+\index{full\+\_\+systemv\+\_\+arg\+\_\+global@{full\+\_\+systemv\+\_\+arg\+\_\+global}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{full\+\_\+systemv\+\_\+arg\+\_\+global}{full_systemv_arg_global}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bound\+\_\+internals\+\_\+t}$\ast$ full\+\_\+systemv\+\_\+arg\+\_\+global}\hypertarget{bind_8c_ab71bc84d3ee20bf277140167daf214ae}{}\label{bind_8c_ab71bc84d3ee20bf277140167daf214ae}
+
+
+The full\+\_\+system\+\_\+lock arg value protected by a lock. 
+
+\index{bind.\+c@{bind.\+c}!full\+\_\+systemv\+\_\+arg\+\_\+lock@{full\+\_\+systemv\+\_\+arg\+\_\+lock}}
+\index{full\+\_\+systemv\+\_\+arg\+\_\+lock@{full\+\_\+systemv\+\_\+arg\+\_\+lock}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{full\+\_\+systemv\+\_\+arg\+\_\+lock}{full_systemv_arg_lock}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bind\+\_\+lock\+\_\+t}$\ast$ full\+\_\+systemv\+\_\+arg\+\_\+lock = N\+U\+LL}\hypertarget{bind_8c_a11b2739a28c1d02da36a52099de46b70}{}\label{bind_8c_a11b2739a28c1d02da36a52099de46b70}
+
+
+A global bind\+\_\+lock for full systemv inokes\textquotesingle{} args. 
+
+\index{bind.\+c@{bind.\+c}!full\+\_\+systemv\+\_\+ret\+\_\+global@{full\+\_\+systemv\+\_\+ret\+\_\+global}}
+\index{full\+\_\+systemv\+\_\+ret\+\_\+global@{full\+\_\+systemv\+\_\+ret\+\_\+global}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{full\+\_\+systemv\+\_\+ret\+\_\+global}{full_systemv_ret_global}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ret\+\_\+t} full\+\_\+systemv\+\_\+ret\+\_\+global}\hypertarget{bind_8c_aba44839b768708c2d0497e6e8ec5f9d0}{}\label{bind_8c_aba44839b768708c2d0497e6e8ec5f9d0}
+
+
+The full\+\_\+system\+\_\+lock ret value protected by a lock. 
+
+\index{bind.\+c@{bind.\+c}!full\+\_\+systemv\+\_\+ret\+\_\+lock@{full\+\_\+systemv\+\_\+ret\+\_\+lock}}
+\index{full\+\_\+systemv\+\_\+ret\+\_\+lock@{full\+\_\+systemv\+\_\+ret\+\_\+lock}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{full\+\_\+systemv\+\_\+ret\+\_\+lock}{full_systemv_ret_lock}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bind\+\_\+lock\+\_\+t}$\ast$ full\+\_\+systemv\+\_\+ret\+\_\+lock = N\+U\+LL}\hypertarget{bind_8c_a48e92a5e071d98b40146840b55ec92c7}{}\label{bind_8c_a48e92a5e071d98b40146840b55ec92c7}
+
+
+A global bind\+\_\+lock for full systemv inokes\textquotesingle{} return. 
+
+\index{bind.\+c@{bind.\+c}!global\+\_\+bv@{global\+\_\+bv}}
+\index{global\+\_\+bv@{global\+\_\+bv}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{global\+\_\+bv}{global_bv}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bind\+\_\+vec}$\ast$ global\+\_\+bv = N\+U\+LL}\hypertarget{bind_8c_a0596c2d16478119f034dfe4a68c70050}{}\label{bind_8c_a0596c2d16478119f034dfe4a68c70050}
+
+
+A global bind vec. 
 

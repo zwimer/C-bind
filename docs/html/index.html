@@ -80,28 +80,85 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a href="https://travis-ci.org/zwimer/C-bind"></a></p>
-<h1>How to use</h1>
-<h2>Invocation</h2>
-<p>To invoke the bound version of <code>my_func</code>, one could simply invoke it as </p><div class="fragment"><div class="line">bound_func( arg1, arg2, arg3 )</div></div><!-- fragment --><p> <em>Despite the odd function signature of the function to be bound, it can be invoked like a standard function.</em> Note, if you pass extra unexpected arguments to <code>bound_func</code> they will be ignored.</p>
-<h2>Signature</h2>
-<p>Functions to be bound must have a unique signature, however when calling them they may be called as standard functions. To bind a function, it must have the following signature: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> * my_func( <span class="keywordtype">void</span> ** args )</div></div><!-- fragment --><p> The return value may simply be any other primitive so you cast it properly during the binding call. You can think of <code>args</code> as an array of arguments! Parsing the <code>args</code> array is the job of <code>my_func</code>. <code>my_func</code> must have a defined maximum number of 'arguments'. <em>That is, <code>my_func</code> must expect that no more <code>num_args</code> number of elements in the <code>args</code> array to be passed.</em></p>
-<h2>Fully binding</h2>
-<p>To fully bind a functon, invoke </p><div class="fragment"><div class="line">bound_func = <a class="code" href="bind_8c.html#aba8492ffd71864427a5cddc0c3888454">full_bind</a>( my_func, num_args, arg1, arg2, arg3 )</div></div><!-- fragment --><p> Here <code>num_args</code> is the number of elements in the <code>args</code> array <code>my_func</code> expects to be passed. Notice that if you pass in more arguments <code>num_args</code> they will be ignored.</p>
-<p>### Example </p><div class="fragment"><div class="line"><span class="comment">// This function expects exactly 1 argument!</span></div><div class="line"><span class="keywordtype">void</span> * id( <span class="keywordtype">void</span> ** args ) { <span class="keywordflow">return</span> args[0]; }</div><div class="line">bound_func = <a class="code" href="bind_8c.html#aba8492ffd71864427a5cddc0c3888454">full_bind</a>( <span class="keywordtype">id</span>, 1, <span class="comment">/* Arguments begin */</span> 0x41414141 );</div><div class="line">printf( <span class="stringliteral">&quot;My id = %d\n&quot;</span>, (<span class="keywordtype">int</span>) bound_func() );  <span class="comment">// Prints out 0x41414141</span></div></div><!-- fragment --><h3>Partial binding</h3>
+<h1>Table of Contents</h1>
+<ol type="1">
+<li><a href="#requirements">Requirements</a></li>
+</ol>
+<ol type="1">
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#general">General</a></li>
+<li><a href="#systemv">SystemV</a></li>
+<li><a href="#non-systemv">Non-SystemV</a></li>
+</ul>
+</li>
+</ol>
+<ol type="1">
+<li><a href="#testing">Testing</a></li>
+</ol>
+<ol type="1">
+<li><a href="#compilation">Compilation</a></li>
+</ol>
+<ol type="1">
+<li><a href="#ci">CI</a></li>
+</ol>
+<ol type="1">
+<li><a href="#documentation">Documentation</a></li>
+</ol>
+<ol type="1">
+<li><a href="#future-plans">Future Plans</a> <hr/>
+</li>
+</ol>
+<h1>Requirements</h1>
+<p>Currently <code>C-bind</code> requires <code>pthread</code> to be installed, and requires <code>x86_64</code>. <code>C-bind</code> has only been tested on Ubuntu 18.04`</p>
+<h1>Usage</h1>
+<h2>General</h2>
+<h3>Includes</h3>
+<p>To link the <code>C-bind</code> library simply include the header file <code><a class="el" href="bind_8h.html">bind.h</a></code>.</p>
+<h3>Setup</h3>
+<p>To setup the bind library, the <code>bind_setup</code> function must be invoked first! </p><div class="fragment"><div class="line"><a class="code" href="bind_8c.html#a57d49e18c9326489d842187e2a1e0086">bind_setup</a>();</div></div><!-- fragment --><h3>Invocation</h3>
+<p>To invoke the bound version of <code>my_func</code>, one could simply invoke it as </p><div class="fragment"><div class="line">bound_func( arg1, arg2, arg3 )</div></div><!-- fragment --><p> <em>Note</em>: if you pass extra unexpected arguments to <code>bound_func</code> they will be ignored.</p>
+<h3>Thread Safety</h3>
+<p>Yes.</p>
+<h3>SystemV vs Non-SystemV</h3>
+<p>The most common calling convention of <code>x86_64</code> / <code>amd64</code> is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an API for them is provided for them as well.</p>
+<h3>Exceptions</h3>
+<ol type="1">
+<li>This library cannot bind variadic functions</li>
+</ol>
+<ol type="1">
+<li>This library <em>may</em> fail if registers other than <code>rdi</code>, <code>rsi,</code> <code>rdx</code>, <code>rcx</code>, <code>r8</code>, and <code>r9</code> are used to pass arguments. This however is exceedingly rare.</li>
+</ol>
+<h2>SystemV</h2>
+<p>Currently only full binding is support for SystemV.</p>
+<h3>Function Signature</h3>
+<p>SystemV functions to be bound must return an object of type <code>ret_t</code> or smaller. Do not attempt to return a large struct as it may fail!</p>
+<p>The return value may simply be any other primitive so you cast it properly during the binding call. As for the arguments of the function, there are no restrictions except that the function may not be variadic! Consequently, <code>my_func</code> must have a defined maximum number of 'arguments'. <em>That is, <code>my_func</code> must expect that no more <code>num_args</code> number of elements to be passed.</em> For more info look in the <code><a class="el" href="bind__defs_8h.html">bind_defs.h</a></code> file.</p>
+<h3>Full binding</h3>
+<p>To fully bind a functon, invoke </p><div class="fragment"><div class="line">bound_func = <a class="code" href="bind_8c.html#aba8492ffd71864427a5cddc0c3888454">full_bind</a>( my_func, num_args, arg1, arg2, arg3 )</div></div><!-- fragment --><p> Here <code>num_args</code> is the number arguments to pass to be passed to <code>my_func</code>. If you pass in more arguments <code>num_args</code> they will be ignored.</p>
+<p>### Full binding example </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code" href="test-systemv_8c.html#ac821ce0bdb5918e7cf9ea4cd5cc29009">sum</a>( <span class="keywordtype">int</span> a, <span class="keywordtype">int</span> b ) { <span class="keywordflow">return</span> a + b; }</div><div class="line">bound_func = <a class="code" href="bind_8c.html#a62581f254513a9a7d8a88fe78f28176d">full_systemv_bind</a>( <span class="keywordtype">id</span>, 1, <span class="comment">/* Arguments begin */</span> 1, 2 );</div><div class="line">printf( <span class="stringliteral">&quot;sum(1,2) = %d\m&quot;</span>, (<span class="keywordtype">int</span>) bound_func() );</div></div><!-- fragment --><p> The output of this code is: <code>sum(1,2) = 3\n</code>.</p>
+<h3>Partial binding</h3>
+<p>This is currently not supported by <code>C-bind</code>.</p>
+<h2>Non-SystemV</h2>
+<h3>Signature</h3>
+<p>Non-SystemV functions to be bound must have a unique signature, however when calling them they may be called as standard functions. To bind a function, it must have the following signature: </p><div class="fragment"><div class="line"><a class="code" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a> my_func( <a class="code" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a> * args )</div></div><!-- fragment --><p> The return value may simply be any other primitive so you cast it properly during the binding call. You can think of <code>args</code> as an array of arguments! Parsing the <code>args</code> array is the job of <code>my_func</code>. <code>my_func</code> must have a defined maximum number of 'arguments'. <em>That is, <code>my_func</code> must expect that no more <code>num_args</code> number of elements in the <code>args</code> array to be passed.</em> For more info look in the <code><a class="el" href="bind__defs_8h.html">bind_defs.h</a></code> file.</p>
+<h3>Full binding</h3>
+<p>To fully bind a functon, invoke </p><div class="fragment"><div class="line">bound_func = <a class="code" href="bind_8c.html#aba8492ffd71864427a5cddc0c3888454">full_bind</a>( my_func, num_args, arg1, arg2, arg3 )</div></div><!-- fragment --><p> Here <code>num_args</code> is the number of elements in the <code>args</code> array <code>my_func</code> expects to be passed. If you pass in more arguments <code>num_args</code> they will be ignored.</p>
+<p>### Full binding Example </p><div class="fragment"><div class="line"><a class="code" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a> id( <a class="code" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a> * args ) { <span class="keywordflow">return</span> args[0]; }</div><div class="line">bound_func = <a class="code" href="bind_8c.html#aba8492ffd71864427a5cddc0c3888454">full_bind</a>( <span class="keywordtype">id</span>, 1, <span class="comment">/* Arguments begin */</span> 17 );</div><div class="line">printf( <span class="stringliteral">&quot;My id = %d\n&quot;</span>, (<span class="keywordtype">int</span>) bound_func() );</div></div><!-- fragment --><p> The output of this code is: <code>My id = 17\n</code></p>
+<h3>Partial binding</h3>
 <p>To partially bind a function, invoke </p><div class="fragment"><div class="line">bound_func = <a class="code" href="bind_8c.html#a749a103d16b748b8aecff011472a0881">partial_bind</a>( my_func, num_args, num_args_to_bind, arg1, arg2 );</div></div><!-- fragment --><p> Here <code>num_args_to_bind</code> is the number of arguments currently being bound!</p>
-<p>### Example </p><div class="fragment"><div class="line"><span class="comment">// This function expects exactly 3 arguments</span></div><div class="line"><span class="keywordtype">void</span> * sum3( <span class="keywordtype">void</span> ** args ) { <span class="keywordflow">return</span> args[0] + args[1] + args[2]; }</div><div class="line">bound_func = <a class="code" href="bind_8c.html#a749a103d16b748b8aecff011472a0881">partial_bind</a>( sum3, 3, 2, <span class="comment">/* Arguments begin */</span> 100, 200 );</div><div class="line">printf( <span class="stringliteral">&quot;Total sum = %d\n&quot;</span>, (<span class="keywordtype">int</span>) bound_func(300) );  <span class="comment">// Prints out 600</span></div></div><!-- fragment --><h2>Thread Safety</h2>
-<p>Yes, after the first bind. :)</p>
-<h2>How to test</h2>
-<p>To test that this works: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;git clone https://github.com/zwimer/C-bind &amp;&amp; \</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;mkdir C-bind/src/build &amp;&amp; cd C-bind/src/build &amp;&amp; \</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;cmake .. &amp;&amp; make &amp;&amp; \</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;./test.out</div></div><!-- fragment --><h1>CI</h1>
+<p>### Partial binding Example </p><div class="fragment"><div class="line"><a class="code" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a> sum3( <a class="code" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a> * args ) { <span class="keywordflow">return</span> args[0] + args[1] + args[2]; }</div><div class="line">bound_func = <a class="code" href="bind_8c.html#a749a103d16b748b8aecff011472a0881">partial_bind</a>( sum3, 3, 2, <span class="comment">/* Arguments begin */</span> 100, 200 );</div><div class="line">printf( <span class="stringliteral">&quot;Total sum = %d\n&quot;</span>, (<span class="keywordtype">int</span>) bound_func(300) );  <span class="comment">// Prints out 600</span></div></div><!-- fragment --><p> The output of this code is: <code>Total sum = 600\n</code> </p><hr/>
+<h1>Testing</h1>
+<p>To test that this works first compile the code </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;git clone https://github.com/zwimer/C-bind &amp;&amp; \</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;mkdir C-bind/src/build &amp;&amp; cd C-bind/src/build &amp;&amp; \</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;cmake .. &amp;&amp; make</div></div><!-- fragment --><p>After that, run your desired test. Either <code>./test-systemv.out</code> or <code>./test-non-systemv.out</code>.</p>
+<h1>Compilation</h1>
+<p>This library should be compiled as a shared object without optimizations! See the <code>CMake</code> file for more details.</p>
+<h1>CI</h1>
 <p>Continuous Integration is provided by <a href="https://travis-ci.org">Travis CI</a>. To view the CI setup, click <a href="https://travis-ci.org/zwimer/C-bind/">here</a>.</p>
 <h1>Documentation</h1>
 <p>Documentation is stored in on the <code>gh-pages</code> branch and hosted <a href="https://zwimer.github.io/C-bind/docs/html/index.html">here</a> on <a href="https://zwimer.com">zwimer.com</a>. Documentation is generated via <a href="http://www.doxygen.nl/">doxygen</a>. To manually generate it install doxygen (from <code>apt-get</code> if you have it) then </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;cd C-bind &amp;&amp; doxygen</div></div><!-- fragment --><h1>Future Plans</h1>
 <h3>Removing the signature requirement</h3>
-<p>By emulating the <code>x86_64</code> calling convention I can remove the requirement of needing that special signature to bind a functon.</p>
+<p>Add partial binding for SystemV.</p>
 <h3>Memory efficiency</h3>
-<p>Right now the <code>get_stub</code> function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page.</p>
-<h1>Restrictions</h1>
-<p>Currently this only works on 64-bit <code>x86</code>. </p>
+<p>Right now the <code>get_stub</code> function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

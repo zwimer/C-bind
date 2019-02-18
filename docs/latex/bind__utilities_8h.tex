@@ -15,7 +15,13 @@ void \hyperlink{bind__utilities_8h_aa4000740cfe380412978282ae8ce9603}{bind\+\_\+
 void $\ast$ \hyperlink{bind__utilities_8h_a3e495f49bce6a5edbe2c2af691013fb5}{bind\+\_\+safe\+\_\+malloc} (size\+\_\+t c, size\+\_\+t s)
 \begin{DoxyCompactList}\small\item\em Malloc, but check to see if failed. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{bind__utilities_8h_a89174c1631373cb8d9d73de79f5b2bd5}{bind\+\_\+safe\+\_\+realloc} (void $\ast$p, size\+\_\+t c, size\+\_\+t s)
-\begin{DoxyCompactList}\small\item\em Realloc, but check to see if failed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Realloc, but check to see if failed. \end{DoxyCompactList}\item 
+\hyperlink{structbind__lock__t}{bind\+\_\+lock\+\_\+t} $\ast$ \hyperlink{bind__utilities_8h_ab9a83d018353bc7fc60637325c377f8c}{make\+\_\+bind\+\_\+lock} ()
+\begin{DoxyCompactList}\small\item\em Create a bind\+\_\+lock. \end{DoxyCompactList}\item 
+void \hyperlink{bind__utilities_8h_a96d35e5be1ae4fe9dc2fce7e929f0337}{bind\+\_\+lock} (\hyperlink{structbind__lock__t}{bind\+\_\+lock\+\_\+t} $\ast$const lock)
+\begin{DoxyCompactList}\small\item\em A lock dunction for bind\+\_\+lock. \end{DoxyCompactList}\item 
+void \hyperlink{bind__utilities_8h_a0fe9694537501c162c36487b32fed6e1}{bind\+\_\+unlock} (\hyperlink{structbind__lock__t}{bind\+\_\+lock\+\_\+t} $\ast$const lock)
+\begin{DoxyCompactList}\small\item\em A lock dunction for bind\+\_\+lock. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
@@ -41,6 +47,17 @@ err if !b
 
 
 This functions prints Msg and exits the program. 
+
+\index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!bind\+\_\+lock@{bind\+\_\+lock}}
+\index{bind\+\_\+lock@{bind\+\_\+lock}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}
+\subsubsection[{\texorpdfstring{bind\+\_\+lock(bind\+\_\+lock\+\_\+t $\ast$const lock)}{bind_lock(bind_lock_t *const lock)}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+lock (
+\begin{DoxyParamCaption}
+\item[{{\bf bind\+\_\+lock\+\_\+t} $\ast$const}]{lock}
+\end{DoxyParamCaption}
+)}\hypertarget{bind__utilities_8h_a96d35e5be1ae4fe9dc2fce7e929f0337}{}\label{bind__utilities_8h_a96d35e5be1ae4fe9dc2fce7e929f0337}
+
+
+A lock dunction for bind\+\_\+lock. 
 
 \index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!bind\+\_\+mem\+\_\+check@{bind\+\_\+mem\+\_\+check}}
 \index{bind\+\_\+mem\+\_\+check@{bind\+\_\+mem\+\_\+check}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}
@@ -89,4 +106,26 @@ Malloc, but check to see if failed.
 
 
 Realloc, but check to see if failed. 
+
+\index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!bind\+\_\+unlock@{bind\+\_\+unlock}}
+\index{bind\+\_\+unlock@{bind\+\_\+unlock}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}
+\subsubsection[{\texorpdfstring{bind\+\_\+unlock(bind\+\_\+lock\+\_\+t $\ast$const lock)}{bind_unlock(bind_lock_t *const lock)}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+unlock (
+\begin{DoxyParamCaption}
+\item[{{\bf bind\+\_\+lock\+\_\+t} $\ast$const}]{lock}
+\end{DoxyParamCaption}
+)}\hypertarget{bind__utilities_8h_a0fe9694537501c162c36487b32fed6e1}{}\label{bind__utilities_8h_a0fe9694537501c162c36487b32fed6e1}
+
+
+A lock dunction for bind\+\_\+lock. 
+
+\index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!make\+\_\+bind\+\_\+lock@{make\+\_\+bind\+\_\+lock}}
+\index{make\+\_\+bind\+\_\+lock@{make\+\_\+bind\+\_\+lock}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}
+\subsubsection[{\texorpdfstring{make\+\_\+bind\+\_\+lock()}{make_bind_lock()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bind\+\_\+lock\+\_\+t}$\ast$ make\+\_\+bind\+\_\+lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{bind__utilities_8h_ab9a83d018353bc7fc60637325c377f8c}{}\label{bind__utilities_8h_ab9a83d018353bc7fc60637325c377f8c}
+
+
+Create a bind\+\_\+lock. 
 

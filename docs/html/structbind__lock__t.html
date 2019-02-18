@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>C-bind: obscurred_mutex Struct Reference</title>
+<title>C-bind: bind_lock_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,35 +85,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">obscurred_mutex Struct Reference</div>  </div>
+<div class="title">bind_lock_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>An obscured mutex.  
- <a href="structobscurred__mutex.html#details">More...</a></p>
+<p>A simple mutex.  
+ <a href="structbind__lock__t.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a02b4b692e6fc0a9b4849671117317201"><td class="memItemLeft" align="right" valign="top">pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structobscurred__mutex.html#a02b4b692e6fc0a9b4849671117317201">m</a></td></tr>
-<tr class="separator:a02b4b692e6fc0a9b4849671117317201"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb6fb5ec307a3566461856177cf993e"><td class="memItemLeft" align="right" valign="top">pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbind__lock__t.html#a5cb6fb5ec307a3566461856177cf993e">m</a></td></tr>
+<tr class="memdesc:a5cb6fb5ec307a3566461856177cf993e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mutex used internally by a <a class="el" href="structbind__lock__t.html" title="A simple mutex. ">bind_lock_t</a>.  <a href="#a5cb6fb5ec307a3566461856177cf993e">More...</a><br /></td></tr>
+<tr class="separator:a5cb6fb5ec307a3566461856177cf993e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An obscured mutex. </p>
+<div class="textblock"><p>A simple mutex. </p>
+<p>A typedef for <a class="el" href="structbind__lock__t.html" title="A simple mutex. ">bind_lock_t</a>, a simple mutex. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a class="anchor" id="a02b4b692e6fc0a9b4849671117317201"></a>
+<a class="anchor" id="a5cb6fb5ec307a3566461856177cf993e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pthread_mutex_t obscurred_mutex::m</td>
+          <td class="memname">pthread_mutex_t bind_lock_t::m</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>The mutex used internally by a <a class="el" href="structbind__lock__t.html" title="A simple mutex. ">bind_lock_t</a>. </p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/<a class="el" href="bind__vec_8c.html">bind_vec.c</a></li>
+<li>src/<a class="el" href="bind__utilities_8c.html">bind_utilities.c</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

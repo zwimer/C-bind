@@ -115,6 +115,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a89174c1631373cb8d9d73de79f5b2bd5"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8h.html#a89174c1631373cb8d9d73de79f5b2bd5">bind_safe_realloc</a> (void *p, size_t c, size_t s)</td></tr>
 <tr class="memdesc:a89174c1631373cb8d9d73de79f5b2bd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realloc, but check to see if failed.  <a href="#a89174c1631373cb8d9d73de79f5b2bd5">More...</a><br /></td></tr>
 <tr class="separator:a89174c1631373cb8d9d73de79f5b2bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9a83d018353bc7fc60637325c377f8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbind__lock__t.html">bind_lock_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8h.html#ab9a83d018353bc7fc60637325c377f8c">make_bind_lock</a> ()</td></tr>
+<tr class="memdesc:ab9a83d018353bc7fc60637325c377f8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a bind_lock.  <a href="#ab9a83d018353bc7fc60637325c377f8c">More...</a><br /></td></tr>
+<tr class="separator:ab9a83d018353bc7fc60637325c377f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96d35e5be1ae4fe9dc2fce7e929f0337"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8h.html#a96d35e5be1ae4fe9dc2fce7e929f0337">bind_lock</a> (<a class="el" href="structbind__lock__t.html">bind_lock_t</a> *const lock)</td></tr>
+<tr class="memdesc:a96d35e5be1ae4fe9dc2fce7e929f0337"><td class="mdescLeft">&#160;</td><td class="mdescRight">A lock dunction for bind_lock.  <a href="#a96d35e5be1ae4fe9dc2fce7e929f0337">More...</a><br /></td></tr>
+<tr class="separator:a96d35e5be1ae4fe9dc2fce7e929f0337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fe9694537501c162c36487b32fed6e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8h.html#a0fe9694537501c162c36487b32fed6e1">bind_unlock</a> (<a class="el" href="structbind__lock__t.html">bind_lock_t</a> *const lock)</td></tr>
+<tr class="memdesc:a0fe9694537501c162c36487b32fed6e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A lock dunction for bind_lock.  <a href="#a0fe9694537501c162c36487b32fed6e1">More...</a><br /></td></tr>
+<tr class="separator:a0fe9694537501c162c36487b32fed6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="af4aaa27dade38bbf1f1570ed4a37e329"></a>
@@ -160,6 +169,24 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This functions prints Msg and exits the program. </p>
+
+</div>
+</div>
+<a class="anchor" id="a96d35e5be1ae4fe9dc2fce7e929f0337"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bind_lock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbind__lock__t.html">bind_lock_t</a> *const&#160;</td>
+          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A lock dunction for bind_lock. </p>
 
 </div>
 </div>
@@ -268,6 +295,41 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Realloc, but check to see if failed. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0fe9694537501c162c36487b32fed6e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bind_unlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbind__lock__t.html">bind_lock_t</a> *const&#160;</td>
+          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A lock dunction for bind_lock. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab9a83d018353bc7fc60637325c377f8c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbind__lock__t.html">bind_lock_t</a>* make_bind_lock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a bind_lock. </p>
 
 </div>
 </div>

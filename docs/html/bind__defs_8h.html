@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">bind_defs.h File Reference</div>  </div>
@@ -94,25 +95,66 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><a href="bind__defs_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:af467e787fea66a98aef29a95b38da9ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#af467e787fea66a98aef29a95b38da9ce">SYSTEMV_INVOKE_SIG</a>&#160;&#160;&#160;SIGUSR2</td></tr>
+<tr class="separator:af467e787fea66a98aef29a95b38da9ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a48106166e38fd5a82b69958273087c84"><td class="memItemLeft" align="right" valign="top">typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#a48106166e38fd5a82b69958273087c84">Bindable</a>) (void **args)</td></tr>
-<tr class="memdesc:a48106166e38fd5a82b69958273087c84"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bindable function type.  <a href="#a48106166e38fd5a82b69958273087c84">More...</a><br /></td></tr>
-<tr class="separator:a48106166e38fd5a82b69958273087c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35b1524d8ed85a8548e841b1f6225695"><td class="memItemLeft" align="right" valign="top">typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#a35b1524d8ed85a8548e841b1f6225695">FullBound</a>) ()</td></tr>
-<tr class="memdesc:a35b1524d8ed85a8548e841b1f6225695"><td class="mdescLeft">&#160;</td><td class="mdescRight">A fully bound function type.  <a href="#a35b1524d8ed85a8548e841b1f6225695">More...</a><br /></td></tr>
-<tr class="separator:a35b1524d8ed85a8548e841b1f6225695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa409ee08129c587e002cf2062a09a744"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a></td></tr>
+<tr class="memdesc:aa409ee08129c587e002cf2062a09a744"><td class="mdescLeft">&#160;</td><td class="mdescRight">The argument type.  <a href="#aa409ee08129c587e002cf2062a09a744">More...</a><br /></td></tr>
+<tr class="separator:aa409ee08129c587e002cf2062a09a744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54aeeb54a7a6a62c72ec8dc7718fdd91"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a></td></tr>
+<tr class="memdesc:a54aeeb54a7a6a62c72ec8dc7718fdd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">The return type.  <a href="#a54aeeb54a7a6a62c72ec8dc7718fdd91">More...</a><br /></td></tr>
+<tr class="separator:a54aeeb54a7a6a62c72ec8dc7718fdd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fdbf6bcbe597219692d8bd8952b9839"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a>) (<a class="el" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a> *args)</td></tr>
+<tr class="memdesc:a8fdbf6bcbe597219692d8bd8952b9839"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bindable function type.  <a href="#a8fdbf6bcbe597219692d8bd8952b9839">More...</a><br /></td></tr>
+<tr class="separator:a8fdbf6bcbe597219692d8bd8952b9839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b8e30bb2c20efbc65a86e1124c122c9"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a></td></tr>
+<tr class="memdesc:a3b8e30bb2c20efbc65a86e1124c122c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bindable function type for SystemV.  <a href="#a3b8e30bb2c20efbc65a86e1124c122c9">More...</a><br /></td></tr>
+<tr class="separator:a3b8e30bb2c20efbc65a86e1124c122c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c87cc0eb01b046c5adc0fb1d6fcd62c"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a>) ()</td></tr>
+<tr class="memdesc:a7c87cc0eb01b046c5adc0fb1d6fcd62c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A fully bound function type.  <a href="#a7c87cc0eb01b046c5adc0fb1d6fcd62c">More...</a><br /></td></tr>
+<tr class="separator:a7c87cc0eb01b046c5adc0fb1d6fcd62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d9e5f01a85ce68a0352f690b76f7910"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__defs_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a></td></tr>
 <tr class="memdesc:a7d9e5f01a85ce68a0352f690b76f7910"><td class="mdescLeft">&#160;</td><td class="mdescRight">A partially bound function type Because this can have multiple different type signatures it is left as a void *.  <a href="#a7d9e5f01a85ce68a0352f690b76f7910">More...</a><br /></td></tr>
 <tr class="separator:a7d9e5f01a85ce68a0352f690b76f7910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="a48106166e38fd5a82b69958273087c84"></a>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="af467e787fea66a98aef29a95b38da9ce"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void*(*  Bindable) (void **args)</td>
+          <td class="memname">#define SYSTEMV_INVOKE_SIG&#160;&#160;&#160;SIGUSR2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="aa409ee08129c587e002cf2062a09a744"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void* <a class="el" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The argument type. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8fdbf6bcbe597219692d8bd8952b9839"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>(*  Bindable) (<a class="el" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a> *args)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -121,12 +163,26 @@ Typedefs</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a35b1524d8ed85a8548e841b1f6225695"></a>
+<a class="anchor" id="a3b8e30bb2c20efbc65a86e1124c122c9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void*(*  FullBound) ()</td>
+          <td class="memname">typedef void* <a class="el" href="bind__defs_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A bindable function type for SystemV. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7c87cc0eb01b046c5adc0fb1d6fcd62c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>(*  FullBound) ()</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -146,6 +202,20 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A partially bound function type Because this can have multiple different type signatures it is left as a void *. </p>
+
+</div>
+</div>
+<a class="anchor" id="a54aeeb54a7a6a62c72ec8dc7718fdd91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void* <a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The return type. </p>
 
 </div>
 </div>

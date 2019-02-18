@@ -5,28 +5,56 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-const uint64\+\_\+t \hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8h_aff4db9a0bb0f6dbb9322481a51f7e392}{partial\+\_\+bind} (\hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable} func, const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total}, const uint64\+\_\+t n\+\_\+bound,...)
-\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8h_aba8492ffd71864427a5cddc0c3888454}{full\+\_\+bind} (\hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t n\+\_\+total,...)
+\begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8h_a749a103d16b748b8aecff011472a0881}{partial\+\_\+bind} (\hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)
+\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. \end{DoxyCompactList}\item 
+\hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8h_a62581f254513a9a7d8a88fe78f28176d}{full\+\_\+systemv\+\_\+bind} (\hyperlink{bind__defs_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{Bindable\+SystemV} func, const uint64\+\_\+t n\+\_\+total,...)
+\begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided using the SystemV calling convention. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 $\ast$$\ast$$\ast$ \hyperlink{bind_8h_aab29f50497cba1a9833b98e380f89a18}{Error}
-\begin{DoxyCompactList}\small\item\em Only allow 64 bit. \end{DoxyCompactList}\item 
-const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Only allow 64 bit. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
+\index{bind.\+h@{bind.\+h}!full\+\_\+bind@{full\+\_\+bind}}
+\index{full\+\_\+bind@{full\+\_\+bind}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{full\+\_\+bind(\+Bindable func, const uint64\+\_\+t n\+\_\+total,...)}{full_bind(Bindable func, const uint64_t n_total,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} full\+\_\+bind (
+\begin{DoxyParamCaption}
+\item[{{\bf Bindable}}]{func, }
+\item[{const uint64\+\_\+t}]{n\+\_\+total, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8h_aba8492ffd71864427a5cddc0c3888454}{}\label{bind_8h_aba8492ffd71864427a5cddc0c3888454}
+
+
+Fully bind a function to the n\+\_\+total arguments provided. 
+
+\index{bind.\+h@{bind.\+h}!full\+\_\+systemv\+\_\+bind@{full\+\_\+systemv\+\_\+bind}}
+\index{full\+\_\+systemv\+\_\+bind@{full\+\_\+systemv\+\_\+bind}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{full\+\_\+systemv\+\_\+bind(\+Bindable\+System\+V func, const uint64\+\_\+t n\+\_\+total,...)}{full_systemv_bind(BindableSystemV func, const uint64_t n_total,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} full\+\_\+systemv\+\_\+bind (
+\begin{DoxyParamCaption}
+\item[{{\bf Bindable\+SystemV}}]{func, }
+\item[{const uint64\+\_\+t}]{n\+\_\+total, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8h_a62581f254513a9a7d8a88fe78f28176d}{}\label{bind_8h_a62581f254513a9a7d8a88fe78f28176d}
+
+
+Fully bind a function to the n\+\_\+total arguments provided using the SystemV calling convention. 
+
 \index{bind.\+h@{bind.\+h}!partial\+\_\+bind@{partial\+\_\+bind}}
 \index{partial\+\_\+bind@{partial\+\_\+bind}!bind.\+h@{bind.\+h}}
-\subsubsection[{\texorpdfstring{partial\+\_\+bind(\+Bindable func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)}{partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound,...)}}]{\setlength{\rightskip}{0pt plus 5cm}const uint64\+\_\+t {\bf Part\+Bound} partial\+\_\+bind (
+\subsubsection[{\texorpdfstring{partial\+\_\+bind(\+Bindable func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)}{partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Part\+Bound} partial\+\_\+bind (
 \begin{DoxyParamCaption}
 \item[{{\bf Bindable}}]{func, }
 \item[{const uint64\+\_\+t}]{n\+\_\+total, }
 \item[{const uint64\+\_\+t}]{n\+\_\+bound, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}\hypertarget{bind_8h_aff4db9a0bb0f6dbb9322481a51f7e392}{}\label{bind_8h_aff4db9a0bb0f6dbb9322481a51f7e392}
+)}\hypertarget{bind_8h_a749a103d16b748b8aecff011472a0881}{}\label{bind_8h_a749a103d16b748b8aecff011472a0881}
 
 
 Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. 
@@ -41,6 +69,3 @@ Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound a
 
 Only allow 64 bit. 
 
-\index{bind.\+h@{bind.\+h}!n\+\_\+total@{n\+\_\+total}}
-\index{n\+\_\+total@{n\+\_\+total}!bind.\+h@{bind.\+h}}
-\subsubsection[{\texorpdfstring{n\+\_\+total}{n_total}}]{\setlength{\rightskip}{0pt plus 5cm}const uint64\+\_\+t n\+\_\+total}\hypertarget{bind_8h_acb55ca7603b51493ee95b739018513e3}{}\label{bind_8h_acb55ca7603b51493ee95b739018513e3}

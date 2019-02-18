@@ -1,27 +1,58 @@
 \hypertarget{bind__defs_8h}{}\section{src/bind\+\_\+defs.h File Reference}
 \label{bind__defs_8h}\index{src/bind\+\_\+defs.\+h@{src/bind\+\_\+defs.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{bind__defs_8h_af467e787fea66a98aef29a95b38da9ce}{S\+Y\+S\+T\+E\+M\+V\+\_\+\+I\+N\+V\+O\+K\+E\+\_\+\+S\+IG}~S\+I\+G\+U\+S\+R2
+\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef void $\ast$($\ast$ \hyperlink{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{Bindable}) (void $\ast$$\ast$args)
+typedef void $\ast$ \hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The argument type. \end{DoxyCompactList}\item 
+typedef void $\ast$ \hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The return type. \end{DoxyCompactList}\item 
+typedef \hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t}($\ast$ \hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable}) (\hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\+\_\+t} $\ast$args)
 \begin{DoxyCompactList}\small\item\em A bindable function type. \end{DoxyCompactList}\item 
-typedef void $\ast$($\ast$ \hyperlink{bind__defs_8h_a35b1524d8ed85a8548e841b1f6225695}{Full\+Bound}) ()
+typedef void $\ast$ \hyperlink{bind__defs_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{Bindable\+SystemV}
+\begin{DoxyCompactList}\small\item\em A bindable function type for SystemV. \end{DoxyCompactList}\item 
+typedef \hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t}($\ast$ \hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound}) ()
 \begin{DoxyCompactList}\small\item\em A fully bound function type. \end{DoxyCompactList}\item 
 typedef void $\ast$ \hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound}
 \begin{DoxyCompactList}\small\item\em A partially bound function type Because this can have multiple different type signatures it is left as a void $\ast$. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\subsection{Macro Definition Documentation}
+\index{bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}!S\+Y\+S\+T\+E\+M\+V\+\_\+\+I\+N\+V\+O\+K\+E\+\_\+\+S\+IG@{S\+Y\+S\+T\+E\+M\+V\+\_\+\+I\+N\+V\+O\+K\+E\+\_\+\+S\+IG}}
+\index{S\+Y\+S\+T\+E\+M\+V\+\_\+\+I\+N\+V\+O\+K\+E\+\_\+\+S\+IG@{S\+Y\+S\+T\+E\+M\+V\+\_\+\+I\+N\+V\+O\+K\+E\+\_\+\+S\+IG}!bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}}
+\subsubsection[{\texorpdfstring{S\+Y\+S\+T\+E\+M\+V\+\_\+\+I\+N\+V\+O\+K\+E\+\_\+\+S\+IG}{SYSTEMV_INVOKE_SIG}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Y\+S\+T\+E\+M\+V\+\_\+\+I\+N\+V\+O\+K\+E\+\_\+\+S\+IG~S\+I\+G\+U\+S\+R2}\hypertarget{bind__defs_8h_af467e787fea66a98aef29a95b38da9ce}{}\label{bind__defs_8h_af467e787fea66a98aef29a95b38da9ce}
+
+
 \subsection{Typedef Documentation}
+\index{bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}!arg\+\_\+t@{arg\+\_\+t}}
+\index{arg\+\_\+t@{arg\+\_\+t}!bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}}
+\subsubsection[{\texorpdfstring{arg\+\_\+t}{arg_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$ {\bf arg\+\_\+t}}\hypertarget{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{}\label{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}
+
+
+The argument type. 
+
 \index{bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}!Bindable@{Bindable}}
 \index{Bindable@{Bindable}!bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}}
-\subsubsection[{\texorpdfstring{Bindable}{Bindable}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$($\ast$  Bindable) (void $\ast$$\ast$args)}\hypertarget{bind__defs_8h_a48106166e38fd5a82b69958273087c84}{}\label{bind__defs_8h_a48106166e38fd5a82b69958273087c84}
+\subsubsection[{\texorpdfstring{Bindable}{Bindable}}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf ret\+\_\+t}($\ast$  Bindable) ({\bf arg\+\_\+t} $\ast$args)}\hypertarget{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{}\label{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}
 
 
 A bindable function type. 
 
+\index{bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}!Bindable\+SystemV@{Bindable\+SystemV}}
+\index{Bindable\+SystemV@{Bindable\+SystemV}!bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}}
+\subsubsection[{\texorpdfstring{Bindable\+SystemV}{BindableSystemV}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$ {\bf Bindable\+SystemV}}\hypertarget{bind__defs_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{}\label{bind__defs_8h_a3b8e30bb2c20efbc65a86e1124c122c9}
+
+
+A bindable function type for SystemV. 
+
 \index{bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}!Full\+Bound@{Full\+Bound}}
 \index{Full\+Bound@{Full\+Bound}!bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}}
-\subsubsection[{\texorpdfstring{Full\+Bound}{FullBound}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$($\ast$  Full\+Bound) ()}\hypertarget{bind__defs_8h_a35b1524d8ed85a8548e841b1f6225695}{}\label{bind__defs_8h_a35b1524d8ed85a8548e841b1f6225695}
+\subsubsection[{\texorpdfstring{Full\+Bound}{FullBound}}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf ret\+\_\+t}($\ast$  Full\+Bound) ()}\hypertarget{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{}\label{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}
 
 
 A fully bound function type. 
@@ -32,4 +63,11 @@ A fully bound function type.
 
 
 A partially bound function type Because this can have multiple different type signatures it is left as a void $\ast$. 
+
+\index{bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}!ret\+\_\+t@{ret\+\_\+t}}
+\index{ret\+\_\+t@{ret\+\_\+t}!bind\+\_\+defs.\+h@{bind\+\_\+defs.\+h}}
+\subsubsection[{\texorpdfstring{ret\+\_\+t}{ret_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$ {\bf ret\+\_\+t}}\hypertarget{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{}\label{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}
+
+
+The return type. 
 
