@@ -41,7 +41,7 @@ bound_func( arg1, arg2, arg3 )
 
 ### SystemV vs Non-SystemV
 
-The most common calling convention of `x86_64` / `amd64` is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an API for them is provided for them as well.
+The most common calling convention of `x86_64` / `amd64` is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an API for them is provided for them as well. The default API of this library assumes SystemV functions are being bound.
 
 ### Thread Safety
 Yes.
