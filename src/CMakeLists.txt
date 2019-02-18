@@ -35,11 +35,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
 # Required complication flags
-set (CMAKE_C_FLAGS "-O0 -g -Wall -Wextra -Werror")
+# set (CMAKE_C_FLAGS "-O0 -g -Wall -Wextra")
+set (CMAKE_C_FLAGS "-O0 -g -Wall -Wextra")
 
 # Name things
 set(BIND bind.so)
-set(TEST test.out)
+set(TESTV test-systemv.out)
+set(TESTNV test-non-systemv.out)
 
 
 #################################################
@@ -55,10 +57,13 @@ if(DEFINED DEBUG_MODE)
 	add_definitions(-DDEBUG_MODE)
 endif()
 
-
-# Shared Libraries
+# Bind library
 add_library(${BIND} SHARED bind.c bind_vec.c bind_utilities.c )
+target_link_libraries(${BIND} Threads::Threads)
 
 # Executables
-add_executable(${TEST} test.c )
-target_link_libraries(${TEST} ${BIND} Threads::Threads)
+set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-int-conversion -Wno-pointer-to-int-cast")
+add_executable(${TESTV} test-systemv.c )
+add_executable(${TESTNV} test-non-systemv.c )
+target_link_libraries(${TESTV} ${BIND})
+target_link_libraries(${TESTNV} ${BIND})

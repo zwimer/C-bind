@@ -5,6 +5,9 @@
 #include <stdlib.h>
 
 
+/** A typedef for bind_lock_t, a simple mutex */
+typedef struct bind_lock_t bind_lock_t;
+
 /** This functions prints Msg and exits the program */
 void bind_err(const char* Msg);
 
@@ -23,5 +26,13 @@ void * bind_safe_malloc(size_t c, size_t s);
 /** Realloc, but check to see if failed */
 void * bind_safe_realloc(void * p, size_t c, size_t s);
 
+/** Create a bind_lock */
+bind_lock_t * make_bind_lock();
+
+/** A lock dunction for bind_lock */
+void bind_lock( bind_lock_t * const lock );
+
+/** A lock dunction for bind_lock */
+void bind_unlock( bind_lock_t * const lock );
 
 #endif

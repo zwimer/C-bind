@@ -9,11 +9,11 @@ typedef struct vector_t {
 	int data_size, len, max_len;
 	void ** data;
 	void (* push_back) ( char * str );
-	int (* size) ();
+	FullBound size;
 } StringVec;
 
 // A vector push_back function
-void vec_push_back( void ** args ) {
+void vec_push_back( arg_t * args ) {
 	StringVec * vec = args[0];
 	char * add = args[1];
 	if ( vec->data == 0 ) {
@@ -29,7 +29,7 @@ void vec_push_back( void ** args ) {
 }
 
 // A vector size function
-int vec_size( void ** args ) {
+int vec_size( arg_t * args ) {
 	return ((StringVec *) args[0])->len;
 }
 
@@ -42,13 +42,14 @@ StringVec* make_vector() {
 	v->push_back = partial_bind((void*)vec_push_back, 2, 1, v);
 
 	// Fully bind size
-	v->size = (int (*) ()) full_bind((void*)vec_size, 1, v);
+	v->size = full_bind((void*)vec_size, 1, v);
 	return v;
 }
 
 
-// Test C-bind
+// Test C-bind for non-systemv functions
 int main() {
+	bind_setup();
 
 	// String to add
 	char * buf = malloc(0x1000);
@@ -62,7 +63,8 @@ int main() {
 
 	// Printing
 	printf("Size = %d\n", (int) v->size());
-	for ( int i = 0; i < v->size(); ++i ) {
+	for ( int i = 0; i < (int) v->size(); ++i ) {
 		printf("v->data[%d] = %s\n", i, (char*) v->data[i]);
 	}
+	return EXIT_SUCCESS;
 }
