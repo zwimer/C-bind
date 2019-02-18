@@ -108,9 +108,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a1d24a74ef5fafa4cd598fd69d62954a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a1d24a74ef5fafa4cd598fd69d62954a1">ASSERT_ZERO</a>(FN, ...)&#160;&#160;&#160;<a class="el" href="bind__utilities_8h.html#af4aaa27dade38bbf1f1570ed4a37e329">bind_assert</a>(FN(__VA_ARGS__) == 0, &quot;&quot;#FN &quot;() failed.&quot;);</td></tr>
 <tr class="memdesc:a1d24a74ef5fafa4cd598fd69d62954a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure FN(ARGS) returns 0.  <a href="#a1d24a74ef5fafa4cd598fd69d62954a1">More...</a><br /></td></tr>
 <tr class="separator:a1d24a74ef5fafa4cd598fd69d62954a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c7765f0e574f0de906ff3c6c003da45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a3c7765f0e574f0de906ff3c6c003da45">SET_ARG</a>(REG,  INVOKE_SYM)</td></tr>
-<tr class="memdesc:a3c7765f0e574f0de906ff3c6c003da45"><td class="mdescLeft">&#160;</td><td class="mdescRight">A macro used to set an argument, used for consistency.  <a href="#a3c7765f0e574f0de906ff3c6c003da45">More...</a><br /></td></tr>
-<tr class="separator:a3c7765f0e574f0de906ff3c6c003da45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766feabc8fadad962a9cb1125cfd449b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a766feabc8fadad962a9cb1125cfd449b">SET_ARG</a>(REG)</td></tr>
+<tr class="memdesc:a766feabc8fadad962a9cb1125cfd449b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A macro used to set a register argument, used for consistency.  <a href="#a766feabc8fadad962a9cb1125cfd449b">More...</a><br /></td></tr>
+<tr class="separator:a766feabc8fadad962a9cb1125cfd449b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b90a9d8aa055125508ff6e300bd5082"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a9b90a9d8aa055125508ff6e300bd5082">STORE_ARGS_RETURN_BOUND</a>(LAST_ARG)</td></tr>
 <tr class="memdesc:a9b90a9d8aa055125508ff6e300bd5082"><td class="mdescLeft">&#160;</td><td class="mdescRight">A macro to set up a bound_internals This macro exists to ensure consistency.  <a href="#a9b90a9d8aa055125508ff6e300bd5082">More...</a><br /></td></tr>
 <tr class="separator:a9b90a9d8aa055125508ff6e300bd5082"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -209,7 +209,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3c7765f0e574f0de906ff3c6c003da45"></a>
+<a class="anchor" id="a766feabc8fadad962a9cb1125cfd449b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -217,23 +217,13 @@ Variables</h2></td></tr>
           <td class="memname">#define SET_ARG</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">REG, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname">REG</td><td>)</td>
           <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">INVOKE_SYM&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;mov (%%rax), %%&quot;</span> # REG <span class="stringliteral">&quot;\n\t&quot;</span>     \</div><div class="line">    <span class="stringliteral">&quot;add $8, %%rax\n\t&quot;</span>                \</div><div class="line">    <span class="stringliteral">&quot;dec %%r12\n\t&quot;</span>                    \</div><div class="line">    <span class="stringliteral">&quot;test %%r12, %%r12\n\t&quot;</span>            \</div><div class="line">    <span class="stringliteral">&quot;jz &quot;</span> # INVOKE_SYM <span class="stringliteral">&quot;%=\n\t&quot;</span></div></div><!-- fragment -->
-<p>A macro used to set an argument, used for consistency. </p>
+<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;mov (%%rax), %%&quot;</span> # REG <span class="stringliteral">&quot;\n\t&quot;</span>     \</div><div class="line">    <span class="stringliteral">&quot;add $8, %%rax\n\t&quot;</span>                \</div><div class="line">    <span class="stringliteral">&quot;dec %%r12\n\t&quot;</span>                    \</div><div class="line">    <span class="stringliteral">&quot;test %%r12, %%r12\n\t&quot;</span>            \</div><div class="line">    <span class="stringliteral">&quot;jz invoke_sym%=\n\t&quot;</span></div></div><!-- fragment -->
+<p>A macro used to set a register argument, used for consistency. </p>
 
 </div>
 </div>

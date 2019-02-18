@@ -14,8 +14,8 @@
 \item 
 \#define \hyperlink{bind_8c_a1d24a74ef5fafa4cd598fd69d62954a1}{A\+S\+S\+E\+R\+T\+\_\+\+Z\+E\+RO}(FN, ...)~\hyperlink{bind__utilities_8h_af4aaa27dade38bbf1f1570ed4a37e329}{bind\+\_\+assert}(FN(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+) == 0, \char`\"{}\char`\"{}\#FN \char`\"{}() failed.\char`\"{});
 \begin{DoxyCompactList}\small\item\em Ensure F\+N(\+A\+R\+G\+S) returns 0. \end{DoxyCompactList}\item 
-\#define \hyperlink{bind_8c_a3c7765f0e574f0de906ff3c6c003da45}{S\+E\+T\+\_\+\+A\+RG}(R\+EG,  I\+N\+V\+O\+K\+E\+\_\+\+S\+YM)
-\begin{DoxyCompactList}\small\item\em A macro used to set an argument, used for consistency. \end{DoxyCompactList}\item 
+\#define \hyperlink{bind_8c_a766feabc8fadad962a9cb1125cfd449b}{S\+E\+T\+\_\+\+A\+RG}(R\+EG)
+\begin{DoxyCompactList}\small\item\em A macro used to set a register argument, used for consistency. \end{DoxyCompactList}\item 
 \#define \hyperlink{bind_8c_a9b90a9d8aa055125508ff6e300bd5082}{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}(L\+A\+S\+T\+\_\+\+A\+RG)
 \begin{DoxyCompactList}\small\item\em A macro to set up a bound\+\_\+internals This macro exists to ensure consistency. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
@@ -83,21 +83,20 @@ Ensure F\+N(\+A\+R\+G\+S) returns 0.
 \index{S\+E\+T\+\_\+\+A\+RG@{S\+E\+T\+\_\+\+A\+RG}!bind.\+c@{bind.\+c}}
 \subsubsection[{\texorpdfstring{S\+E\+T\+\_\+\+A\+RG}{SET_ARG}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+T\+\_\+\+A\+RG(
 \begin{DoxyParamCaption}
-\item[{}]{R\+EG, }
-\item[{}]{I\+N\+V\+O\+K\+E\+\_\+\+S\+YM}
+\item[{}]{R\+EG}
 \end{DoxyParamCaption}
-)}\hypertarget{bind_8c_a3c7765f0e574f0de906ff3c6c003da45}{}\label{bind_8c_a3c7765f0e574f0de906ff3c6c003da45}
+)}\hypertarget{bind_8c_a766feabc8fadad962a9cb1125cfd449b}{}\label{bind_8c_a766feabc8fadad962a9cb1125cfd449b}
 {\bfseries Value\+:}
 \begin{DoxyCode}
 \textcolor{stringliteral}{"mov (%%rax), %%"} # REG \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t"}     \(\backslash\)
     \textcolor{stringliteral}{"add $8, %%rax\(\backslash\)n\(\backslash\)t"}                \(\backslash\)
     \textcolor{stringliteral}{"dec %%r12\(\backslash\)n\(\backslash\)t"}                    \(\backslash\)
     \textcolor{stringliteral}{"test %%r12, %%r12\(\backslash\)n\(\backslash\)t"}            \(\backslash\)
-    \textcolor{stringliteral}{"jz "} # INVOKE\_SYM \textcolor{stringliteral}{"%=\(\backslash\)n\(\backslash\)t"}
+    \textcolor{stringliteral}{"jz invoke\_sym%=\(\backslash\)n\(\backslash\)t"}
 \end{DoxyCode}
 
 
-A macro used to set an argument, used for consistency. 
+A macro used to set a register argument, used for consistency. 
 
 \index{bind.\+c@{bind.\+c}!S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND@{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}}
 \index{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND@{S\+T\+O\+R\+E\+\_\+\+A\+R\+G\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+B\+O\+U\+ND}!bind.\+c@{bind.\+c}}
