@@ -40,7 +40,7 @@ set (CMAKE_C_FLAGS "-O0 -g -Wall -Wextra")
 
 # Name things
 set(BIND bind.so)
-set(TESTV test-systemv.out)
+set(TESTV test.out)
 set(TESTNV test-non-systemv.out)
 
 
@@ -63,7 +63,7 @@ target_link_libraries(${BIND} Threads::Threads)
 
 # Executables
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-int-conversion -Wno-pointer-to-int-cast")
-add_executable(${TESTV} test-systemv.c )
+add_executable(${TESTV} test.c )
 add_executable(${TESTNV} test-non-systemv.c )
 target_link_libraries(${TESTV} ${BIND})
 target_link_libraries(${TESTNV} ${BIND})

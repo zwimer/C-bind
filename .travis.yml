@@ -25,7 +25,7 @@ script:
     - cmake ..
     - make
     - valgrind --error-exitcode=2 ./test-non-systemv.out
-    - valgrind --error-exitcode=2 ./test-systemv.out
+    - valgrind --error-exitcode=2 ./test.out
 
 after_success:
     - set -e

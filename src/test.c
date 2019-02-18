@@ -15,9 +15,7 @@ typedef struct vector_t {
 
 
 // A vector push_back function
-void vec_push_back( arg_t * args ) {
-	StringVec * vec = args[0];
-	char * add = args[1];
+void vec_push_back( StringVec * vec, char * add) {
 	if ( vec->data == 0 ) {
 		vec->max_len = 8;
 		vec->data = malloc( vec->data_size * vec->max_len );
@@ -31,20 +29,20 @@ void vec_push_back( arg_t * args ) {
 }
 
 // A vector size function
-int vec_size( arg_t * args ) {
-	return ((StringVec *) args[0])->len;
+int vec_size( StringVec * v ) {
+	return v->len;
 }
 
 // A vector constructor
-StringVec* make_vector() {
+StringVec * make_vector() {
 	StringVec * v = calloc(1, sizeof(StringVec));
 	v->data_size = sizeof(void*);
 
 	// Partially bind push_back
-	v->push_back = partial_nonsystemv_bind((void*)vec_push_back, 2, 1, v);
+	v->push_back = partial_bind((void*)vec_push_back, 2, 1, v);
 
 	// Fully bind size
-	v->size = full_nonsystemv_bind((void*)vec_size, 1, v);
+	v->size = full_bind((void*)vec_size, 1, v);
 	return v;
 }
 
@@ -70,3 +68,4 @@ int main() {
 	}
 	return EXIT_SUCCESS;
 }
+

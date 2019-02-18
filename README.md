@@ -1,4 +1,4 @@
-# C-bind: Function binding in C !!!
+# C-bind: Dynamic function binding in C !!!
 [![Build Status](https://api.travis-ci.org/zwimer/C-bind.svg?branch=master)](https://travis-ci.org/zwimer/C-bind)
 
 # Table of Contents
@@ -49,14 +49,12 @@ Yes.
 ### Important notes
 1. This library uses a signal internally. By default this is `SIGUSR2`, however the user may change this whenever. This signal handler is install when-needed and restored when not, so for a single threaded application this is perfectly safe. However, in a multi-threaded enviornment it is important to set this signal to some (valid) unused signal! This can be done with the `bind_set_signal_number` function.
 
-### Exceptions
+### Restrictions
 
 1. This library cannot bind variadic functions
-1. This library *may* fail if registers other than `rdi`, `rsi,` `rdx`, `rcx`, `r8`, and `r9` are used to pass arguments. This however is exceedingly rare.
+1. This library *may* fail if registers other than `rdi`, `rsi,` `rdx`, `rcx`, `r8`, and `r9` are used to pass arguments. Howevere this is exceedingly rare.
 
 ## SystemV
-
-Currently only full binding is support for SystemV.
 
 ### Function Signature
 SystemV functions to be bound must return an object of type `ret_t` or smaller. Do not attempt to return a large struct as it may fail!
@@ -74,13 +72,25 @@ Here `num_args` is the number arguments to pass to be passed to `my_func`. If yo
 ### Full binding example
 ```C
 int sum( int a, int b ) { return a + b; }
-bound_func = full_systemv_bind( id, 1, /* Arguments begin */ 1, 2 );
+bound_func = full_bind( id, 1, /* Arguments begin */ 1, 2 );
 printf( "sum(1,2) = %d\n", (int) bound_func() );
 ```
 The output of this code is: `sum(1,2) = 3\n`.
 
 ### Partial binding
-This is currently not supported by `C-bind`.
+To partially bind a function, invoke
+```C
+bound_func = partial_bind( my_func, num_args, num_args_to_bind, arg1, arg2 );
+```
+Here `num_args_to_bind` is the number of arguments currently being bound!
+
+### Partial binding Example
+```C
+int sum3(int a, int b, int c) { return args[0] + args[1] + args[2]; }
+bound_func = partial_bind( sum3, 3, 2, /* Arguments begin */ 100, 200 );
+printf( "Total sum = %d\n", (int) bound_func(300) );
+```
+The output of this code is: `Total sum = 600\n`
 
 ## Non-SystemV
 
@@ -106,7 +116,7 @@ Here `num_args` is the number of elements in the `args` array `my_func` expects 
 ### Full binding Example
 ```C
 ret_t id( arg_t * args ) { return args[0]; }
-bound_func = full_bind( id, 1, /* Arguments begin */ 17 );
+bound_func = full_systemv_bind( id, 1, /* Arguments begin */ 17 );
 printf( "My id = %d\n", (int) bound_func() );
 ```
 The output of this code is: `My id = 17\n`
@@ -121,8 +131,8 @@ Here `num_args_to_bind` is the number of arguments currently being bound!
 ### Partial binding Example
 ```C
 ret_t sum3( arg_t * args ) { return args[0] + args[1] + args[2]; }
-bound_func = partial_bind( sum3, 3, 2, /* Arguments begin */ 100, 200 );
-printf( "Total sum = %d\n", (int) bound_func(300) );  // Prints out 600
+bound_func = partial_systemv_bind( sum3, 3, 2, /* Arguments begin */ 100, 200 );
+printf( "Total sum = %d\n", (int) bound_func(300) );
 ```
 The output of this code is: `Total sum = 600\n`
 
@@ -153,9 +163,4 @@ cd C-bind && doxygen
 ```
 
 # Future Plans
-
-### Removing the signature requirement
-Add partial binding for SystemV.
-
-### Memory efficiency
-Right now the `get_stub` function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page.
+1. Right now the `get_stub` function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page.

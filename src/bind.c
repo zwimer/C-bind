@@ -52,7 +52,7 @@ int systemv_invoke_sig = SIGUSR2;
 void systemv_invoke_helper(int signo) {
 
 	// Retrieve the stored bound_internals
-	volatile register bound_internals_t * bb asm("r15");
+	register volatile bound_internals_t * bb asm("r15");
 	bb = full_systemv_arg_global;
 	bind_unlock(full_systemv_arg_lock);
 
@@ -160,6 +160,16 @@ ret_t invoke_full_systemv_bound() {
 	return systemv_invoke(bb);
 }
 
+/** Decide the method of invocation based on if systemv is true */
+ret_t invoke(bound_internals_t * const bb) {
+	if (bb->systemv) {
+		return systemv_invoke(bb);
+	}
+	else {
+		return bb->fn(bb->args);
+	}
+}
+
 /** Invoke a fully bound function
  *  The function index is stored in r11 */
 __attribute__ ((noinline))
@@ -169,7 +179,7 @@ ret_t invoke_full_bound() {
 	uint64_t index;
 	asm("mov %%r11, %0" : "=rm" (index) );
 	bound_internals_t * bb = bv_get(global_bv, index);
-	return bb->fn(bb->args);
+	return invoke(bb);
 }
 
 /** Invoke a partially bound function with the additional args of a1, ...
@@ -190,7 +200,7 @@ ret_t invoke_partial_bound( arg_t a1, ... ) {
 		bb->args[i] = va_arg(args, arg_t);
 	}
 	va_end(args);
-	return bb->fn(bb->args);
+	return invoke(bb);
 }
 
 /** Generate a stub for a bound function
@@ -215,11 +225,6 @@ void * gen_stub(const uint64_t index, void * const invoker) {
 }
 
 /** Generate a stub for a fully bound function */
-FullBound gen_stub_full_systemv(const uint64_t index) {
-	return gen_stub(index, invoke_full_systemv_bound);
-}
-
-/** Generate a stub for a fully bound function */
 FullBound gen_stub_full(const uint64_t index) {
 	return gen_stub(index, invoke_full_bound);
 }
@@ -231,11 +236,12 @@ PartBound gen_stub_partial(const uint64_t index) {
 
 /** A macro to set up a bound_internals
  *  This macro exists to ensure consistency */
-#define STORE_ARGS_RETURN_BOUND(LAST_ARG)                                     \
+#define STORE_ARGS_RETURN_BOUND(LAST_ARG, IS_SYSTEMV)                         \
 	                                                                          \
 	/** Initalize a bound_internals */                                        \
 	bound_internals_t * bb = bind_safe_malloc(1, sizeof(bound_internals_t));  \
 	bb->args = bind_safe_malloc(n_total, sizeof(arg_t));                      \
+	bb->systemv = IS_SYSTEMV;                                                 \
 	bb->n_total = n_total;                                                    \
 	bb->n_bound = n_bound;                                                    \
 	bb->fn = func;                                                            \
@@ -267,28 +273,35 @@ void bind_setup() {
 }
 
 // Fully bind a function to the n_total arguments
-FullBound full_bind(Bindable func, const uint64_t n_total,  ...) {
+FullBound full_nonsystemv_bind(Bindable func, const uint64_t n_total,  ...) {
 	bind_assert(n_total > 0, "full_bind() called improperly");
 	const uint64_t n_bound = n_total;
-	STORE_ARGS_RETURN_BOUND(n_total);
+	STORE_ARGS_RETURN_BOUND(n_total, false);
 	return gen_stub_full(index);
 }
 
 // Partially bind a function
-PartBound partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound, ...) {
+PartBound partial_nonsystemv_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound, ...) {
 	bind_assert(n_bound > 0, "partial_bind() called improperly");
 	bind_assert(n_total > n_bound, "partial_bind() called improperly");
-	STORE_ARGS_RETURN_BOUND(n_bound);
+	STORE_ARGS_RETURN_BOUND(n_bound, false);
 	return gen_stub_partial(index);
 }
 
-// Fully bind a function to the n_total arguments
-// provided using the SystemV calling convention
-FullBound full_systemv_bind(BindableSystemV func, const uint64_t n_total,  ...) {
+// Fully bind a SystemV function
+FullBound full_bind(BindableSystemV func, const uint64_t n_total,  ...) {
 	bind_assert(n_total > 0, "full_systemv_bind() called improperly");
 	const uint64_t n_bound = n_total;
-	STORE_ARGS_RETURN_BOUND(n_total);
-	return gen_stub_full_systemv(index);
+	STORE_ARGS_RETURN_BOUND(n_total, true);
+	return gen_stub_full(index);
+}
+
+// Partially bind a SystemV function
+PartBound partial_bind(BindableSystemV func, const uint64_t n_total, const uint64_t n_bound, ...) {
+	bind_assert(n_bound > 0, "partial_bind() called improperly");
+	bind_assert(n_total > n_bound, "partial_bind() called improperly");
+	STORE_ARGS_RETURN_BOUND(n_bound, true);
+	return gen_stub_partial(index);
 }
 
 // Set the signal number that will be used by the bind library internally
