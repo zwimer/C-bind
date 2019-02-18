@@ -148,18 +148,6 @@ ret_t systemv_invoke(bound_internals_t * bb) {
 	return ret;
 }
 
-/** Invoke a fully bound function
- *  The function index is stored in r11 */
-__attribute__ ((noinline))
-ret_t invoke_full_systemv_bound() {
-
-	// Get the r11'th bound_internals then invoke it
-	uint64_t index;
-	asm volatile("mov %%r11, %0" : "=rm" (index) );
-	bound_internals_t * bb = bv_get(global_bv, index);
-	return systemv_invoke(bb);
-}
-
 /** Decide the method of invocation based on if systemv is true */
 ret_t invoke(bound_internals_t * const bb) {
 	if (bb->systemv) {
@@ -220,7 +208,7 @@ void * gen_stub(const uint64_t index, void * const invoker) {
 	memcpy(func, stub, sizeof(stub));
 	memcpy(strstr(func, "BBBBBBBB"), & index, 8 );
 	memcpy(strstr(func, "AAAAAAAA"), & invoker, 8 );
-	bind_assert(mprotect(func, size, PROT_READ | PROT_EXEC) == 0, "mprotect() failed.");
+	ASSERT_ZERO(mprotect, func, size, PROT_READ | PROT_EXEC);
 	return func;
 }
 
@@ -272,6 +260,7 @@ void bind_setup() {
 	full_systemv_ret_lock = make_bind_lock();
 }
 
+
 // Fully bind a function to the n_total arguments
 FullBound full_nonsystemv_bind(Bindable func, const uint64_t n_total,  ...) {
 	bind_assert(n_total > 0, "full_bind() called improperly");
@@ -303,6 +292,7 @@ PartBound partial_bind(BindableSystemV func, const uint64_t n_total, const uint6
 	STORE_ARGS_RETURN_BOUND(n_bound, true);
 	return gen_stub_partial(index);
 }
+
 
 // Set the signal number that will be used by the bind library internally
 void bind_set_signal_number(const int signo) {

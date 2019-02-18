@@ -17,7 +17,7 @@
 ---
 
 # Requirements
-Currently `C-bind` requires `pthread` to be installed, and requires `x86_64`. `C-bind` has only been tested on `Ubuntu 18.04`
+Currently `C-bind` requires `pthread` to be installed, and requires `x86_64`. `C-bind` has only been tested on `Ubuntu 18.04`, compiled with `gcc 7.3`.
 
 # Usage
 
