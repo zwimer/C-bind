@@ -4,6 +4,7 @@
 #include "bind_defs.h"
 #include <stdint.h>
 
+
 /** Only allow 64 bit */
 #ifndef __x86_64__
 	*** Error: Only 64-bit currently supported! ***
@@ -23,5 +24,13 @@ PartBound partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_b
  * provided using the SystemV calling convention */
 FullBound full_systemv_bind(BindableSystemV func, const uint64_t n_total,  ...);
 
+/** Set the signal number that will be used by the bind library internally
+ *  This is not needed in a single threaded application, but for a multi-threaded
+ *  application the ensures thread-safety. The default is SIGUSR2. Select a
+ *  signal your program does not use for the bind library to use */
+void bind_set_signal_number(const int signo);
+
+/** Return the signal number used by the bind library internally */
+int bind_get_signal_number();
 
 #endif

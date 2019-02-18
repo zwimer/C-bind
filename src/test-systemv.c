@@ -27,9 +27,9 @@ int main() {
 		1, 2, 3, 4, 5, 6, 7, 8
 	);
 
-	// Print the result!
 	puts("(1+2+3+4+5+6+7+8) = 34");
 
+	// Call my_func()
 	puts("Calling my_func() now!\n");
 	const int rv = my_func();
 

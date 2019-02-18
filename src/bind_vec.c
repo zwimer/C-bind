@@ -1,8 +1,6 @@
 #include "bind_vec.h"
 #include "bind_utilities.h"
 
-#include <pthread.h>
-
 
 // Create a bind_vec
 bind_vec * make_bind_vec() {

@@ -2,18 +2,26 @@
 #include "bind_vec.h"
 #include "bind_utilities.h"
 
-#include <stdio.h>
 #include <signal.h>
 #include <string.h>
-#include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
 #include <syscall.h>
 #include <sys/mman.h>
 
 
+/***************************************************************/
+/*                                                             */
+/*                       Not From header                       */
+/*                                                             */
+/***************************************************************/
+
+
 /** Ensure FN(ARGS) returns 0 */
 #define ASSERT_ZERO(FN, ...) bind_assert(FN(__VA_ARGS__) == 0, ""#FN "() failed.");
+
+
+// Globals
 
 /** A global bind vec */
 bind_vec * global_bv = NULL;
@@ -25,29 +33,30 @@ bound_internals_t * full_systemv_arg_global;
 bind_lock_t * full_systemv_ret_lock = NULL;
 /** The full_system_lock ret value protected by a lock */
 ret_t full_systemv_ret_global;
+/** An int representing the signal number used by the bind library internals
+ *  This variable must be protected by all locks that invoke this signal */
+int systemv_invoke_sig = SIGUSR2;
 
-// Ensure bind thread safety
-void bind_setup() {
-	global_bv = make_bind_vec();
-	full_systemv_arg_lock = make_bind_lock();
-	full_systemv_ret_lock = make_bind_lock();
-}
 
 /** A macro used to set an argument, used for consistency */
-#define SET_ARG(REG, INVOKE_SYM) \
-	"mov (%%rax), %%" # REG "\n\t" \
-	"add $8, %%rax\n\t" \
-	"dec %%r12\n\t" \
-	"test %%r12, %%r12\n\t" \
+#define SET_ARG(REG, INVOKE_SYM)       \
+	"mov (%%rax), %%" # REG "\n\t"     \
+	"add $8, %%rax\n\t"                \
+	"dec %%r12\n\t"                    \
+	"test %%r12, %%r12\n\t"            \
 	"jz " # INVOKE_SYM "%=\n\t"
 
 /** The signal handler used to invoke the systemv call */
 void systemv_invoke_helper(int signo) {
+
+	// Retrieve the stored bound_internals
 	register bound_internals_t * bb asm("r15");
-	ret_t ret;
 	bb = full_systemv_arg_global;
 	bind_unlock(full_systemv_arg_lock);
 
+	// Setup the registers and stack needed to
+	// invoke the function with the desired arguments
+	ret_t ret;
 	asm(
 		"mov %[argsv], %%rax\n\t" /* Args */
 		"mov %[func], %%r11\n\t" /* Func */
@@ -92,6 +101,8 @@ void systemv_invoke_helper(int signo) {
 		  [n] "r" (bb->n_total)
 		:
 	);
+
+	// Return the value
 	bind_lock(full_systemv_ret_lock);
 	full_systemv_ret_global = ret;
 	(void) signo;
@@ -108,6 +119,7 @@ static long tkill(int tid, int sig) {
 }
 
 /** Invoke a systemv bound_internals_t on its store arguments */
+__attribute__ ((noinline))
 ret_t systemv_invoke(bound_internals_t * bb) {
 
 	// Get the r11'th bound_internals then invoke it
@@ -117,16 +129,16 @@ ret_t systemv_invoke(bound_internals_t * bb) {
 	// Create a new sigaction
 	struct sigaction new, old;
 	ASSERT_ZERO(sigemptyset, & (new.sa_mask));
-	ASSERT_ZERO(sigaddset, &(new.sa_mask), SYSTEMV_INVOKE_SIG);
+	ASSERT_ZERO(sigaddset, &(new.sa_mask), systemv_invoke_sig);
 	new.sa_handler = & systemv_invoke_helper;
 	new.sa_flags = 0;
 
 	// Invoke the helper via a signal then restore the signal handler
-	ASSERT_ZERO(sigaction, SYSTEMV_INVOKE_SIG, &new, &old);
+	ASSERT_ZERO(sigaction, systemv_invoke_sig, &new, &old);
 	bind_lock(full_systemv_arg_lock);
 	full_systemv_arg_global = bb;
-	ASSERT_ZERO(tkill, gettid(), SYSTEMV_INVOKE_SIG);
-	ASSERT_ZERO(sigaction, SYSTEMV_INVOKE_SIG, &old, NULL);
+	ASSERT_ZERO(tkill, gettid(), systemv_invoke_sig);
+	ASSERT_ZERO(sigaction, systemv_invoke_sig, &old, NULL);
 
 	// Release the ret lock and return the return value
 	ret_t ret = full_systemv_ret_global;
@@ -136,6 +148,7 @@ ret_t systemv_invoke(bound_internals_t * bb) {
 
 /** Invoke a fully bound function
  *  The function index is stored in r11 */
+__attribute__ ((noinline))
 ret_t invoke_full_systemv_bound() {
 
 	// Get the r11'th bound_internals then invoke it
@@ -147,6 +160,7 @@ ret_t invoke_full_systemv_bound() {
 
 /** Invoke a fully bound function
  *  The function index is stored in r11 */
+__attribute__ ((noinline))
 ret_t invoke_full_bound() {
 
 	// Get the r11'th bound_internals then invoke it
@@ -158,6 +172,7 @@ ret_t invoke_full_bound() {
 
 /** Invoke a partially bound function with the additional args of a1, ...
  *  The function index is stored in r11 */
+__attribute__ ((noinline))
 ret_t invoke_partial_bound( arg_t a1, ... ) {
 
 	// Get the r11'th bound_internals
@@ -234,6 +249,21 @@ PartBound gen_stub_partial(const uint64_t index) {
 	/** Add the bound_internals to the global bind_vec */                     \
 	const int index = bv_consume_add_blank(global_bv, bb);
 
+
+/***************************************************************/
+/*                                                             */
+/*                         From header                         */
+/*                                                             */
+/***************************************************************/
+
+
+// Ensure bind thread safety
+void bind_setup() {
+	global_bv = make_bind_vec();
+	full_systemv_arg_lock = make_bind_lock();
+	full_systemv_ret_lock = make_bind_lock();
+}
+
 // Fully bind a function to the n_total arguments
 FullBound full_bind(Bindable func, const uint64_t n_total,  ...) {
 	bind_assert(n_total > 0, "full_bind() called improperly");
@@ -258,3 +288,20 @@ FullBound full_systemv_bind(BindableSystemV func, const uint64_t n_total,  ...) 
 	STORE_ARGS_RETURN_BOUND(n_total);
 	return gen_stub_full_systemv(index);
 }
+
+// Set the signal number that will be used by the bind library internally
+void bind_set_signal_number(const int signo) {
+	bind_assert(signo >= 0, "signals numbers cannot be negative");
+	bind_lock(full_systemv_arg_lock);
+	systemv_invoke_sig = signo;
+	bind_unlock(full_systemv_arg_lock);
+}
+
+// Return the signal number used by the bind library internally
+int bind_get_signal_number() {
+	bind_lock(full_systemv_arg_lock);
+	const int ret = systemv_invoke_sig;
+	bind_unlock(full_systemv_arg_lock);
+	return ret;
+}
+
