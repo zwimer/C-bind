@@ -13,7 +13,7 @@ struct bind_lock_t {
 
 // This functions prints Msg and exits the program
 void bind_err(const char * Msg) {
-	fprintf(stderr, "Error, %s failed\n", Msg);
+	fprintf(stderr, "Error: %s\n", Msg);
 	exit(EXIT_FAILURE);
 }
 

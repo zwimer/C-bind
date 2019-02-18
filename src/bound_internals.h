@@ -15,8 +15,6 @@ typedef struct bound_internals_t {
 	uint64_t n_total;
 	/** The number of arguments currently bound */
 	uint64_t n_bound;
-	/** A boolean, trust if systemv, false otherwise */
-	unsigned char systemv;
 } bound_internals_t;
 
 #endif

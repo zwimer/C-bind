@@ -47,9 +47,22 @@ StringVec* make_vector() {
 }
 
 
+int sum(
+	int a1,
+	int a2,
+	int a3,
+	int a4,
+	int a5,
+	int a6
+) {
+	return a1 + a2 + a3 + a4 + a5 + a6;
+}
+
 // Test C-bind
 int main() {
+	bind_setup();
 
+#if 0
 	// String to add
 	char * buf = malloc(0x1000);
 	strcpy(buf, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
@@ -65,4 +78,10 @@ int main() {
 	for ( int i = 0; i < v->size(); ++i ) {
 		printf("v->data[%d] = %s\n", i, (char*) v->data[i]);
 	}
+#endif
+
+	ret_t (*f) () = full_systemv_bind((void*)sum, 6,
+		1, 2, 3, 4, 5, 6
+	);
+	printf("Result = %llu\n", f() );
 }

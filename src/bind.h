@@ -10,8 +10,8 @@
 #endif
 
 
-/** Ensure bind thread safety */
-void enable_multi_thread_binding();
+/** Sets up the bind library */
+void bind_setup();
 
 /** Fully bind a function to the n_total arguments provided */
 FullBound full_bind(Bindable func, const uint64_t n_total,  ...);
@@ -21,7 +21,7 @@ PartBound partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_b
 
 /** Fully bind a function to the n_total arguments
  * provided using the SystemV calling convention */
-FullBound full_bind_systemv(BindableSystemV func, const uint64_t n_total,  ...);
+FullBound full_systemv_bind(BindableSystemV func, const uint64_t n_total,  ...);
 
 
 #endif

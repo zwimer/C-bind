@@ -59,7 +59,8 @@ endif()
 # set_source_files_properties(bind.c PROPERTIES COMPILE_FLAGS "-w -O0")
 
 # Bind library
-add_library(${BIND} SHARED bind.c bind_vec.c bind_utilities.c )
+add_library(${BIND} bind.c bind_vec.c bind_utilities.c ) # TODO
+# add_library(${BIND} SHARED bind.c bind_vec.c bind_utilities.c )
 
 # Executables
 add_executable(${TEST} test.c )

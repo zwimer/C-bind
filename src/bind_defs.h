@@ -2,7 +2,7 @@
 #define __BIND_DEFS_H__
 
 // TODO: make a variable
-#define SYSTEMV_INVOKE_SIG 32
+#define SYSTEMV_INVOKE_SIG SIGUSR2
 
 /** The argument type */
 typedef void * arg_t;

@@ -12,6 +12,9 @@
 #include <sys/mman.h>
 
 
+/** Ensure FN(ARGS) returns 0 */
+#define ASSERT_ZERO(FN, ...) bind_assert(FN(__VA_ARGS__) == 0, ""#FN "() failed.");
+
 /** A global bind vec */
 bind_vec * global_bv = NULL;
 /** A global bind_lock for full systemv inokes' args*/
@@ -24,7 +27,7 @@ bind_lock_t * full_systemv_ret_lock = NULL;
 ret_t full_systemv_ret_global;
 
 // Ensure bind thread safety
-void enable_multi_thread_binding() {
+void bind_setup() {
 	global_bv = make_bind_vec();
 	full_systemv_arg_lock = make_bind_lock();
 	full_systemv_ret_lock = make_bind_lock();
@@ -45,13 +48,14 @@ void systemv_invoke_helper(int signo) {
 	bb = full_systemv_arg_global;
 	bind_unlock(full_systemv_arg_lock);
 
+	/* int mil = 0; while (mil==0) {} */
 
 	asm(
 		"mov %[argsv], %%rax\n\t" /* Args */
 #if 1
 		"mov %[func], %%r11\n\t" /* Func */
 		"mov %[n], %%r12\n\t" /* n */
-		"mov %%rsp, %%r12\n\t" /* Store rsp */
+		"mov %%rsp, %%r13\n\t" /* Store rsp */
 
 		// Set first 6 args if they exist
 		SET_ARG(rdi, invoke_sym)
@@ -80,7 +84,7 @@ void systemv_invoke_helper(int signo) {
 		"call %%r11\n\t"
 
 		// Restore rsp and set the return value
-		"mov %%r12, %%rsp\n\t"
+		"mov %%r13, %%rsp\n\t"
 		"mov %%rax, %[retv]"
 
 		// Variable
@@ -98,6 +102,15 @@ void systemv_invoke_helper(int signo) {
 	(void) signo;
 }
 
+/** get tid */
+static long gettid() {
+	return syscall(SYS_gettid);
+}
+/** tkill syscall */
+static long tkill(int tid, int sig) {
+	return syscall(SYS_tkill, tid, sig);
+}
+
 ret_t systemv_invoke(bound_internals_t * bb) {
 
 	// Get the r11'th bound_internals then invoke it
@@ -106,17 +119,17 @@ ret_t systemv_invoke(bound_internals_t * bb) {
 
 	// Create a new sigaction
 	struct sigaction new, old;
-	bind_assert(sigemptyset( & (new.sa_mask) ) == 0, "sigemptyset() failed.");
+	ASSERT_ZERO(sigemptyset, & (new.sa_mask));
+	ASSERT_ZERO(sigaddset, &(new.sa_mask), SYSTEMV_INVOKE_SIG);
 	new.sa_handler = & systemv_invoke_helper;
 	new.sa_flags = 0;
 
 	// Invoke the helper via a signal then restore the signal handler
-	bind_assert(sigaction(SYSTEMV_INVOKE_SIG, &new, &old) == 0, "sigaction() failed.");
+	ASSERT_ZERO(sigaction, SYSTEMV_INVOKE_SIG, &new, &old);
 	bind_lock(full_systemv_arg_lock);
 	full_systemv_arg_global = bb;
-	bind_assert(syscall(SYS_tkill, syscall(SYS_gettid), SYSTEMV_INVOKE_SIG) == 0,
-		"syscall() tkill failed");
-	bind_assert(sigaction(SYSTEMV_INVOKE_SIG, &old, NULL) == 0, "sigaction() failed.");
+	ASSERT_ZERO(tkill, gettid(), SYSTEMV_INVOKE_SIG);
+	ASSERT_ZERO(sigaction, SYSTEMV_INVOKE_SIG, &old, NULL);
 
 	// Release the ret lock and return the return value
 	ret_t ret = full_systemv_ret_global;
@@ -208,14 +221,13 @@ PartBound gen_stub_partial(const uint64_t index) {
 
 /** A macro to set up a bound_internals
  *  This macro exists to ensure consistency */
-#define STORE_ARGS_RETURN_BOUND(LAST_ARG, SYSTEMV)                            \
+#define STORE_ARGS_RETURN_BOUND(LAST_ARG)                                     \
 	                                                                          \
 	/** Initalize a bound_internals */                                        \
 	bound_internals_t * bb = bind_safe_malloc(1, sizeof(bound_internals_t));  \
 	bb->args = bind_safe_malloc(n_total, sizeof(arg_t));                      \
 	bb->n_total = n_total;                                                    \
 	bb->n_bound = n_bound;                                                    \
-	bb->systemv = SYSTEMV;                                                    \
 	bb->fn = func;                                                            \
 	                                                                          \
 	/** Copy in the passed arguments */                                       \
@@ -233,7 +245,7 @@ PartBound gen_stub_partial(const uint64_t index) {
 FullBound full_bind(Bindable func, const uint64_t n_total,  ...) {
 	bind_assert(n_total > 0, "full_bind() called improperly");
 	const uint64_t n_bound = n_total;
-	STORE_ARGS_RETURN_BOUND(n_total, 0);
+	STORE_ARGS_RETURN_BOUND(n_total);
 	return gen_stub_full(index);
 }
 
@@ -241,7 +253,7 @@ FullBound full_bind(Bindable func, const uint64_t n_total,  ...) {
 PartBound partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound, ...) {
 	bind_assert(n_bound > 0, "partial_bind() called improperly");
 	bind_assert(n_total > n_bound, "partial_bind() called improperly");
-	STORE_ARGS_RETURN_BOUND(n_bound, 0);
+	STORE_ARGS_RETURN_BOUND(n_bound);
 	return gen_stub_partial(index);
 }
 
@@ -250,6 +262,6 @@ PartBound partial_bind(Bindable func, const uint64_t n_total, const uint64_t n_b
 FullBound full_systemv_bind(BindableSystemV func, const uint64_t n_total,  ...) {
 	bind_assert(n_total > 0, "full_systemv_bind() called improperly");
 	const uint64_t n_bound = n_total;
-	STORE_ARGS_RETURN_BOUND(n_total, 1);
+	STORE_ARGS_RETURN_BOUND(n_total);
 	return gen_stub_full_systemv(index);
 }
