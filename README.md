@@ -1,5 +1,5 @@
-# C-bind
-Function binding in C !!!
+# C-bind: Function binding in C !!!
+[![Build Status](https://api.travis-ci.org/zwimer/C-bind.svg?branch=master)](https://travis-ci.org/zwimer/C-bind)
 
 # How to use
 
@@ -64,9 +64,13 @@ cmake .. && make && \
 ./test.out
 ```
 
+# CI
+
+Continuous Integration is provided by [Travis CI](https://travis-ci.org). To view the CI setup, click [here](https://travis-ci.org/zwimer/C-bind/).
+
 # Documentation
 
-Documentation is stored in `./docs`, it is generated via [doxygen](http://www.doxygen.nl/). To manually generate it install doxygen (from `apt-get` if you have it) then
+Documentation is stored in on the `gh-pages` branch and hosted [here](https://zwimer.github.io/C-bind/docs/html/index.html) on [zwimer.com](https://zwimer.com). Documentation is generated via [doxygen](http://www.doxygen.nl/). To manually generate it install doxygen (from `apt-get` if you have it) then
 ```bash
 cd C-bind && doxygen
 ```
