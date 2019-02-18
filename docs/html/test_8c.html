@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>C-bind: src/test-systemv.c File Reference</title>
+<title>C-bind: src/test.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">C-bind
-   &#160;<span id="projectnumber">1.1</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
   </td>
  </tr>
@@ -86,9 +86,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">test-systemv.c File Reference</div>  </div>
+<div class="title">test.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="bind_8h_source.html">bind.h</a>&quot;</code><br />
@@ -96,11 +97,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_string_vec.html">StringVec</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac821ce0bdb5918e7cf9ea4cd5cc29009"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-systemv_8c.html#ac821ce0bdb5918e7cf9ea4cd5cc29009">sum</a> (int a, int b, int c, int d, int e, int f, int g, int h)</td></tr>
-<tr class="separator:ac821ce0bdb5918e7cf9ea4cd5cc29009"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-systemv_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memitem:aa487e1053b939ed0678658406f996901"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8c.html#aa487e1053b939ed0678658406f996901">vec_push_back</a> (<a class="el" href="struct_string_vec.html">StringVec</a> *vec, char *add)</td></tr>
+<tr class="separator:aa487e1053b939ed0678658406f996901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2449772933f9fda2d07c3ec361d0b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8c.html#a0a2449772933f9fda2d07c3ec361d0b5">vec_size</a> (<a class="el" href="struct_string_vec.html">StringVec</a> *v)</td></tr>
+<tr class="separator:a0a2449772933f9fda2d07c3ec361d0b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71c17be312a5c11b6e183fb1cfe4b4a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_string_vec.html">StringVec</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8c.html#a71c17be312a5c11b6e183fb1cfe4b4a2">make_vector</a> ()</td></tr>
+<tr class="separator:a71c17be312a5c11b6e183fb1cfe4b4a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -119,62 +129,57 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac821ce0bdb5918e7cf9ea4cd5cc29009"></a>
+<a class="anchor" id="a71c17be312a5c11b6e183fb1cfe4b4a2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a> sum </td>
+          <td class="memname"><a class="el" href="struct_string_vec.html">StringVec</a>* make_vector </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa487e1053b939ed0678658406f996901"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_push_back </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_string_vec.html">StringVec</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>e</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>g</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>h</em>&#160;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>add</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0a2449772933f9fda2d07c3ec361d0b5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vec_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_string_vec.html">StringVec</a> *&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

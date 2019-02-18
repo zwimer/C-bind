@@ -22,6 +22,7 @@ var searchData=
   ['bind_5fvec_2eh',['bind_vec.h',['../bind__vec_8h.html',1,'']]],
   ['bindable',['Bindable',['../bind__defs_8h.html#a8fdbf6bcbe597219692d8bd8952b9839',1,'bind_defs.h']]],
   ['bindablesystemv',['BindableSystemV',['../bind__defs_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9',1,'bind_defs.h']]],
+  ['bool',['bool',['../bound__internals_8h.html#af6a258d8f3ee5206d682d799316314b1',1,'bound_internals.h']]],
   ['bound_5finternals_2eh',['bound_internals.h',['../bound__internals_8h.html',1,'']]],
   ['bound_5finternals_5ft',['bound_internals_t',['../structbound__internals__t.html',1,'']]],
   ['bv_5fconsume_5fadd_5fblank',['bv_consume_add_blank',['../bind__vec_8c.html#a99f15769dba5a78755d63238954d183c',1,'bv_consume_add_blank(bind_vec *const bv, bound_internals_t *const add):&#160;bind_vec.c'],['../bind__vec_8h.html#a99f15769dba5a78755d63238954d183c',1,'bv_consume_add_blank(bind_vec *const bv, bound_internals_t *const add):&#160;bind_vec.c']]],

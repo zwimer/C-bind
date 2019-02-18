@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['m',['m',['../structbind__lock__t.html#a5cb6fb5ec307a3566461856177cf993e',1,'bind_lock_t']]],
-  ['main',['main',['../test-non-systemv_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;test-non-systemv.c'],['../test-systemv_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;test-systemv.c']]],
-  ['make_5fbind_5flock',['make_bind_lock',['../bind__utilities_8c.html#ab9a83d018353bc7fc60637325c377f8c',1,'make_bind_lock():&#160;bind_utilities.c'],['../bind__utilities_8h.html#ab9a83d018353bc7fc60637325c377f8c',1,'make_bind_lock():&#160;bind_utilities.c']]],
-  ['make_5fbind_5fvec',['make_bind_vec',['../bind__vec_8c.html#a91df1dd1b6f05ce53150a27c6c1c51b7',1,'make_bind_vec():&#160;bind_vec.c'],['../bind__vec_8h.html#a91df1dd1b6f05ce53150a27c6c1c51b7',1,'make_bind_vec():&#160;bind_vec.c']]],
-  ['make_5fvector',['make_vector',['../test-non-systemv_8c.html#a71c17be312a5c11b6e183fb1cfe4b4a2',1,'test-non-systemv.c']]],
-  ['max_5flen',['max_len',['../struct_string_vec.html#a78df5c5f47656d385e2f6d1f2e9ed62b',1,'StringVec']]],
-  ['msize',['msize',['../structbind__vec.html#aa45fa0f2e32261123f693541f26fc12b',1,'bind_vec']]]
+  ['len',['len',['../struct_string_vec.html#a7c24f16a046318d0be2902e0b40f07e4',1,'StringVec']]],
+  ['lock',['lock',['../structbind__vec.html#af6053d8f0d9be5d8b03ffbc06f30c0a5',1,'bind_vec']]]
 ];

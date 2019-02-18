@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sum',['sum',['../test-systemv_8c.html#ac821ce0bdb5918e7cf9ea4cd5cc29009',1,'test-systemv.c']]],
-  ['systemv_5finvoke_5fhelper',['systemv_invoke_helper',['../bind_8c.html#a9309ae5eee755b2b0b911a2787bb6b7e',1,'bind.c']]]
+  ['partial_5fbind',['partial_bind',['../bind_8c.html#a187e674be73b611c4e8d97345192757a',1,'partial_bind(BindableSystemV func, const uint64_t n_total, const uint64_t n_bound,...):&#160;bind.c'],['../bind_8h.html#a187e674be73b611c4e8d97345192757a',1,'partial_bind(BindableSystemV func, const uint64_t n_total, const uint64_t n_bound,...):&#160;bind.c']]],
+  ['partial_5fnonsystemv_5fbind',['partial_nonsystemv_bind',['../bind_8c.html#ab1e8f7285834dc7fab0d2e4b9826e387',1,'partial_nonsystemv_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound,...):&#160;bind.c'],['../bind_8h.html#ab1e8f7285834dc7fab0d2e4b9826e387',1,'partial_nonsystemv_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound,...):&#160;bind.c']]]
 ];
