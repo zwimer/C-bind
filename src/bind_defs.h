@@ -8,11 +8,12 @@ typedef void * arg_t;
 typedef void * ret_t;
 
 
+/** A bindable function type for SystemV
+ *  This function should return a ret_t */
+typedef void * BindableSystemV;
+
 /** A bindable function type */
 typedef ret_t (* Bindable) ( arg_t * args );
-
-/** A bindable function type for SystemV */
-typedef void * BindableSystemV;
 
 
 /** A fully bound function type */
