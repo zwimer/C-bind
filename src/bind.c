@@ -90,7 +90,7 @@ void systemv_invoke_helper(int signo) {
 
 		// Invoke the function
 		"invoke_sym%=:\n\t"
-		"call %%r11\n\t"
+		"call *%%r11\n\t"
 
 		// Restore rsp and set the return value
 		"mov %%r14, %%rsp\n\t"

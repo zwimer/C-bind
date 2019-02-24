@@ -10,6 +10,7 @@
 	- [Non-SystemV](#non-systemv)
 1. [Testing](#testing)
 1. [Compilation](#compilation)
+1. [Docker](#docker)
 1. [CI](#ci)
 1. [Documentation](#documentation)
 1. [Future Plans](#future-plans)
@@ -146,6 +147,22 @@ After that, run your desired test. Either `./test.out` (for SystemV tests) or `.
 
 # Compilation
 This library should be compiled as a shared object without optimizations! See the `CMake` file for more details.
+
+# Docker
+A `Dockerfile` is provided with `C-bind` and example cases installed and build. The image is hosted [here](https://cloud.docker.com/repository/docker/zwimer/c-bind) on [docker.com](https://docker.com). To pull the image just execute:
+```bash
+docker pull zwimer/c-bind
+```
+To run the container  simply execute:
+```bash
+docker run --rm -it zwimer/c-bind
+```
+If you would like to build the container yourself execute:
+```bash
+git clone https://github.com/zwimer/C-bind && \
+cd C-bind && \
+docker build -t c-bind .
+```
 
 # CI
 
