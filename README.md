@@ -161,7 +161,7 @@ If you would like to build the container yourself execute:
 ```bash
 git clone https://github.com/zwimer/C-bind && \
 cd C-bind && \
-docker build -t c-bind .
+docker build -t zwimer/c-bind .
 ```
 
 # CI
