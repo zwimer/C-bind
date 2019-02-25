@@ -7,7 +7,7 @@
 
 // Vector structure
 typedef struct vector_t {
-	int data_size, len, max_len;
+	size_t data_size, len, max_len;
 	void ** data;
 	void (* push_back) ( char * str );
 	FullBound size;
@@ -29,7 +29,7 @@ void vec_push_back( StringVec * vec, char * add) {
 }
 
 // A vector size function
-int vec_size( StringVec * v ) {
+size_t vec_size( StringVec * v ) {
 	return v->len;
 }
 
@@ -57,15 +57,15 @@ int main() {
 
 	// The vector
 	StringVec * v = make_vector();
-	for ( unsigned int i = 0; i < strlen(buf); ++i ) {
+	for ( size_t i = 0; i < strlen(buf); ++i ) {
 		v->push_back( buf + i );
 	}
 
 	// Printing
-	for ( int i = 0; i < (int) v->size(); ++i ) {
-		printf("v->data[%d] = %s\n", i, (char*) v->data[i]);
+	for ( size_t i = 0; i < (size_t) v->size(); ++i ) {
+		printf("v->data[%ld] = %s\n", i, (char*) v->data[i]);
 	}
-	printf("Size = %d\n", (int) v->size());
+	printf("Size = %ld\n", (size_t) v->size());
 	return EXIT_SUCCESS;
 }
 
