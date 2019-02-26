@@ -24,8 +24,9 @@ script:
     - cd ./src/build
     - cmake ..
     - make
-    - valgrind --error-exitcode=2 ./test-non-systemv.out
-    - valgrind --error-exitcode=2 ./test.out
+    - valgrind --error-exitcode=1 ./test-non-systemv.out
+    - ./test.out
+    - valgrind --error-exitcode=1 ./test.out
 
 after_success:
     - set -e
