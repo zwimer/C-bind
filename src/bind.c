@@ -50,6 +50,7 @@ int systemv_invoke_sig = SIGUSR2;
 	"jz invoke_sym%=\n\t"
 
 /** The signal handler used to invoke the systemv call */
+__attribute__((optimize("-O0")))
 void systemv_invoke_helper(int signo) {
 
 	// Retrieve the stored bound_internals
