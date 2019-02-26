@@ -146,7 +146,7 @@ cmake .. && make
 After that, run your desired test. Either `./test.out` (for SystemV tests) or `./test-non-systemv.out`.
 
 # Compilation
-This library should be compiled as a shared object without optimizations! See the `CMake` file for more details.
+This library should be compiled as a shared object without optimizations! On `gcc` versuib`7.3`, this library is able to compile even with the `-O3` flag. If you experience issues however, try compiling at a lower optimization level. See the `CMake` file for more an example.
 
 # Docker
 A `Dockerfile` is provided with `C-bind` and example cases installed and build. The image is hosted [here](https://cloud.docker.com/repository/docker/zwimer/c-bind) on [docker.com](https://docker.com). To pull the image just execute:
