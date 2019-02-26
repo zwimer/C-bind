@@ -17,10 +17,6 @@
 /***************************************************************/
 
 
-/** Ensure FN(ARGS) returns 0 */
-#define ASSERT_ZERO(FN, ...) bind_assert(FN(__VA_ARGS__) == 0, ""#FN "() failed.");
-
-
 // Globals
 
 /** A global bind vec */
@@ -40,6 +36,11 @@ int systemv_invoke_sig = SIGUSR2;
 
 // Functions
 
+
+/** Ensure FN(ARGS) returns 0 */
+#define ASSERT_ZERO(FN, ...) bind_assert(FN(__VA_ARGS__) == 0, ""#FN "() failed.");
+
+
 /** A macro used to set a register argument, used for consistency */
 #define SET_ARG(REG)                   \
 	"mov (%%rax), %%" # REG "\n\t"     \
@@ -58,7 +59,7 @@ void systemv_invoke_helper(int signo) {
 
 	// Setup the registers and stack needed to
 	// invoke the function with the desired arguments
-	ret_t ret;
+	volatile ret_t ret;
 	asm volatile(
 		"mov %[argsv], %%rax\n\t" /* Args */
 		"mov %[func], %%r11\n\t"  /* Func */
@@ -110,7 +111,7 @@ void systemv_invoke_helper(int signo) {
 	(void) signo;
 }
 
-/** get tid */
+/** gettid syscall */
 static long gettid() {
 	return syscall(SYS_gettid);
 }
@@ -125,7 +126,7 @@ __attribute__ ((noinline))
 ret_t systemv_invoke(bound_internals_t * bb) {
 
 	// Get the r11'th bound_internals then invoke it
-	uint64_t index;
+	volatile uint64_t index;
 	asm volatile("mov %%r11, %0" : "=rm" (index));
 
 	// Create a new sigaction
@@ -149,36 +150,31 @@ ret_t systemv_invoke(bound_internals_t * bb) {
 }
 
 /** Decide the method of invocation based on if systemv is true */
-ret_t invoke(bound_internals_t * const bb) {
-	if (bb->systemv) {
-		return systemv_invoke(bb);
-	}
-	else {
-		return bb->fn(bb->args);
-	}
+static ret_t invoke(bound_internals_t * const bb) {
+	return bb->systemv ? systemv_invoke(bb) : bb->fn(bb->args);
 }
 
 /** Invoke a fully bound function
  *  The function index is stored in r11 */
-__attribute__ ((noinline))
+__attribute__ ((used, noinline))
 ret_t invoke_full_bound() {
 
 	// Get the r11'th bound_internals then invoke it
-	uint64_t index;
-	asm("mov %%r11, %0" : "=rm" (index) );
-	bound_internals_t * bb = bv_get(global_bv, index);
+	volatile uint64_t index;
+	asm volatile("mov %%r11, %0" : "=rm" (index) );
+	bound_internals_t * const bb = bv_get(global_bv, index);
 	return invoke(bb);
 }
 
 /** Invoke a partially bound function with the additional args of a1, ...
  *  The function index is stored in r11 */
-__attribute__ ((noinline))
+__attribute__ ((used, noinline))
 ret_t invoke_partial_bound( arg_t a1, ... ) {
 
 	// Get the r11'th bound_internals
-	uint64_t index;
+	volatile uint64_t index;
 	asm volatile("mov %%r11, %0" : "=rm" (index) );
-	bound_internals_t * bb = bv_get(global_bv, index);
+	bound_internals_t * const bb = bv_get(global_bv, index);
 
 	// Copy in the newly provided args then invoke the function
 	bb->args[bb->n_bound] = a1;
@@ -201,8 +197,8 @@ void * gen_stub(const uint64_t index, void * const invoker) {
 	 *  mov r11, index
 	 *  ret
 	*/
-	uint64_t size = 0x1000;
-	char * func = mmap(0, size, PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
+	const uint64_t size = 0x1000;
+	char * const func = mmap(0, size, PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
 	bind_assert(func != MAP_FAILED, "mmap() failed.");
 	const char stub[] = "\x49\xBB" "AAAAAAAA" "\x41\x53\x49\xBB" "BBBBBBBB" "\xC3";
 	memcpy(func, stub, sizeof(stub));
@@ -224,25 +220,25 @@ PartBound gen_stub_partial(const uint64_t index) {
 
 /** A macro to set up a bound_internals
  *  This macro exists to ensure consistency */
-#define STORE_ARGS_RETURN_BOUND(LAST_ARG, IS_SYSTEMV)                         \
-	                                                                          \
-	/** Initalize a bound_internals */                                        \
-	bound_internals_t * bb = bind_safe_malloc(1, sizeof(bound_internals_t));  \
-	bb->args = bind_safe_malloc(n_total, sizeof(arg_t));                      \
-	bb->systemv = IS_SYSTEMV;                                                 \
-	bb->n_total = n_total;                                                    \
-	bb->n_bound = n_bound;                                                    \
-	bb->fn = func;                                                            \
-	                                                                          \
-	/** Copy in the passed arguments */                                       \
-	va_list args;                                                             \
-	va_start(args, LAST_ARG);                                                 \
-	for ( uint64_t i = 0; i < n_bound; ++i ) {                                \
-		bb->args[i] = va_arg(args, arg_t);                                    \
-	}                                                                         \
-	va_end(args);                                                             \
-	                                                                          \
-	/** Add the bound_internals to the global bind_vec */                     \
+#define BIND_AND_STORE_FN(LAST_ARG, IS_SYSTEMV)                               \
+	                                                                                \
+	/** Initalize a bound_internals */                                              \
+	bound_internals_t * const bb = bind_safe_malloc(1, sizeof(bound_internals_t));  \
+	bb->args = bind_safe_malloc(n_total, sizeof(arg_t));                            \
+	bb->systemv = IS_SYSTEMV;                                                       \
+	bb->n_total = n_total;                                                          \
+	bb->n_bound = n_bound;                                                          \
+	bb->fn = func;                                                                  \
+	                                                                                \
+	/** Copy in the passed arguments */                                             \
+	va_list args;                                                                   \
+	va_start(args, LAST_ARG);                                                       \
+	for ( uint64_t i = 0; i < n_bound; ++i ) {                                      \
+		bb->args[i] = va_arg(args, arg_t);                                          \
+	}                                                                               \
+	va_end(args);                                                                   \
+	                                                                                \
+	/** Add the bound_internals to the global bind_vec */                           \
 	const int index = bv_consume_add_blank(global_bv, bb);
 
 
@@ -265,7 +261,7 @@ void bind_setup() {
 FullBound full_nonsystemv_bind(Bindable func, const uint64_t n_total,  ...) {
 	bind_assert(n_total > 0, "full_bind() called improperly");
 	const uint64_t n_bound = n_total;
-	STORE_ARGS_RETURN_BOUND(n_total, false);
+	BIND_AND_STORE_FN(n_total, false);
 	return gen_stub_full(index);
 }
 
@@ -273,7 +269,7 @@ FullBound full_nonsystemv_bind(Bindable func, const uint64_t n_total,  ...) {
 PartBound partial_nonsystemv_bind(Bindable func, const uint64_t n_total, const uint64_t n_bound, ...) {
 	bind_assert(n_bound > 0, "partial_bind() called improperly");
 	bind_assert(n_total > n_bound, "partial_bind() called improperly");
-	STORE_ARGS_RETURN_BOUND(n_bound, false);
+	BIND_AND_STORE_FN(n_bound, false);
 	return gen_stub_partial(index);
 }
 
@@ -281,7 +277,7 @@ PartBound partial_nonsystemv_bind(Bindable func, const uint64_t n_total, const u
 FullBound full_bind(BindableSystemV func, const uint64_t n_total,  ...) {
 	bind_assert(n_total > 0, "full_systemv_bind() called improperly");
 	const uint64_t n_bound = n_total;
-	STORE_ARGS_RETURN_BOUND(n_total, true);
+	BIND_AND_STORE_FN(n_total, true);
 	return gen_stub_full(index);
 }
 
@@ -289,7 +285,7 @@ FullBound full_bind(BindableSystemV func, const uint64_t n_total,  ...) {
 PartBound partial_bind(BindableSystemV func, const uint64_t n_total, const uint64_t n_bound, ...) {
 	bind_assert(n_bound > 0, "partial_bind() called improperly");
 	bind_assert(n_total > n_bound, "partial_bind() called improperly");
-	STORE_ARGS_RETURN_BOUND(n_bound, true);
+	BIND_AND_STORE_FN(n_bound, true);
 	return gen_stub_partial(index);
 }
 
