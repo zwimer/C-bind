@@ -111,17 +111,17 @@ Macros</h2></td></tr>
 <tr class="memitem:a766feabc8fadad962a9cb1125cfd449b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a766feabc8fadad962a9cb1125cfd449b">SET_ARG</a>(REG)</td></tr>
 <tr class="memdesc:a766feabc8fadad962a9cb1125cfd449b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A macro used to set a register argument, used for consistency.  <a href="#a766feabc8fadad962a9cb1125cfd449b">More...</a><br /></td></tr>
 <tr class="separator:a766feabc8fadad962a9cb1125cfd449b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1a69b4bb82a88f139d2506b685224a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#ae1a69b4bb82a88f139d2506b685224a5">STORE_ARGS_RETURN_BOUND</a>(LAST_ARG,  IS_SYSTEMV)</td></tr>
-<tr class="memdesc:ae1a69b4bb82a88f139d2506b685224a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A macro to set up a bound_internals This macro exists to ensure consistency.  <a href="#ae1a69b4bb82a88f139d2506b685224a5">More...</a><br /></td></tr>
-<tr class="separator:ae1a69b4bb82a88f139d2506b685224a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bcbb26335a7d258094d9fc2b205d6fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a5bcbb26335a7d258094d9fc2b205d6fc">BIND_AND_STORE_FN</a>(LAST_ARG,  IS_SYSTEMV)</td></tr>
+<tr class="memdesc:a5bcbb26335a7d258094d9fc2b205d6fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A macro to set up a bound_internals This macro exists to ensure consistency.  <a href="#a5bcbb26335a7d258094d9fc2b205d6fc">More...</a><br /></td></tr>
+<tr class="separator:a5bcbb26335a7d258094d9fc2b205d6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9309ae5eee755b2b0b911a2787bb6b7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a9309ae5eee755b2b0b911a2787bb6b7e">systemv_invoke_helper</a> (int signo)</td></tr>
-<tr class="memdesc:a9309ae5eee755b2b0b911a2787bb6b7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The signal handler used to invoke the systemv call.  <a href="#a9309ae5eee755b2b0b911a2787bb6b7e">More...</a><br /></td></tr>
-<tr class="separator:a9309ae5eee755b2b0b911a2787bb6b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1117063e3b002c0c779100262a3ec09e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a1117063e3b002c0c779100262a3ec09e">__attribute__</a> ((optimize(&quot;-O0&quot;)))</td></tr>
+<tr class="memdesc:a1117063e3b002c0c779100262a3ec09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The signal handler used to invoke the systemv call.  <a href="#a1117063e3b002c0c779100262a3ec09e">More...</a><br /></td></tr>
+<tr class="separator:a1117063e3b002c0c779100262a3ec09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3265635bd14b26d26d650377c59946d"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#af3265635bd14b26d26d650377c59946d">gettid</a> ()</td></tr>
-<tr class="memdesc:af3265635bd14b26d26d650377c59946d"><td class="mdescLeft">&#160;</td><td class="mdescRight">get tid  <a href="#af3265635bd14b26d26d650377c59946d">More...</a><br /></td></tr>
+<tr class="memdesc:af3265635bd14b26d26d650377c59946d"><td class="mdescLeft">&#160;</td><td class="mdescRight">gettid syscall  <a href="#af3265635bd14b26d26d650377c59946d">More...</a><br /></td></tr>
 <tr class="separator:af3265635bd14b26d26d650377c59946d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cc3325de0ffb89220fac686f36ac0f1"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a8cc3325de0ffb89220fac686f36ac0f1">tkill</a> (int tid, int sig)</td></tr>
 <tr class="memdesc:a8cc3325de0ffb89220fac686f36ac0f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">tkill syscall  <a href="#a8cc3325de0ffb89220fac686f36ac0f1">More...</a><br /></td></tr>
@@ -129,9 +129,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ad62826e478a753740ffb406eeb04f274"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#ad62826e478a753740ffb406eeb04f274">__attribute__</a> ((noinline))</td></tr>
 <tr class="memdesc:ad62826e478a753740ffb406eeb04f274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a systemv <a class="el" href="structbound__internals__t.html" title="A structure that holds all data needed to bind a function. ">bound_internals_t</a> on its store arguments.  <a href="#ad62826e478a753740ffb406eeb04f274">More...</a><br /></td></tr>
 <tr class="separator:ad62826e478a753740ffb406eeb04f274"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba4980953d79b3e803e960c798a9db8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#aba4980953d79b3e803e960c798a9db8a">invoke</a> (<a class="el" href="structbound__internals__t.html">bound_internals_t</a> *const bb)</td></tr>
-<tr class="memdesc:aba4980953d79b3e803e960c798a9db8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decide the method of invocation based on if systemv is true.  <a href="#aba4980953d79b3e803e960c798a9db8a">More...</a><br /></td></tr>
-<tr class="separator:aba4980953d79b3e803e960c798a9db8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a672286bf61f0c57b245367a563ec9999"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a672286bf61f0c57b245367a563ec9999">invoke</a> (<a class="el" href="structbound__internals__t.html">bound_internals_t</a> *const bb)</td></tr>
+<tr class="memdesc:a672286bf61f0c57b245367a563ec9999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decide the method of invocation based on if systemv is true.  <a href="#a672286bf61f0c57b245367a563ec9999">More...</a><br /></td></tr>
+<tr class="separator:a672286bf61f0c57b245367a563ec9999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a517e0cc8ee8f5a158eecff325793ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a7a517e0cc8ee8f5a158eecff325793ac">__attribute__</a> ((used, noinline))</td></tr>
+<tr class="memdesc:a7a517e0cc8ee8f5a158eecff325793ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a fully bound function The function index is stored in r11.  <a href="#a7a517e0cc8ee8f5a158eecff325793ac">More...</a><br /></td></tr>
+<tr class="separator:a7a517e0cc8ee8f5a158eecff325793ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa4909d5b4e11a29328a759311f03d37"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#aaa4909d5b4e11a29328a759311f03d37">gen_stub</a> (const uint64_t index, void *const invoker)</td></tr>
 <tr class="memdesc:aaa4909d5b4e11a29328a759311f03d37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a stub for a bound function Use invoker as the invoke function.  <a href="#aaa4909d5b4e11a29328a759311f03d37">More...</a><br /></td></tr>
 <tr class="separator:aaa4909d5b4e11a29328a759311f03d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,6 +215,39 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5bcbb26335a7d258094d9fc2b205d6fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BIND_AND_STORE_FN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">LAST_ARG, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">IS_SYSTEMV&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">\                                              \</div><div class="line">    bound_internals_t * <span class="keyword">const</span> bb = <a class="code" href="bind__utilities_8c.html#a3e495f49bce6a5edbe2c2af691013fb5">bind_safe_malloc</a>(1, <span class="keyword">sizeof</span>(<a class="code" href="structbound__internals__t.html">bound_internals_t</a>));  \</div><div class="line">    bb-&gt;args = <a class="code" href="bind__utilities_8c.html#a3e495f49bce6a5edbe2c2af691013fb5">bind_safe_malloc</a>(n_total, <span class="keyword">sizeof</span>(<a class="code" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a>));                            \</div><div class="line">    bb-&gt;systemv = IS_SYSTEMV;                                                       \</div><div class="line">    bb-&gt;n_total = n_total;                                                          \</div><div class="line">    bb-&gt;n_bound = n_bound;                                                          \</div><div class="line">    bb-&gt;fn = func;                                                                  \</div><div class="line">                                                                                    \                                             \</div><div class="line">    va_list args;                                                                   \</div><div class="line">    va_start(args, LAST_ARG);                                                       \</div><div class="line">    for ( uint64_t i = 0; i &lt; n_bound; ++i ) {                                      \</div><div class="line">        bb-&gt;args[i] = va_arg(args, <a class="code" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a>);                                          \</div><div class="line">    }                                                                               \</div><div class="line">    va_end(args);                                                                   \</div><div class="line">                                                                                    \                           \</div><div class="line">    const <span class="keywordtype">int</span> index = <a class="code" href="bind__vec_8c.html#a99f15769dba5a78755d63238954d183c">bv_consume_add_blank</a>(<a class="code" href="bind_8c.html#a0596c2d16478119f034dfe4a68c70050">global_bv</a>, bb);</div><div class="ttc" id="structbound__internals__t_html"><div class="ttname"><a href="structbound__internals__t.html">bound_internals_t</a></div><div class="ttdoc">A structure that holds all data needed to bind a function. </div><div class="ttdef"><b>Definition:</b> bound_internals.h:11</div></div>
+<div class="ttc" id="bind__vec_8c_html_a99f15769dba5a78755d63238954d183c"><div class="ttname"><a href="bind__vec_8c.html#a99f15769dba5a78755d63238954d183c">bv_consume_add_blank</a></div><div class="ttdeci">uint64_t bv_consume_add_blank(bind_vec *const bv, bound_internals_t *const add)</div><div class="ttdoc">Consume a bound_internals and append it to the vector. </div><div class="ttdef"><b>Definition:</b> bind_vec.c:16</div></div>
+<div class="ttc" id="bind__utilities_8c_html_a3e495f49bce6a5edbe2c2af691013fb5"><div class="ttname"><a href="bind__utilities_8c.html#a3e495f49bce6a5edbe2c2af691013fb5">bind_safe_malloc</a></div><div class="ttdeci">void * bind_safe_malloc(size_t c, size_t s)</div><div class="ttdoc">Malloc, but check to see if failed. </div><div class="ttdef"><b>Definition:</b> bind_utilities.c:39</div></div>
+<div class="ttc" id="bind_8c_html_a0596c2d16478119f034dfe4a68c70050"><div class="ttname"><a href="bind_8c.html#a0596c2d16478119f034dfe4a68c70050">global_bv</a></div><div class="ttdeci">bind_vec * global_bv</div><div class="ttdoc">A global bind vec. </div><div class="ttdef"><b>Definition:</b> bind.c:23</div></div>
+<div class="ttc" id="bind__defs_8h_html_aa409ee08129c587e002cf2062a09a744"><div class="ttname"><a href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a></div><div class="ttdeci">void * arg_t</div><div class="ttdoc">The argument type. </div><div class="ttdef"><b>Definition:</b> bind_defs.h:6</div></div>
+</div><!-- fragment -->
+<p>A macro to set up a bound_internals This macro exists to ensure consistency. </p>
+
+</div>
+</div>
 <a class="anchor" id="a766feabc8fadad962a9cb1125cfd449b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -230,40 +266,25 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae1a69b4bb82a88f139d2506b685224a5"></a>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a1117063e3b002c0c779100262a3ec09e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define STORE_ARGS_RETURN_BOUND</td>
+          <td class="memname">__attribute__ </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">LAST_ARG, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">(optimize(&quot;-O0&quot;))&#160;</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">IS_SYSTEMV&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">\                                        \</div><div class="line">    bound_internals_t * bb = <a class="code" href="bind__utilities_8c.html#a3e495f49bce6a5edbe2c2af691013fb5">bind_safe_malloc</a>(1, <span class="keyword">sizeof</span>(<a class="code" href="structbound__internals__t.html">bound_internals_t</a>));  \</div><div class="line">    bb-&gt;args = <a class="code" href="bind__utilities_8c.html#a3e495f49bce6a5edbe2c2af691013fb5">bind_safe_malloc</a>(n_total, <span class="keyword">sizeof</span>(<a class="code" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a>));                      \</div><div class="line">    bb-&gt;systemv = IS_SYSTEMV;                                                 \</div><div class="line">    bb-&gt;n_total = n_total;                                                    \</div><div class="line">    bb-&gt;n_bound = n_bound;                                                    \</div><div class="line">    bb-&gt;fn = func;                                                            \</div><div class="line">                                                                              \                                       \</div><div class="line">    va_list args;                                                             \</div><div class="line">    va_start(args, LAST_ARG);                                                 \</div><div class="line">    for ( uint64_t i = 0; i &lt; n_bound; ++i ) {                                \</div><div class="line">        bb-&gt;args[i] = va_arg(args, <a class="code" href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a>);                                    \</div><div class="line">    }                                                                         \</div><div class="line">    va_end(args);                                                             \</div><div class="line">                                                                              \                     \</div><div class="line">    const <span class="keywordtype">int</span> index = <a class="code" href="bind__vec_8c.html#a99f15769dba5a78755d63238954d183c">bv_consume_add_blank</a>(<a class="code" href="bind_8c.html#a0596c2d16478119f034dfe4a68c70050">global_bv</a>, bb);</div><div class="ttc" id="structbound__internals__t_html"><div class="ttname"><a href="structbound__internals__t.html">bound_internals_t</a></div><div class="ttdoc">A structure that holds all data needed to bind a function. </div><div class="ttdef"><b>Definition:</b> bound_internals.h:11</div></div>
-<div class="ttc" id="bind__vec_8c_html_a99f15769dba5a78755d63238954d183c"><div class="ttname"><a href="bind__vec_8c.html#a99f15769dba5a78755d63238954d183c">bv_consume_add_blank</a></div><div class="ttdeci">uint64_t bv_consume_add_blank(bind_vec *const bv, bound_internals_t *const add)</div><div class="ttdoc">Consume a bound_internals and append it to the vector. </div><div class="ttdef"><b>Definition:</b> bind_vec.c:16</div></div>
-<div class="ttc" id="bind__utilities_8c_html_a3e495f49bce6a5edbe2c2af691013fb5"><div class="ttname"><a href="bind__utilities_8c.html#a3e495f49bce6a5edbe2c2af691013fb5">bind_safe_malloc</a></div><div class="ttdeci">void * bind_safe_malloc(size_t c, size_t s)</div><div class="ttdoc">Malloc, but check to see if failed. </div><div class="ttdef"><b>Definition:</b> bind_utilities.c:39</div></div>
-<div class="ttc" id="bind_8c_html_a0596c2d16478119f034dfe4a68c70050"><div class="ttname"><a href="bind_8c.html#a0596c2d16478119f034dfe4a68c70050">global_bv</a></div><div class="ttdeci">bind_vec * global_bv</div><div class="ttdoc">A global bind vec. </div><div class="ttdef"><b>Definition:</b> bind.c:27</div></div>
-<div class="ttc" id="bind__defs_8h_html_aa409ee08129c587e002cf2062a09a744"><div class="ttname"><a href="bind__defs_8h.html#aa409ee08129c587e002cf2062a09a744">arg_t</a></div><div class="ttdeci">void * arg_t</div><div class="ttdoc">The argument type. </div><div class="ttdef"><b>Definition:</b> bind_defs.h:6</div></div>
-</div><!-- fragment -->
-<p>A macro to set up a bound_internals This macro exists to ensure consistency. </p>
+
+<p>The signal handler used to invoke the systemv call. </p>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ad62826e478a753740ffb406eeb04f274"></a>
 <div class="memitem">
 <div class="memproto">
@@ -279,8 +300,25 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Invoke a systemv <a class="el" href="structbound__internals__t.html" title="A structure that holds all data needed to bind a function. ">bound_internals_t</a> on its store arguments. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7a517e0cc8ee8f5a158eecff325793ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(used, noinline)&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invoke a fully bound function The function index is stored in r11. </p>
 <p>Invoke a partially bound function with the additional args of a1, ...</p>
-<p>Invoke a fully bound function The function index is stored in r11.</p>
 <p>The function index is stored in r11 </p>
 
 </div>
@@ -489,22 +527,30 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>get tid </p>
+<p>gettid syscall </p>
 
 </div>
 </div>
-<a class="anchor" id="aba4980953d79b3e803e960c798a9db8a"></a>
+<a class="anchor" id="a672286bf61f0c57b245367a563ec9999"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a> invoke </td>
+          <td class="memname">static <a class="el" href="bind__defs_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a> invoke </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structbound__internals__t.html">bound_internals_t</a> *const&#160;</td>
           <td class="paramname"><em>bb</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Decide the method of invocation based on if systemv is true. </p>
@@ -588,24 +634,6 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Partially bind a function that takes n_total argument to the n_bound arguments provided. </p>
-
-</div>
-</div>
-<a class="anchor" id="a9309ae5eee755b2b0b911a2787bb6b7e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void systemv_invoke_helper </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>signo</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The signal handler used to invoke the systemv call. </p>
 
 </div>
 </div>

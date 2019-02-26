@@ -2,6 +2,7 @@ var searchData=
 [
   ['bind_2ec',['bind.c',['../bind_8c.html',1,'']]],
   ['bind_2eh',['bind.h',['../bind_8h.html',1,'']]],
+  ['bind_5fand_5fstore_5ffn',['BIND_AND_STORE_FN',['../bind_8c.html#a5bcbb26335a7d258094d9fc2b205d6fc',1,'bind.c']]],
   ['bind_5fassert',['bind_assert',['../bind__utilities_8c.html#af4aaa27dade38bbf1f1570ed4a37e329',1,'bind_assert(const int b, const char *Msg):&#160;bind_utilities.c'],['../bind__utilities_8h.html#af4aaa27dade38bbf1f1570ed4a37e329',1,'bind_assert(const int b, const char *Msg):&#160;bind_utilities.c']]],
   ['bind_5fdefs_2eh',['bind_defs.h',['../bind__defs_8h.html',1,'']]],
   ['bind_5ferr',['bind_err',['../bind__utilities_8c.html#ab374e97f3b19a808aa0232648d7ebcc4',1,'bind_err(const char *Msg):&#160;bind_utilities.c'],['../bind__utilities_8h.html#ab374e97f3b19a808aa0232648d7ebcc4',1,'bind_err(const char *Msg):&#160;bind_utilities.c']]],
