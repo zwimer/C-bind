@@ -11,9 +11,6 @@
 #endif
 
 
-/** Sets up the bind library */
-void bind_setup();
-
 /** Fully bind a function to the n_total arguments
  *  provided using the SystemV calling convention */
 FullBound full_bind(BindableSystemV func, const uint64_t n_total,  ...);
