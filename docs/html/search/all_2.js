@@ -14,7 +14,6 @@ var searchData=
   ['bind_5fsafe_5fmalloc',['bind_safe_malloc',['../bind__utilities_8c.html#a3e495f49bce6a5edbe2c2af691013fb5',1,'bind_safe_malloc(size_t c, size_t s):&#160;bind_utilities.c'],['../bind__utilities_8h.html#a3e495f49bce6a5edbe2c2af691013fb5',1,'bind_safe_malloc(size_t c, size_t s):&#160;bind_utilities.c']]],
   ['bind_5fsafe_5frealloc',['bind_safe_realloc',['../bind__utilities_8c.html#a89174c1631373cb8d9d73de79f5b2bd5',1,'bind_safe_realloc(void *p, size_t c, size_t s):&#160;bind_utilities.c'],['../bind__utilities_8h.html#a89174c1631373cb8d9d73de79f5b2bd5',1,'bind_safe_realloc(void *p, size_t c, size_t s):&#160;bind_utilities.c']]],
   ['bind_5fset_5fsignal_5fnumber',['bind_set_signal_number',['../bind_8c.html#ae832931ed64cb6278e8dbd6a4451243d',1,'bind_set_signal_number(const int signo):&#160;bind.c'],['../bind_8h.html#ae832931ed64cb6278e8dbd6a4451243d',1,'bind_set_signal_number(const int signo):&#160;bind.c']]],
-  ['bind_5fsetup',['bind_setup',['../bind_8c.html#a57d49e18c9326489d842187e2a1e0086',1,'bind.c']]],
   ['bind_5funlock',['bind_unlock',['../bind__utilities_8c.html#a1094d1b3b99700931f8a6d4610eb83eb',1,'bind_unlock(bind_lock_t *const l):&#160;bind_utilities.c'],['../bind__utilities_8h.html#a0fe9694537501c162c36487b32fed6e1',1,'bind_unlock(bind_lock_t *const lock):&#160;bind_utilities.c']]],
   ['bind_5futilities_2ec',['bind_utilities.c',['../bind__utilities_8c.html',1,'']]],
   ['bind_5futilities_2eh',['bind_utilities.h',['../bind__utilities_8h.html',1,'']]],

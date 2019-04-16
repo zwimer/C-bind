@@ -39,7 +39,7 @@ void $\ast$ \hyperlink{bind_8c_aaa4909d5b4e11a29328a759311f03d37}{gen\+\_\+stub}
 \begin{DoxyCompactList}\small\item\em Generate a stub for a fully bound function. \end{DoxyCompactList}\item 
 \hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8c_a03db6843cbb39479497bf925a6dfc31e}{gen\+\_\+stub\+\_\+partial} (const uint64\+\_\+t index)
 \begin{DoxyCompactList}\small\item\em Generate a stub for a partially bound function. \end{DoxyCompactList}\item 
-void \hyperlink{bind_8c_a57d49e18c9326489d842187e2a1e0086}{bind\+\_\+setup} ()
+\hyperlink{bind_8c_a083b2e840cc4afee2f08f66c46f4d64d}{\+\_\+\+\_\+attribute\+\_\+\+\_\+} ((constructor))
 \item 
 \hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8c_a14e87772faf1fee0eaa2e02ebdb295a3}{full\+\_\+nonsystemv\+\_\+bind} (\hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t n\+\_\+total,...)
 \begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided. \end{DoxyCompactList}\item 
@@ -174,7 +174,14 @@ Invoke a fully bound function The function index is stored in r11.
 
 Invoke a partially bound function with the additional args of a1, ...
 
-The function index is stored in r11 \index{bind.\+c@{bind.\+c}!bind\+\_\+get\+\_\+signal\+\_\+number@{bind\+\_\+get\+\_\+signal\+\_\+number}}
+The function index is stored in r11 \index{bind.\+c@{bind.\+c}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!bind.\+c@{bind.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+attribute\+\_\+\+\_\+((constructor))}{__attribute__((constructor))}}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+attribute\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{(constructor)}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8c_a083b2e840cc4afee2f08f66c46f4d64d}{}\label{bind_8c_a083b2e840cc4afee2f08f66c46f4d64d}
+\index{bind.\+c@{bind.\+c}!bind\+\_\+get\+\_\+signal\+\_\+number@{bind\+\_\+get\+\_\+signal\+\_\+number}}
 \index{bind\+\_\+get\+\_\+signal\+\_\+number@{bind\+\_\+get\+\_\+signal\+\_\+number}!bind.\+c@{bind.\+c}}
 \subsubsection[{\texorpdfstring{bind\+\_\+get\+\_\+signal\+\_\+number()}{bind_get_signal_number()}}]{\setlength{\rightskip}{0pt plus 5cm}int bind\+\_\+get\+\_\+signal\+\_\+number (
 \begin{DoxyParamCaption}
@@ -196,14 +203,7 @@ Return the signal number used by the bind library internally.
 
 Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-\/threaded application the ensures thread-\/safety. 
 
-The default is S\+I\+G\+U\+S\+R2. Select a signal your program does not use for the bind library to use \index{bind.\+c@{bind.\+c}!bind\+\_\+setup@{bind\+\_\+setup}}
-\index{bind\+\_\+setup@{bind\+\_\+setup}!bind.\+c@{bind.\+c}}
-\subsubsection[{\texorpdfstring{bind\+\_\+setup()}{bind_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+setup (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{bind_8c_a57d49e18c9326489d842187e2a1e0086}{}\label{bind_8c_a57d49e18c9326489d842187e2a1e0086}
-\index{bind.\+c@{bind.\+c}!full\+\_\+bind@{full\+\_\+bind}}
+The default is S\+I\+G\+U\+S\+R2. Select a signal your program does not use for the bind library to use \index{bind.\+c@{bind.\+c}!full\+\_\+bind@{full\+\_\+bind}}
 \index{full\+\_\+bind@{full\+\_\+bind}!bind.\+c@{bind.\+c}}
 \subsubsection[{\texorpdfstring{full\+\_\+bind(\+Bindable\+System\+V func, const uint64\+\_\+t n\+\_\+total,...)}{full_bind(BindableSystemV func, const uint64_t n_total,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} full\+\_\+bind (
 \begin{DoxyParamCaption}

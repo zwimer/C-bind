@@ -144,8 +144,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a03db6843cbb39479497bf925a6dfc31e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind__defs_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a03db6843cbb39479497bf925a6dfc31e">gen_stub_partial</a> (const uint64_t index)</td></tr>
 <tr class="memdesc:a03db6843cbb39479497bf925a6dfc31e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a stub for a partially bound function.  <a href="#a03db6843cbb39479497bf925a6dfc31e">More...</a><br /></td></tr>
 <tr class="separator:a03db6843cbb39479497bf925a6dfc31e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57d49e18c9326489d842187e2a1e0086"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a57d49e18c9326489d842187e2a1e0086">bind_setup</a> ()</td></tr>
-<tr class="separator:a57d49e18c9326489d842187e2a1e0086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a083b2e840cc4afee2f08f66c46f4d64d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a083b2e840cc4afee2f08f66c46f4d64d">__attribute__</a> ((constructor))</td></tr>
+<tr class="separator:a083b2e840cc4afee2f08f66c46f4d64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14e87772faf1fee0eaa2e02ebdb295a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind__defs_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8c.html#a14e87772faf1fee0eaa2e02ebdb295a3">full_nonsystemv_bind</a> (<a class="el" href="bind__defs_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a> func, const uint64_t n_total,...)</td></tr>
 <tr class="memdesc:a14e87772faf1fee0eaa2e02ebdb295a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully bind a function to the n_total arguments provided.  <a href="#a14e87772faf1fee0eaa2e02ebdb295a3">More...</a><br /></td></tr>
 <tr class="separator:a14e87772faf1fee0eaa2e02ebdb295a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -323,6 +323,22 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a083b2e840cc4afee2f08f66c46f4d64d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(constructor)&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a270375ebc8e8ed504a2dd3f12240b777"></a>
 <div class="memitem">
 <div class="memproto">
@@ -356,21 +372,6 @@ Variables</h2></td></tr>
 
 <p>Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-threaded application the ensures thread-safety. </p>
 <p>The default is SIGUSR2. Select a signal your program does not use for the bind library to use </p>
-
-</div>
-</div>
-<a class="anchor" id="a57d49e18c9326489d842187e2a1e0086"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void bind_setup </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
