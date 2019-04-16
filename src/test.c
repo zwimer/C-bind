@@ -49,7 +49,6 @@ StringVec * make_vector() {
 
 // Test C-bind for non-systemv functions
 int main() {
-	bind_setup();
 
 	// String to add
 	char * buf = malloc(0x1000);

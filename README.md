@@ -27,12 +27,6 @@ Currently `C-bind` requires `pthread` to be installed, and requires `x86_64`. `C
 ### Includes
 To link the `C-bind` library simply include the header file ```bind.h```.
 
-### Setup
-To setup the bind library, the `bind_setup` function must be invoked first!
-```C
-bind_setup();
-```
-
 ### Invocation
 To invoke the bound version of `my_func`, one could simply invoke it as 
 ```C

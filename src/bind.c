@@ -251,6 +251,7 @@ PartBound gen_stub_partial(const uint64_t index) {
 
 
 // Ensure bind thread safety
+__attribute__((constructor))
 void bind_setup() {
 	global_bv = make_bind_vec();
 	full_systemv_arg_lock = make_bind_lock();
