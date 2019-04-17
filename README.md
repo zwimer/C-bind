@@ -30,7 +30,7 @@ To link the `C-bind` library simply include the header file ```bind.h```.
 ### Invocation
 To invoke the bound version of `my_func`, one could simply invoke it as 
 ```C
-bound_func( arg1, arg2, arg3 )
+bound_func( arg1, arg2, arg3 );
 ```
 *Note*: if you pass extra unexpected arguments to `bound_func` they will be ignored.
 
@@ -57,7 +57,7 @@ SystemV functions to be bound must return an object of type `ret_t` (which shoul
 ### Full binding
 To fully bind a functon, invoke
 ```C
-bound_func = full_bind( my_func, num_args, arg1, arg2, arg3 )
+bound_func = full_bind( my_func, num_args, arg1, arg2, arg3 );
 ```
 Here `num_args` is the number arguments to pass to be passed to `my_func`. If you pass in more arguments `num_args` they will be ignored.
 
@@ -92,7 +92,7 @@ The output of this code is: `Total sum = 600`
 Non-SystemV functions to be bound must have a unique signature, however when calling them they may be called as standard functions.
 To bind a function, it must have the following signature:
 ```C
-ret_t my_func( arg_t * args )
+ret_t my_func( arg_t * args );
 ```
 The return value may simply be any other primitive so you cast it properly during the binding call.
 You can think of `args` as an array of arguments!
@@ -102,7 +102,7 @@ Parsing the `args` array is the job of `my_func`.
 ### Full binding
 To fully bind a functon, invoke
 ```C
-bound_func = full_bind( my_func, num_args, arg1, arg2, arg3 )
+bound_func = full_bind( my_func, num_args, arg1, arg2, arg3 );
 ```
 Here `num_args` is the number of elements in the `args` array `my_func` expects to be passed. If you pass in more arguments `num_args` they will be ignored.
 
@@ -144,7 +144,7 @@ cmake ../examples && make
 After that, run your desired test. Either `./test.out` (for SystemV tests) or `./test-non-systemv.out`.
 
 # Compilation
-This library should be compiled as a shared object without optimizations! On `gcc` versuib`7.3`, this library is able to compile even with the `-O3` flag. If you experience issues however, try compiling at a lower optimization level. See the `CMake` file for more an example.
+This library should be compiled as a shared object without optimizations! On `gcc` version`7.3`, this library is able to compile even with the `-O3` flag. If you experience issues however, try compiling at a lower optimization level. See the `CMakeLists.txt` file in the `examples` directory for an example.
 
 # Docker
 A `Dockerfile` is provided with `C-bind` and example cases installed and build. The image is hosted [here](https://cloud.docker.com/repository/docker/zwimer/c-bind) on [docker.com](https://docker.com). To pull the image just execute:
