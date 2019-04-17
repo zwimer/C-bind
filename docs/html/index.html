@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 </ol>
 <ol type="1">
-<li><a href="#testing">Testing</a></li>
+<li><a href="#examples">Examples</a></li>
 </ol>
 <ol type="1">
 <li><a href="#compilation">Compilation</a></li>
@@ -157,8 +157,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>To partially bind a function, invoke </p><div class="fragment"><div class="line">bound_func = <a class="code" href="bind_8c.html#a187e674be73b611c4e8d97345192757a">partial_bind</a>( my_func, num_args, num_args_to_bind, arg1, arg2 );</div></div><!-- fragment --><p> Here <code>num_args_to_bind</code> is the number of arguments currently being bound!</p>
 <p>It is worth noting that fully binding a function via a partial bind is supported.</p>
 <p>### Partial binding Example </p><div class="fragment"><div class="line"><a class="code" href="bind_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a> sum3( arg_t * args ) { <span class="keywordflow">return</span> args[0] + args[1] + args[2]; }</div><div class="line">bound_func = partial_systemv_bind( sum3, 3, 2, <span class="comment">/* Arguments begin */</span> 100, 200 );</div><div class="line">printf( <span class="stringliteral">&quot;Total sum = %d&quot;</span>, (<span class="keywordtype">int</span>) bound_func(300) );</div></div><!-- fragment --><p> The output of this code is: <code>Total sum = 600</code> </p><hr/>
-<h1>Testing</h1>
-<p>To test that this works first compile the code </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;git clone https://github.com/zwimer/C-bind &amp;&amp; \</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;mkdir C-bind/src/build &amp;&amp; cd C-bind/src/build &amp;&amp; \</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;cmake .. &amp;&amp; make</div></div><!-- fragment --><p>After that, run your desired test. Either <code>./test.out</code> (for SystemV tests) or <code>./test-non-systemv.out</code>.</p>
+<h1>Examples</h1>
+<p>To test the examples first compile the code </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;git clone https://github.com/zwimer/C-bind &amp;&amp; \</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;mkdir C-bind/build &amp;&amp; cd C-bind/build &amp;&amp; \</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;cmake ../examples &amp;&amp; make</div></div><!-- fragment --><p>After that, run your desired test. Either <code>./test.out</code> (for SystemV tests) or <code>./test-non-systemv.out</code>.</p>
 <h1>Compilation</h1>
 <p>This library should be compiled as a shared object without optimizations! On <code>gcc</code> versuib<code>7.3</code>, this library is able to compile even with the <code>-O3</code> flag. If you experience issues however, try compiling at a lower optimization level. See the <code>CMake</code> file for more an example.</p>
 <h1>Docker</h1>
