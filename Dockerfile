@@ -16,4 +16,4 @@ RUN    mkdir ./C-bind/build/ \
     && make
 
 # Execute
-ENTRYPOINT cd ./C-bind/examples/build/ && /bin/bash
+ENTRYPOINT cd ./C-bind/build/ && /bin/bash
