@@ -52,7 +52,7 @@ Yes.
 ## SystemV
 
 ### Function Signature
-SystemV functions to be bound must return an object of type `ret_t` (which should be 8 bytes) or smaller; `void` is also valid. Do not attempt to return a large struct as it may fail! As for the arguments of the function, there are no restrictions except that the function may not be variadic! Consequently, `my_func` must have a defined maximum number of 'arguments'. *That is, `my_func` must expect that no more `num_args` number of elements to be passed.* For more info look in the `bind_defs.h` file.
+SystemV functions to be bound must return an object of type `ret_t` (which should be 8 bytes) or smaller; `void` is also valid. Do not attempt to return a large struct as it may fail! As for the arguments of the function, there are no restrictions except that the function may not be variadic! Consequently, `my_func` must have a defined maximum number of 'arguments'. *That is, `my_func` must expect that no more `num_args` number of elements to be passed.* For more info look in the `bind.h` file.
 
 ### Full binding
 To fully bind a functon, invoke
@@ -76,6 +76,8 @@ bound_func = partial_bind( my_func, num_args, num_args_to_bind, arg1, arg2 );
 ```
 Here `num_args_to_bind` is the number of arguments currently being bound!
 
+It is worth noting that fully binding a function via a partial bind is supported.
+
 ### Partial binding Example
 ```C
 int sum3(int a, int b, int c) { return args[0] + args[1] + args[2]; }
@@ -94,7 +96,7 @@ ret_t my_func( arg_t * args )
 ```
 The return value may simply be any other primitive so you cast it properly during the binding call.
 You can think of `args` as an array of arguments!
-The function being bound may not be variadic, consequently, `my_func` must have a defined maximum number of 'arguments'. *That is, `my_func` must expect that no more `num_args` number of elements to be passed.* For more info look in the `bind_defs.h` file.
+The function being bound may not be variadic, consequently, `my_func` must have a defined maximum number of 'arguments'. *That is, `my_func` must expect that no more `num_args` number of elements to be passed.* For more info look in the `bind.h` file.
 Parsing the `args` array is the job of `my_func`.
 
 ### Full binding
@@ -118,6 +120,8 @@ To partially bind a function, invoke
 bound_func = partial_bind( my_func, num_args, num_args_to_bind, arg1, arg2 );
 ```
 Here `num_args_to_bind` is the number of arguments currently being bound!
+
+It is worth noting that fully binding a function via a partial bind is supported.
 
 ### Partial binding Example
 ```C
