@@ -106,18 +106,9 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab374e97f3b19a808aa0232648d7ebcc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8c.html#ab374e97f3b19a808aa0232648d7ebcc4">bind_err</a> (const char *Msg)</td></tr>
-<tr class="memdesc:ab374e97f3b19a808aa0232648d7ebcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This functions prints Msg and exits the program.  <a href="#ab374e97f3b19a808aa0232648d7ebcc4">More...</a><br /></td></tr>
-<tr class="separator:ab374e97f3b19a808aa0232648d7ebcc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a621d92bc3950d698be37ce62452128da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8c.html#a621d92bc3950d698be37ce62452128da">bind_p_err</a> (const char *Msg)</td></tr>
-<tr class="memdesc:a621d92bc3950d698be37ce62452128da"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function calls perror then err.  <a href="#a621d92bc3950d698be37ce62452128da">More...</a><br /></td></tr>
-<tr class="separator:a621d92bc3950d698be37ce62452128da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4aaa27dade38bbf1f1570ed4a37e329"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8c.html#af4aaa27dade38bbf1f1570ed4a37e329">bind_assert</a> (const int b, const char *Msg)</td></tr>
 <tr class="memdesc:af4aaa27dade38bbf1f1570ed4a37e329"><td class="mdescLeft">&#160;</td><td class="mdescRight">err if !b  <a href="#af4aaa27dade38bbf1f1570ed4a37e329">More...</a><br /></td></tr>
 <tr class="separator:af4aaa27dade38bbf1f1570ed4a37e329"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4000740cfe380412978282ae8ce9603"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8c.html#aa4000740cfe380412978282ae8ce9603">bind_mem_check</a> (void *pnt, const char *Msg)</td></tr>
-<tr class="memdesc:aa4000740cfe380412978282ae8ce9603"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function errors and prints Msg if pnt is null.  <a href="#aa4000740cfe380412978282ae8ce9603">More...</a><br /></td></tr>
-<tr class="separator:aa4000740cfe380412978282ae8ce9603"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e495f49bce6a5edbe2c2af691013fb5"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind__utilities_8c.html#a3e495f49bce6a5edbe2c2af691013fb5">bind_safe_malloc</a> (size_t c, size_t s)</td></tr>
 <tr class="memdesc:a3e495f49bce6a5edbe2c2af691013fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Malloc, but check to see if failed.  <a href="#a3e495f49bce6a5edbe2c2af691013fb5">More...</a><br /></td></tr>
 <tr class="separator:a3e495f49bce6a5edbe2c2af691013fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,24 +154,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab374e97f3b19a808aa0232648d7ebcc4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void bind_err </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>Msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>This functions prints Msg and exits the program. </p>
-
-</div>
-</div>
 <a class="anchor" id="a777fac0144ad108cf8efd9befef3f6e8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -196,52 +169,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A lock dunction for bind_lock. </p>
-
-</div>
-</div>
-<a class="anchor" id="aa4000740cfe380412978282ae8ce9603"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void bind_mem_check </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>pnt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>Msg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>This function errors and prints Msg if pnt is null. </p>
-
-</div>
-</div>
-<a class="anchor" id="a621d92bc3950d698be37ce62452128da"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void bind_p_err </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>Msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>This function calls perror then err. </p>
 
 </div>
 </div>

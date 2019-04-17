@@ -4,14 +4,8 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{bind__utilities_8h_ab374e97f3b19a808aa0232648d7ebcc4}{bind\+\_\+err} (const char $\ast$Msg)
-\begin{DoxyCompactList}\small\item\em This functions prints Msg and exits the program. \end{DoxyCompactList}\item 
-void \hyperlink{bind__utilities_8h_a621d92bc3950d698be37ce62452128da}{bind\+\_\+p\+\_\+err} (const char $\ast$Msg)
-\begin{DoxyCompactList}\small\item\em This function calls perror then err. \end{DoxyCompactList}\item 
 void \hyperlink{bind__utilities_8h_af4aaa27dade38bbf1f1570ed4a37e329}{bind\+\_\+assert} (const int b, const char $\ast$Msg)
 \begin{DoxyCompactList}\small\item\em err if !b \end{DoxyCompactList}\item 
-void \hyperlink{bind__utilities_8h_aa4000740cfe380412978282ae8ce9603}{bind\+\_\+mem\+\_\+check} (void $\ast$pnt, const char $\ast$Msg)
-\begin{DoxyCompactList}\small\item\em This function errors and prints Msg if pnt is null. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{bind__utilities_8h_a3e495f49bce6a5edbe2c2af691013fb5}{bind\+\_\+safe\+\_\+malloc} (size\+\_\+t c, size\+\_\+t s)
 \begin{DoxyCompactList}\small\item\em Malloc, but check to see if failed. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{bind__utilities_8h_a89174c1631373cb8d9d73de79f5b2bd5}{bind\+\_\+safe\+\_\+realloc} (void $\ast$p, size\+\_\+t c, size\+\_\+t s)
@@ -37,17 +31,6 @@ void \hyperlink{bind__utilities_8h_a0fe9694537501c162c36487b32fed6e1}{bind\+\_\+
 
 err if !b 
 
-\index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!bind\+\_\+err@{bind\+\_\+err}}
-\index{bind\+\_\+err@{bind\+\_\+err}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}
-\subsubsection[{\texorpdfstring{bind\+\_\+err(const char $\ast$\+Msg)}{bind_err(const char *Msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+err (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{Msg}
-\end{DoxyParamCaption}
-)}\hypertarget{bind__utilities_8h_ab374e97f3b19a808aa0232648d7ebcc4}{}\label{bind__utilities_8h_ab374e97f3b19a808aa0232648d7ebcc4}
-
-
-This functions prints Msg and exits the program. 
-
 \index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!bind\+\_\+lock@{bind\+\_\+lock}}
 \index{bind\+\_\+lock@{bind\+\_\+lock}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}
 \subsubsection[{\texorpdfstring{bind\+\_\+lock(bind\+\_\+lock\+\_\+t $\ast$const lock)}{bind_lock(bind_lock_t *const lock)}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+lock (
@@ -58,29 +41,6 @@ This functions prints Msg and exits the program.
 
 
 A lock dunction for bind\+\_\+lock. 
-
-\index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!bind\+\_\+mem\+\_\+check@{bind\+\_\+mem\+\_\+check}}
-\index{bind\+\_\+mem\+\_\+check@{bind\+\_\+mem\+\_\+check}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}
-\subsubsection[{\texorpdfstring{bind\+\_\+mem\+\_\+check(void $\ast$pnt, const char $\ast$\+Msg)}{bind_mem_check(void *pnt, const char *Msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+mem\+\_\+check (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{pnt, }
-\item[{const char $\ast$}]{Msg}
-\end{DoxyParamCaption}
-)}\hypertarget{bind__utilities_8h_aa4000740cfe380412978282ae8ce9603}{}\label{bind__utilities_8h_aa4000740cfe380412978282ae8ce9603}
-
-
-This function errors and prints Msg if pnt is null. 
-
-\index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!bind\+\_\+p\+\_\+err@{bind\+\_\+p\+\_\+err}}
-\index{bind\+\_\+p\+\_\+err@{bind\+\_\+p\+\_\+err}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}
-\subsubsection[{\texorpdfstring{bind\+\_\+p\+\_\+err(const char $\ast$\+Msg)}{bind_p_err(const char *Msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void bind\+\_\+p\+\_\+err (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{Msg}
-\end{DoxyParamCaption}
-)}\hypertarget{bind__utilities_8h_a621d92bc3950d698be37ce62452128da}{}\label{bind__utilities_8h_a621d92bc3950d698be37ce62452128da}
-
-
-This function calls perror then err. 
 
 \index{bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}!bind\+\_\+safe\+\_\+malloc@{bind\+\_\+safe\+\_\+malloc}}
 \index{bind\+\_\+safe\+\_\+malloc@{bind\+\_\+safe\+\_\+malloc}!bind\+\_\+utilities.\+h@{bind\+\_\+utilities.\+h}}

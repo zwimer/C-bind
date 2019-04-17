@@ -1,16 +1,30 @@
 \hypertarget{bind_8h}{}\section{src/bind.h File Reference}
 \label{bind_8h}\index{src/bind.\+h@{src/bind.\+h}}
-{\ttfamily \#include \char`\"{}bind\+\_\+defs.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void $\ast$ \hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The return type. \end{DoxyCompactList}\item 
+typedef void $\ast$ \hyperlink{bind_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{Bindable\+SystemV}
+\begin{DoxyCompactList}\small\item\em A bindable function type for SystemV This function should return a ret\+\_\+t. \end{DoxyCompactList}\item 
+typedef \hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t}($\ast$ \hyperlink{bind_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable}) (arg\+\_\+t $\ast$args)
+\begin{DoxyCompactList}\small\item\em A bindable function type. \end{DoxyCompactList}\item 
+typedef \hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\+\_\+t}($\ast$ \hyperlink{bind_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound}) ()
+\begin{DoxyCompactList}\small\item\em A fully bound function type. \end{DoxyCompactList}\item 
+typedef void $\ast$ \hyperlink{bind_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound}
+\begin{DoxyCompactList}\small\item\em A partially bound function type Because this can have multiple different type signatures it is left as a void $\ast$. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-const uint64\+\_\+t \hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8h_a506745cfc7c8b99ec5f7cf5e367c1bee}{partial\+\_\+bind} (\hyperlink{bind__defs_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{Bindable\+SystemV} func, const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total}, const uint64\+\_\+t n\+\_\+bound,...)
-\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided using the SystemV calling convenction. \end{DoxyCompactList}\item 
-\hyperlink{bind__defs_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8h_a14e87772faf1fee0eaa2e02ebdb295a3}{full\+\_\+nonsystemv\+\_\+bind} (\hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total},...)
+\hyperlink{bind_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8h_a31fdc3dfcbd70d3f32f4e3c8a2084c6a}{full\+\_\+bind} (\hyperlink{bind_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{Bindable\+SystemV} func, const uint64\+\_\+t n\+\_\+total,...)
+\begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided using the SystemV calling convention. \end{DoxyCompactList}\item 
+\hyperlink{bind_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8h_a187e674be73b611c4e8d97345192757a}{partial\+\_\+bind} (\hyperlink{bind_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{Bindable\+SystemV} func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)
+\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided using the SystemV calling convenction Note\+: fully binding a function via partial\+\_\+bind is permitted. \end{DoxyCompactList}\item 
+\hyperlink{bind_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{Full\+Bound} \hyperlink{bind_8h_a14e87772faf1fee0eaa2e02ebdb295a3}{full\+\_\+nonsystemv\+\_\+bind} (\hyperlink{bind_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t n\+\_\+total,...)
 \begin{DoxyCompactList}\small\item\em Fully bind a function to the n\+\_\+total arguments provided. \end{DoxyCompactList}\item 
-\hyperlink{bind__defs_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8h_ab1e8f7285834dc7fab0d2e4b9826e387}{partial\+\_\+nonsystemv\+\_\+bind} (\hyperlink{bind__defs_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total}, const uint64\+\_\+t n\+\_\+bound,...)
-\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. \end{DoxyCompactList}\item 
+\hyperlink{bind_8h_a7d9e5f01a85ce68a0352f690b76f7910}{Part\+Bound} \hyperlink{bind_8h_ab1e8f7285834dc7fab0d2e4b9826e387}{partial\+\_\+nonsystemv\+\_\+bind} (\hyperlink{bind_8h_a8fdbf6bcbe597219692d8bd8952b9839}{Bindable} func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)
+\begin{DoxyCompactList}\small\item\em Partially bind a function that takes n\+\_\+total arguments to the n\+\_\+bound arguments provided Note\+: fully binding a function via partial\+\_\+bind is permitted. \end{DoxyCompactList}\item 
 void \hyperlink{bind_8h_ae832931ed64cb6278e8dbd6a4451243d}{bind\+\_\+set\+\_\+signal\+\_\+number} (const int signo)
 \begin{DoxyCompactList}\small\item\em Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-\/threaded application the ensures thread-\/safety. \end{DoxyCompactList}\item 
 int \hyperlink{bind_8h_a270375ebc8e8ed504a2dd3f12240b777}{bind\+\_\+get\+\_\+signal\+\_\+number} ()
@@ -19,9 +33,45 @@ int \hyperlink{bind_8h_a270375ebc8e8ed504a2dd3f12240b777}{bind\+\_\+get\+\_\+sig
 \begin{DoxyCompactItemize}
 \item 
 $\ast$$\ast$$\ast$ \hyperlink{bind_8h_aab29f50497cba1a9833b98e380f89a18}{Error}
-\begin{DoxyCompactList}\small\item\em Only allow 64 bit. \end{DoxyCompactList}\item 
-const uint64\+\_\+t \hyperlink{bind_8h_acb55ca7603b51493ee95b739018513e3}{n\+\_\+total}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Only allow 64 bit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\index{bind.\+h@{bind.\+h}!Bindable@{Bindable}}
+\index{Bindable@{Bindable}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{Bindable}{Bindable}}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf ret\+\_\+t}($\ast$  Bindable) (arg\+\_\+t $\ast$args)}\hypertarget{bind_8h_a8fdbf6bcbe597219692d8bd8952b9839}{}\label{bind_8h_a8fdbf6bcbe597219692d8bd8952b9839}
+
+
+A bindable function type. 
+
+\index{bind.\+h@{bind.\+h}!Bindable\+SystemV@{Bindable\+SystemV}}
+\index{Bindable\+SystemV@{Bindable\+SystemV}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{Bindable\+SystemV}{BindableSystemV}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$ {\bf Bindable\+SystemV}}\hypertarget{bind_8h_a3b8e30bb2c20efbc65a86e1124c122c9}{}\label{bind_8h_a3b8e30bb2c20efbc65a86e1124c122c9}
+
+
+A bindable function type for SystemV This function should return a ret\+\_\+t. 
+
+\index{bind.\+h@{bind.\+h}!Full\+Bound@{Full\+Bound}}
+\index{Full\+Bound@{Full\+Bound}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{Full\+Bound}{FullBound}}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf ret\+\_\+t}($\ast$  Full\+Bound) ()}\hypertarget{bind_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{}\label{bind_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}
+
+
+A fully bound function type. 
+
+\index{bind.\+h@{bind.\+h}!Part\+Bound@{Part\+Bound}}
+\index{Part\+Bound@{Part\+Bound}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{Part\+Bound}{PartBound}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$ {\bf Part\+Bound}}\hypertarget{bind_8h_a7d9e5f01a85ce68a0352f690b76f7910}{}\label{bind_8h_a7d9e5f01a85ce68a0352f690b76f7910}
+
+
+A partially bound function type Because this can have multiple different type signatures it is left as a void $\ast$. 
+
+\index{bind.\+h@{bind.\+h}!ret\+\_\+t@{ret\+\_\+t}}
+\index{ret\+\_\+t@{ret\+\_\+t}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{ret\+\_\+t}{ret_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$ {\bf ret\+\_\+t}}\hypertarget{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{}\label{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}
+
+
+The return type. 
+
 
 
 \subsection{Function Documentation}
@@ -47,7 +97,20 @@ Return the signal number used by the bind library internally.
 
 Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-\/threaded application the ensures thread-\/safety. 
 
-The default is S\+I\+G\+U\+S\+R2. Select a signal your program does not use for the bind library to use \index{bind.\+h@{bind.\+h}!full\+\_\+nonsystemv\+\_\+bind@{full\+\_\+nonsystemv\+\_\+bind}}
+The default is S\+I\+G\+U\+S\+R2. Select a signal your program does not use for the bind library to use \index{bind.\+h@{bind.\+h}!full\+\_\+bind@{full\+\_\+bind}}
+\index{full\+\_\+bind@{full\+\_\+bind}!bind.\+h@{bind.\+h}}
+\subsubsection[{\texorpdfstring{full\+\_\+bind(\+Bindable\+System\+V func, const uint64\+\_\+t n\+\_\+total,...)}{full_bind(BindableSystemV func, const uint64_t n_total,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} full\+\_\+bind (
+\begin{DoxyParamCaption}
+\item[{{\bf Bindable\+SystemV}}]{func, }
+\item[{const uint64\+\_\+t}]{n\+\_\+total, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\hypertarget{bind_8h_a31fdc3dfcbd70d3f32f4e3c8a2084c6a}{}\label{bind_8h_a31fdc3dfcbd70d3f32f4e3c8a2084c6a}
+
+
+Fully bind a function to the n\+\_\+total arguments provided using the SystemV calling convention. 
+
+\index{bind.\+h@{bind.\+h}!full\+\_\+nonsystemv\+\_\+bind@{full\+\_\+nonsystemv\+\_\+bind}}
 \index{full\+\_\+nonsystemv\+\_\+bind@{full\+\_\+nonsystemv\+\_\+bind}!bind.\+h@{bind.\+h}}
 \subsubsection[{\texorpdfstring{full\+\_\+nonsystemv\+\_\+bind(\+Bindable func, const uint64\+\_\+t n\+\_\+total,...)}{full_nonsystemv_bind(Bindable func, const uint64_t n_total,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Full\+Bound} full\+\_\+nonsystemv\+\_\+bind (
 \begin{DoxyParamCaption}
@@ -62,17 +125,17 @@ Fully bind a function to the n\+\_\+total arguments provided.
 
 \index{bind.\+h@{bind.\+h}!partial\+\_\+bind@{partial\+\_\+bind}}
 \index{partial\+\_\+bind@{partial\+\_\+bind}!bind.\+h@{bind.\+h}}
-\subsubsection[{\texorpdfstring{partial\+\_\+bind(\+Bindable\+System\+V func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)}{partial_bind(BindableSystemV func, const uint64_t n_total, const uint64_t n_bound,...)}}]{\setlength{\rightskip}{0pt plus 5cm}const uint64\+\_\+t {\bf Part\+Bound} partial\+\_\+bind (
+\subsubsection[{\texorpdfstring{partial\+\_\+bind(\+Bindable\+System\+V func, const uint64\+\_\+t n\+\_\+total, const uint64\+\_\+t n\+\_\+bound,...)}{partial_bind(BindableSystemV func, const uint64_t n_total, const uint64_t n_bound,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Part\+Bound} partial\+\_\+bind (
 \begin{DoxyParamCaption}
 \item[{{\bf Bindable\+SystemV}}]{func, }
 \item[{const uint64\+\_\+t}]{n\+\_\+total, }
 \item[{const uint64\+\_\+t}]{n\+\_\+bound, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}\hypertarget{bind_8h_a506745cfc7c8b99ec5f7cf5e367c1bee}{}\label{bind_8h_a506745cfc7c8b99ec5f7cf5e367c1bee}
+)}\hypertarget{bind_8h_a187e674be73b611c4e8d97345192757a}{}\label{bind_8h_a187e674be73b611c4e8d97345192757a}
 
 
-Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided using the SystemV calling convenction. 
+Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided using the SystemV calling convenction Note\+: fully binding a function via partial\+\_\+bind is permitted. 
 
 \index{bind.\+h@{bind.\+h}!partial\+\_\+nonsystemv\+\_\+bind@{partial\+\_\+nonsystemv\+\_\+bind}}
 \index{partial\+\_\+nonsystemv\+\_\+bind@{partial\+\_\+nonsystemv\+\_\+bind}!bind.\+h@{bind.\+h}}
@@ -86,7 +149,7 @@ Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound a
 )}\hypertarget{bind_8h_ab1e8f7285834dc7fab0d2e4b9826e387}{}\label{bind_8h_ab1e8f7285834dc7fab0d2e4b9826e387}
 
 
-Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound arguments provided. 
+Partially bind a function that takes n\+\_\+total arguments to the n\+\_\+bound arguments provided Note\+: fully binding a function via partial\+\_\+bind is permitted. 
 
 
 
@@ -98,6 +161,3 @@ Partially bind a function that takes n\+\_\+total argument to the n\+\_\+bound a
 
 Only allow 64 bit. 
 
-\index{bind.\+h@{bind.\+h}!n\+\_\+total@{n\+\_\+total}}
-\index{n\+\_\+total@{n\+\_\+total}!bind.\+h@{bind.\+h}}
-\subsubsection[{\texorpdfstring{n\+\_\+total}{n_total}}]{\setlength{\rightskip}{0pt plus 5cm}const uint64\+\_\+t n\+\_\+total}\hypertarget{bind_8h_acb55ca7603b51493ee95b739018513e3}{}\label{bind_8h_acb55ca7603b51493ee95b739018513e3}

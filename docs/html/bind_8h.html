@@ -86,27 +86,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">bind.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="bind__defs_8h_source.html">bind_defs.h</a>&quot;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 </div>
 <p><a href="bind_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a54aeeb54a7a6a62c72ec8dc7718fdd91"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a></td></tr>
+<tr class="memdesc:a54aeeb54a7a6a62c72ec8dc7718fdd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">The return type.  <a href="#a54aeeb54a7a6a62c72ec8dc7718fdd91">More...</a><br /></td></tr>
+<tr class="separator:a54aeeb54a7a6a62c72ec8dc7718fdd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b8e30bb2c20efbc65a86e1124c122c9"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a></td></tr>
+<tr class="memdesc:a3b8e30bb2c20efbc65a86e1124c122c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bindable function type for SystemV This function should return a ret_t.  <a href="#a3b8e30bb2c20efbc65a86e1124c122c9">More...</a><br /></td></tr>
+<tr class="separator:a3b8e30bb2c20efbc65a86e1124c122c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fdbf6bcbe597219692d8bd8952b9839"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="bind_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a>) (arg_t *args)</td></tr>
+<tr class="memdesc:a8fdbf6bcbe597219692d8bd8952b9839"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bindable function type.  <a href="#a8fdbf6bcbe597219692d8bd8952b9839">More...</a><br /></td></tr>
+<tr class="separator:a8fdbf6bcbe597219692d8bd8952b9839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c87cc0eb01b046c5adc0fb1d6fcd62c"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="bind_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a>) ()</td></tr>
+<tr class="memdesc:a7c87cc0eb01b046c5adc0fb1d6fcd62c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A fully bound function type.  <a href="#a7c87cc0eb01b046c5adc0fb1d6fcd62c">More...</a><br /></td></tr>
+<tr class="separator:a7c87cc0eb01b046c5adc0fb1d6fcd62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d9e5f01a85ce68a0352f690b76f7910"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a></td></tr>
+<tr class="memdesc:a7d9e5f01a85ce68a0352f690b76f7910"><td class="mdescLeft">&#160;</td><td class="mdescRight">A partially bound function type Because this can have multiple different type signatures it is left as a void *.  <a href="#a7d9e5f01a85ce68a0352f690b76f7910">More...</a><br /></td></tr>
+<tr class="separator:a7d9e5f01a85ce68a0352f690b76f7910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a506745cfc7c8b99ec5f7cf5e367c1bee"><td class="memItemLeft" align="right" valign="top">const uint64_t <a class="el" href="bind__defs_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a506745cfc7c8b99ec5f7cf5e367c1bee">partial_bind</a> (<a class="el" href="bind__defs_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a> func, const uint64_t <a class="el" href="bind_8h.html#acb55ca7603b51493ee95b739018513e3">n_total</a>, const uint64_t n_bound,...)</td></tr>
-<tr class="memdesc:a506745cfc7c8b99ec5f7cf5e367c1bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partially bind a function that takes n_total argument to the n_bound arguments provided using the SystemV calling convenction.  <a href="#a506745cfc7c8b99ec5f7cf5e367c1bee">More...</a><br /></td></tr>
-<tr class="separator:a506745cfc7c8b99ec5f7cf5e367c1bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14e87772faf1fee0eaa2e02ebdb295a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind__defs_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a14e87772faf1fee0eaa2e02ebdb295a3">full_nonsystemv_bind</a> (<a class="el" href="bind__defs_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a> func, const uint64_t <a class="el" href="bind_8h.html#acb55ca7603b51493ee95b739018513e3">n_total</a>,...)</td></tr>
+<tr class="memitem:a31fdc3dfcbd70d3f32f4e3c8a2084c6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a31fdc3dfcbd70d3f32f4e3c8a2084c6a">full_bind</a> (<a class="el" href="bind_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a> func, const uint64_t n_total,...)</td></tr>
+<tr class="memdesc:a31fdc3dfcbd70d3f32f4e3c8a2084c6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully bind a function to the n_total arguments provided using the SystemV calling convention.  <a href="#a31fdc3dfcbd70d3f32f4e3c8a2084c6a">More...</a><br /></td></tr>
+<tr class="separator:a31fdc3dfcbd70d3f32f4e3c8a2084c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a187e674be73b611c4e8d97345192757a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a187e674be73b611c4e8d97345192757a">partial_bind</a> (<a class="el" href="bind_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a> func, const uint64_t n_total, const uint64_t n_bound,...)</td></tr>
+<tr class="memdesc:a187e674be73b611c4e8d97345192757a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partially bind a function that takes n_total argument to the n_bound arguments provided using the SystemV calling convenction Note: fully binding a function via partial_bind is permitted.  <a href="#a187e674be73b611c4e8d97345192757a">More...</a><br /></td></tr>
+<tr class="separator:a187e674be73b611c4e8d97345192757a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e87772faf1fee0eaa2e02ebdb295a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#a14e87772faf1fee0eaa2e02ebdb295a3">full_nonsystemv_bind</a> (<a class="el" href="bind_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a> func, const uint64_t n_total,...)</td></tr>
 <tr class="memdesc:a14e87772faf1fee0eaa2e02ebdb295a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully bind a function to the n_total arguments provided.  <a href="#a14e87772faf1fee0eaa2e02ebdb295a3">More...</a><br /></td></tr>
 <tr class="separator:a14e87772faf1fee0eaa2e02ebdb295a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1e8f7285834dc7fab0d2e4b9826e387"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind__defs_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#ab1e8f7285834dc7fab0d2e4b9826e387">partial_nonsystemv_bind</a> (<a class="el" href="bind__defs_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a> func, const uint64_t <a class="el" href="bind_8h.html#acb55ca7603b51493ee95b739018513e3">n_total</a>, const uint64_t n_bound,...)</td></tr>
-<tr class="memdesc:ab1e8f7285834dc7fab0d2e4b9826e387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partially bind a function that takes n_total argument to the n_bound arguments provided.  <a href="#ab1e8f7285834dc7fab0d2e4b9826e387">More...</a><br /></td></tr>
+<tr class="memitem:ab1e8f7285834dc7fab0d2e4b9826e387"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bind_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#ab1e8f7285834dc7fab0d2e4b9826e387">partial_nonsystemv_bind</a> (<a class="el" href="bind_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a> func, const uint64_t n_total, const uint64_t n_bound,...)</td></tr>
+<tr class="memdesc:ab1e8f7285834dc7fab0d2e4b9826e387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partially bind a function that takes n_total arguments to the n_bound arguments provided Note: fully binding a function via partial_bind is permitted.  <a href="#ab1e8f7285834dc7fab0d2e4b9826e387">More...</a><br /></td></tr>
 <tr class="separator:ab1e8f7285834dc7fab0d2e4b9826e387"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae832931ed64cb6278e8dbd6a4451243d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#ae832931ed64cb6278e8dbd6a4451243d">bind_set_signal_number</a> (const int signo)</td></tr>
 <tr class="memdesc:ae832931ed64cb6278e8dbd6a4451243d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the signal number that will be used by the bind library internally This is not needed in a single threaded application, but for a multi-threaded application the ensures thread-safety.  <a href="#ae832931ed64cb6278e8dbd6a4451243d">More...</a><br /></td></tr>
@@ -120,9 +141,78 @@ Variables</h2></td></tr>
 <tr class="memitem:aab29f50497cba1a9833b98e380f89a18"><td class="memItemLeft" align="right" valign="top">***&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#aab29f50497cba1a9833b98e380f89a18">Error</a></td></tr>
 <tr class="memdesc:aab29f50497cba1a9833b98e380f89a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only allow 64 bit.  <a href="#aab29f50497cba1a9833b98e380f89a18">More...</a><br /></td></tr>
 <tr class="separator:aab29f50497cba1a9833b98e380f89a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb55ca7603b51493ee95b739018513e3"><td class="memItemLeft" align="right" valign="top">const uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bind_8h.html#acb55ca7603b51493ee95b739018513e3">n_total</a></td></tr>
-<tr class="separator:acb55ca7603b51493ee95b739018513e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a8fdbf6bcbe597219692d8bd8952b9839"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="bind_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>(*  Bindable) (arg_t *args)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A bindable function type. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3b8e30bb2c20efbc65a86e1124c122c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void* <a class="el" href="bind_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A bindable function type for SystemV This function should return a ret_t. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7c87cc0eb01b046c5adc0fb1d6fcd62c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="bind_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a>(*  FullBound) ()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A fully bound function type. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7d9e5f01a85ce68a0352f690b76f7910"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void* <a class="el" href="bind_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A partially bound function type Because this can have multiple different type signatures it is left as a void *. </p>
+
+</div>
+</div>
+<a class="anchor" id="a54aeeb54a7a6a62c72ec8dc7718fdd91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void* <a class="el" href="bind_8h.html#a54aeeb54a7a6a62c72ec8dc7718fdd91">ret_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The return type. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a270375ebc8e8ed504a2dd3f12240b777"></a>
 <div class="memitem">
@@ -160,14 +250,48 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a31fdc3dfcbd70d3f32f4e3c8a2084c6a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="bind_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a> full_bind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="bind_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a>&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint64_t&#160;</td>
+          <td class="paramname"><em>n_total</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fully bind a function to the n_total arguments provided using the SystemV calling convention. </p>
+
+</div>
+</div>
 <a class="anchor" id="a14e87772faf1fee0eaa2e02ebdb295a3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="bind__defs_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a> full_nonsystemv_bind </td>
+          <td class="memname"><a class="el" href="bind_8h.html#a7c87cc0eb01b046c5adc0fb1d6fcd62c">FullBound</a> full_nonsystemv_bind </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bind__defs_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="bind_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a>&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -194,14 +318,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a506745cfc7c8b99ec5f7cf5e367c1bee"></a>
+<a class="anchor" id="a187e674be73b611c4e8d97345192757a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const uint64_t <a class="el" href="bind__defs_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a> partial_bind </td>
+          <td class="memname"><a class="el" href="bind_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a> partial_bind </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bind__defs_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="bind_8h.html#a3b8e30bb2c20efbc65a86e1124c122c9">BindableSystemV</a>&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -230,7 +354,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Partially bind a function that takes n_total argument to the n_bound arguments provided using the SystemV calling convenction. </p>
+<p>Partially bind a function that takes n_total argument to the n_bound arguments provided using the SystemV calling convenction Note: fully binding a function via partial_bind is permitted. </p>
 
 </div>
 </div>
@@ -239,9 +363,9 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="bind__defs_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a> partial_nonsystemv_bind </td>
+          <td class="memname"><a class="el" href="bind_8h.html#a7d9e5f01a85ce68a0352f690b76f7910">PartBound</a> partial_nonsystemv_bind </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bind__defs_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="bind_8h.html#a8fdbf6bcbe597219692d8bd8952b9839">Bindable</a>&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -270,7 +394,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Partially bind a function that takes n_total argument to the n_bound arguments provided. </p>
+<p>Partially bind a function that takes n_total arguments to the n_bound arguments provided Note: fully binding a function via partial_bind is permitted. </p>
 
 </div>
 </div>
@@ -286,18 +410,6 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Only allow 64 bit. </p>
-
-</div>
-</div>
-<a class="anchor" id="acb55ca7603b51493ee95b739018513e3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const uint64_t n_total</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>

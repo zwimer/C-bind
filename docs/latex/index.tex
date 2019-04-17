@@ -87,7 +87,7 @@ Yes.
 
 \subsubsection*{Function Signature}
 
-SystemV functions to be bound must return an object of type {\ttfamily ret\+\_\+t} (which should be 8 bytes) or smaller; {\ttfamily void} is also valid. Do not attempt to return a large struct as it may fail! As for the arguments of the function, there are no restrictions except that the function may not be variadic! Consequently, {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements to be passed.} For more info look in the {\ttfamily \hyperlink{bind__defs_8h}{bind\+\_\+defs.\+h}} file.
+SystemV functions to be bound must return an object of type {\ttfamily ret\+\_\+t} (which should be 8 bytes) or smaller; {\ttfamily void} is also valid. Do not attempt to return a large struct as it may fail! As for the arguments of the function, there are no restrictions except that the function may not be variadic! Consequently, {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements to be passed.} For more info look in the {\ttfamily \hyperlink{bind_8h}{bind.\+h}} file.
 
 \subsubsection*{Full binding}
 
@@ -113,6 +113,8 @@ bound\_func = \hyperlink{bind_8c_a187e674be73b611c4e8d97345192757a}{partial\_bin
 \end{DoxyCode}
  Here {\ttfamily num\+\_\+args\+\_\+to\+\_\+bind} is the number of arguments currently being bound!
 
+It is worth noting that fully binding a function via a partial bind is supported.
+
 \#\#\# Partial binding Example 
 \begin{DoxyCode}
 \textcolor{keywordtype}{int} sum3(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c) \{ \textcolor{keywordflow}{return} args[0] + args[1] + args[2]; \}
@@ -127,9 +129,9 @@ printf( \textcolor{stringliteral}{"Total sum = %d"}, (\textcolor{keywordtype}{in
 
 Non-\/\+SystemV functions to be bound must have a unique signature, however when calling them they may be called as standard functions. To bind a function, it must have the following signature\+: 
 \begin{DoxyCode}
-\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} my\_func( \hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\_t} * args )
+\hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} my\_func( arg\_t * args )
 \end{DoxyCode}
- The return value may simply be any other primitive so you cast it properly during the binding call. You can think of {\ttfamily args} as an array of arguments! The function being bound may not be variadic, consequently, {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements to be passed.} For more info look in the {\ttfamily \hyperlink{bind__defs_8h}{bind\+\_\+defs.\+h}} file. Parsing the {\ttfamily args} array is the job of {\ttfamily my\+\_\+func}.
+ The return value may simply be any other primitive so you cast it properly during the binding call. You can think of {\ttfamily args} as an array of arguments! The function being bound may not be variadic, consequently, {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements to be passed.} For more info look in the {\ttfamily \hyperlink{bind_8h}{bind.\+h}} file. Parsing the {\ttfamily args} array is the job of {\ttfamily my\+\_\+func}.
 
 \subsubsection*{Full binding}
 
@@ -141,7 +143,7 @@ bound\_func = \hyperlink{bind_8c_a31fdc3dfcbd70d3f32f4e3c8a2084c6a}{full\_bind}(
 
 \#\#\# Full binding Example 
 \begin{DoxyCode}
-\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} sum( \hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\_t} * args ) \{ \textcolor{keywordflow}{return} args[0] + args[1]; \}
+\hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} sum( arg\_t * args ) \{ \textcolor{keywordflow}{return} args[0] + args[1]; \}
 bound\_func = full\_systemv\_bind( sum, 2, \textcolor{comment}{/* Arguments begin */} 1, 2 );
 printf( \textcolor{stringliteral}{"sum(1,2) = %d"}, (\textcolor{keywordtype}{int}) bound\_func() );
 \end{DoxyCode}
@@ -155,9 +157,11 @@ bound\_func = \hyperlink{bind_8c_a187e674be73b611c4e8d97345192757a}{partial\_bin
 \end{DoxyCode}
  Here {\ttfamily num\+\_\+args\+\_\+to\+\_\+bind} is the number of arguments currently being bound!
 
+It is worth noting that fully binding a function via a partial bind is supported.
+
 \#\#\# Partial binding Example 
 \begin{DoxyCode}
-\hyperlink{bind__defs_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} sum3( \hyperlink{bind__defs_8h_aa409ee08129c587e002cf2062a09a744}{arg\_t} * args ) \{ \textcolor{keywordflow}{return} args[0] + args[1] + args[2]; \}
+\hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} sum3( arg\_t * args ) \{ \textcolor{keywordflow}{return} args[0] + args[1] + args[2]; \}
 bound\_func = partial\_systemv\_bind( sum3, 3, 2, \textcolor{comment}{/* Arguments begin */} 100, 200 );
 printf( \textcolor{stringliteral}{"Total sum = %d"}, (\textcolor{keywordtype}{int}) bound\_func(300) );
 \end{DoxyCode}
@@ -215,5 +219,5 @@ Documentation is stored in on the {\ttfamily gh-\/pages} branch and hosted \href
 
 
 \begin{DoxyEnumerate}
-\item Right now the {\ttfamily get\+\_\+stub} function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page. 
+\item Right now hidden in the internals of how the binding mechanism, the {\ttfamily get\+\_\+stub} function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page. 
 \end{DoxyEnumerate}
