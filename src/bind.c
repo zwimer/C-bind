@@ -120,7 +120,8 @@ int systemv_invoke_sig = SIGUSR2;
 /** Ensure FN(ARGS) returns 0 */
 #define ASSERT_ZERO(FN, ...) bind_assert(FN(__VA_ARGS__) == 0, ""#FN "() failed.");
 
-/** Setup the global locks */
+/** Setup the global locks
+ *  This will automatically be called before main */
 __attribute__((constructor))
 void bind_setup() {
 	global_bv = make_bind_vec();
@@ -327,7 +328,7 @@ PartBound gen_stub_partial(const uint64_t index) {
 	va_end(args);                                                                   \
 	                                                                                \
 	/** Add the bound_internals to the global bind_vec */                           \
-	const int index = bv_consume_add_blank(global_bv, bb);
+	const uint64_t index = bv_consume_add_blank(global_bv, bb);
 
 
 /***************************************************************/
