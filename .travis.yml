@@ -20,9 +20,9 @@ addons:
 
 script:
     - set -e
-    - mkdir ./src/build
-    - cd ./src/build
-    - cmake ..
+    - mkdir ./build
+    - cd ./build
+    - cmake ../examples
     - make
     - valgrind --error-exitcode=2 ./test-non-systemv.out
     - valgrind --error-exitcode=2 ./test.out
