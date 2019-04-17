@@ -1,5 +1,4 @@
 #include "bind.h"
-#include "bind_vec.h"
 #include "bind_utilities.h"
 
 #include <signal.h>
@@ -10,14 +9,95 @@
 #include <sys/mman.h>
 
 
+/** A boolean */
+typedef enum { false = 0, true } bool;
+
+
 /***************************************************************/
 /*                                                             */
-/*                       Not From header                       */
+/*      A struct to store the required values to-be-bound      */
+/*                                                             */
+/***************************************************************/
+
+
+/** A structure that holds all data needed to bind a function */
+typedef struct bound_internals_t {
+	/** A data array to store the bound arguments */
+	arg_t * args;
+	/** The function being bound */
+	Bindable fn;
+	/** The total number of arguments */
+	uint64_t n_total;
+	/** The number of arguments currently bound */
+	uint64_t n_bound;
+	/** True if systemv calls should be used */
+	bool systemv;
+} bound_internals_t;
+
+
+/***************************************************************/
+/*                                                             */
+/*    A small vector class used to store bound_internals_ts    */
+/*                                                             */
+/***************************************************************/
+
+
+/** A thread-safe vector of bound_internals */
+typedef struct bind_vec_t {
+	/** The data array */
+	bound_internals_t ** arr;
+	/** The size of the vector */
+	uint64_t size;
+	/** The max size of the vector allocated */
+	uint64_t msize;
+	/** An obscurred thread-safe lock */
+	bind_lock_t * lock;
+} bind_vec;
+
+
+/** Create a bind_vec */
+bind_vec * make_bind_vec() {
+	bind_vec * ret = bind_safe_malloc(1, sizeof(bind_vec));
+	ret->msize = 8;
+	ret->arr = bind_safe_malloc(ret->msize, sizeof(bound_internals_t*));
+	ret->size = 0;
+	ret->lock = make_bind_lock();
+	return ret;
+}
+
+/** Consume a bound_internals and append it to the vector */
+uint64_t bv_consume_add_blank(bind_vec * const bv, bound_internals_t * const add) {
+	bind_lock(bv->lock);
+	if (bv->size == bv->msize) {
+		bv->msize *= 2;
+		bv->arr = bind_safe_realloc(bv->arr, bv->msize, sizeof(bound_internals_t*));
+	}
+	bv->arr[bv->size] = add;
+	const uint64_t ret = bv->size;
+	bv->size += 1;
+	bind_unlock(bv->lock);
+	return ret;
+}
+
+/** The get fuction for a bind_vec_t */
+bound_internals_t * bv_get(bind_vec * const bv, const uint64_t index) {
+	bind_lock(bv->lock);
+	bind_assert(index < bv->size, "accessing illegal bv index");
+	bound_internals_t * ret = bv->arr[index];
+	bind_unlock(bv->lock);
+	return ret;
+}
+
+
+/***************************************************************/
+/*                                                             */
+/*             The binding / inoking internal logic            */
 /*                                                             */
 /***************************************************************/
 
 
 // Globals
+
 
 /** A global bind vec */
 bind_vec * global_bv = NULL;
@@ -40,6 +120,14 @@ int systemv_invoke_sig = SIGUSR2;
 /** Ensure FN(ARGS) returns 0 */
 #define ASSERT_ZERO(FN, ...) bind_assert(FN(__VA_ARGS__) == 0, ""#FN "() failed.");
 
+/** Setup the global locks
+ *  This will automatically be called before main */
+__attribute__((constructor))
+void bind_setup() {
+	global_bv = make_bind_vec();
+	full_systemv_arg_lock = make_bind_lock();
+	full_systemv_ret_lock = make_bind_lock();
+}
 
 /** A macro used to set a register argument, used for consistency */
 #define SET_ARG(REG)                   \
@@ -240,23 +328,14 @@ PartBound gen_stub_partial(const uint64_t index) {
 	va_end(args);                                                                   \
 	                                                                                \
 	/** Add the bound_internals to the global bind_vec */                           \
-	const int index = bv_consume_add_blank(global_bv, bb);
+	const uint64_t index = bv_consume_add_blank(global_bv, bb);
 
 
 /***************************************************************/
 /*                                                             */
-/*                         From header                         */
+/*                        API functions                        */
 /*                                                             */
 /***************************************************************/
-
-
-// Ensure bind thread safety
-__attribute__((constructor))
-void bind_setup() {
-	global_bv = make_bind_vec();
-	full_systemv_arg_lock = make_bind_lock();
-	full_systemv_ret_lock = make_bind_lock();
-}
 
 
 // Fully bind a function to the n_total arguments
@@ -307,4 +386,3 @@ int bind_get_signal_number() {
 	bind_unlock(full_systemv_arg_lock);
 	return ret;
 }
-

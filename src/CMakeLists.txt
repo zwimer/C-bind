@@ -48,7 +48,7 @@ set(TESTV test.out)
 
 
 # Bind library
-add_library(${BIND} SHARED bind.c bind_vec.c bind_utilities.c )
+add_library(${BIND} SHARED bind.c bind_utilities.c )
 target_link_libraries(${BIND} Threads::Threads)
 
 
