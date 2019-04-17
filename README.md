@@ -174,4 +174,4 @@ cd C-bind && doxygen
 ```
 
 # Future Plans
-1. Right now the `get_stub` function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page.
+1. Right now hidden in the internals of how the binding mechanism, the `get_stub` function maps an entire page of memory per stub generated. Realistically it should only require just a few bytes. This can be done by placing multiple stub functions on the same page.
