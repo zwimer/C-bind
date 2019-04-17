@@ -1,4 +1,4 @@
-#include "bind.h"
+#include "../src/bind.h"
 
 #include <stdio.h>
 #include <stdlib.h>

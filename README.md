@@ -8,7 +8,7 @@
 	- [General](#general)
 	- [SystemV](#systemv)
 	- [Non-SystemV](#non-systemv)
-1. [Testing](#testing)
+1. [Examples](#examples)
 1. [Compilation](#compilation)
 1. [Docker](#docker)
 1. [CI](#ci)
@@ -133,12 +133,12 @@ The output of this code is: `Total sum = 600`
 
 ---
 
-# Testing
-To test that this works first compile the code
+# Examples
+To test the examples first compile the code
 ```bash
 git clone https://github.com/zwimer/C-bind && \
-mkdir C-bind/src/build && cd C-bind/src/build && \
-cmake .. && make
+mkdir C-bind/build && cd C-bind/build && \
+cmake ../examples && make
 ```
 
 After that, run your desired test. Either `./test.out` (for SystemV tests) or `./test-non-systemv.out`.
