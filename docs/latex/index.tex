@@ -47,21 +47,13 @@ Currently {\ttfamily C-\/bind} requires {\ttfamily pthread} to be installed, and
 
 To link the {\ttfamily C-\/bind} library simply include the header file {\ttfamily \hyperlink{bind_8h}{bind.\+h}}.
 
-\subsubsection*{Invocation}
+\subsubsection*{Note}
 
-To invoke the bound version of {\ttfamily my\+\_\+func}, one could simply invoke it as 
-\begin{DoxyCode}
-bound\_func( arg1, arg2, arg3 );
-\end{DoxyCode}
- {\itshape Note}\+: if you pass extra unexpected arguments to {\ttfamily bound\+\_\+func} they will be ignored.
+Passing extra arguments to a bound func will result in them being ignored.
 
 \subsubsection*{SystemV vs Non-\/\+SystemV}
 
 The most common calling convention of {\ttfamily x86\+\_\+64} / {\ttfamily amd64} is called SystemV. Unless otherwise specified, most major compilers should compile your code to meet this standard. This library provides functions for binding functions that follow the SystemV calling convention; functions that are not compliant have an A\+PI for them is provided for them as well. The default A\+PI of this library assumes SystemV functions are being bound.
-
-\subsubsection*{Thread Safe}
-
-Yes.
 
 \subsubsection*{Important notes}
 
@@ -70,14 +62,18 @@ Yes.
 \item This library uses a signal internally. By default this is {\ttfamily S\+I\+G\+U\+S\+R2}, however the user may change this whenever. This signal handler is install when-\/needed and restored when not, so for a single threaded application this is perfectly safe. However, in a multi-\/threaded enviornment it is important to set this signal to some (valid) unused signal! This can be done with the {\ttfamily bind\+\_\+set\+\_\+signal\+\_\+number} function.
 \end{DoxyEnumerate}
 
+\subsubsection*{Thread Safe}
+
+Yes, as long as this library is the only thing that invokes the signal set by {\ttfamily bind\+\_\+set\+\_\+signal\+\_\+number}.
+
 \subsubsection*{Restrictions}
 
 
 \begin{DoxyEnumerate}
-\item This library cannot bind variadic functions
+\item This library may not work with variadic functions
 \end{DoxyEnumerate}
 \begin{DoxyEnumerate}
-\item This library {\itshape may} fail if registers other than {\ttfamily rdi}, {\ttfamily rsi,} {\ttfamily rdx}, {\ttfamily rcx}, {\ttfamily r8}, and {\ttfamily r9} are used to pass arguments. However this is exceedingly rare.
+\item This library {\itshape may} fail for SystemV if registers other than {\ttfamily rdi}, {\ttfamily rsi,} {\ttfamily rdx}, {\ttfamily rcx}, {\ttfamily r8}, and {\ttfamily r9} are used to pass arguments. However this is exceedingly rare.
 \end{DoxyEnumerate}
 \begin{DoxyEnumerate}
 \item This library will only compile for {\ttfamily x86\+\_\+64} / {\ttfamily amd64}
@@ -87,7 +83,7 @@ Yes.
 
 \subsubsection*{Function Signature}
 
-SystemV functions to be bound must return an object of type {\ttfamily ret\+\_\+t} (which should be 8 bytes) or smaller; {\ttfamily void} is also valid. Do not attempt to return a large struct as it may fail! As for the arguments of the function, there are no restrictions except that the function may not be variadic! Consequently, {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements to be passed.} For more info look in the {\ttfamily \hyperlink{bind_8h}{bind.\+h}} file.
+SystemV functions to be bound must return an object of type {\ttfamily ret\+\_\+t} (which should be 8 bytes) or smaller; {\ttfamily void} is also valid. Do not attempt to return a large struct as it may fail! As for the arguments of the function, there are no restrictions except that the function may not be variadic! For more info look in the {\ttfamily \hyperlink{bind_8h}{bind.\+h}} file.
 
 \subsubsection*{Full binding}
 
@@ -95,12 +91,12 @@ To fully bind a functon, invoke
 \begin{DoxyCode}
 bound\_func = \hyperlink{bind_8c_a31fdc3dfcbd70d3f32f4e3c8a2084c6a}{full\_bind}( my\_func, num\_args, arg1, arg2, arg3 );
 \end{DoxyCode}
- Here {\ttfamily num\+\_\+args} is the number arguments to pass to be passed to {\ttfamily my\+\_\+func}. If you pass in more arguments {\ttfamily num\+\_\+args} they will be ignored.
+ Here {\ttfamily num\+\_\+args} is the number of arguments to pass to be passed to {\ttfamily my\+\_\+func}. If more than {\ttfamily num\+\_\+args} arguments are passed they will be ignored.
 
 \#\#\# Full binding example 
 \begin{DoxyCode}
 \textcolor{keywordtype}{int} sum( \textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b ) \{ \textcolor{keywordflow}{return} a + b; \}
-bound\_func = \hyperlink{bind_8c_a31fdc3dfcbd70d3f32f4e3c8a2084c6a}{full\_bind}( sum, 2, \textcolor{comment}{/* Arguments begin */} 1, 2 );
+\hyperlink{bind_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{FullBound} bound\_func = \hyperlink{bind_8c_a31fdc3dfcbd70d3f32f4e3c8a2084c6a}{full\_bind}( sum, 2, \textcolor{comment}{/* Arguments begin */} 1, 2 );
 printf( \textcolor{stringliteral}{"sum(1,2) = %d"}, (\textcolor{keywordtype}{int}) bound\_func() );
 \end{DoxyCode}
  The output of this code is\+: {\ttfamily sum(1,2) = 3}.
@@ -117,8 +113,8 @@ It is worth noting that fully binding a function via a partial bind is supported
 
 \#\#\# Partial binding Example 
 \begin{DoxyCode}
-\textcolor{keywordtype}{int} sum3(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c) \{ \textcolor{keywordflow}{return} args[0] + args[1] + args[2]; \}
-bound\_func = \hyperlink{bind_8c_a187e674be73b611c4e8d97345192757a}{partial\_bind}( sum3, 3, 2, \textcolor{comment}{/* Arguments begin */} 100, 200 );
+\textcolor{keywordtype}{int} sum3(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c) \{ \textcolor{keywordflow}{return} a + b + c; \}
+\hyperlink{bind_8h_a7d9e5f01a85ce68a0352f690b76f7910}{PartBound} bound\_func = \hyperlink{bind_8c_a187e674be73b611c4e8d97345192757a}{partial\_bind}( sum3, 3, 2, \textcolor{comment}{/* Arguments begin */} 100, 200 );
 printf( \textcolor{stringliteral}{"Total sum = %d"}, (\textcolor{keywordtype}{int}) bound\_func(300) );
 \end{DoxyCode}
  The output of this code is\+: {\ttfamily Total sum = 600}
@@ -131,20 +127,20 @@ Non-\/\+SystemV functions to be bound must have a unique signature, however when
 \begin{DoxyCode}
 \hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} my\_func( arg\_t * args );
 \end{DoxyCode}
- The return value may simply be any other primitive so you cast it properly during the binding call. You can think of {\ttfamily args} as an array of arguments! The function being bound may not be variadic, consequently, {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements to be passed.} For more info look in the {\ttfamily \hyperlink{bind_8h}{bind.\+h}} file. Parsing the {\ttfamily args} array is the job of {\ttfamily my\+\_\+func}.
+ A {\ttfamily ret\+\_\+t} is simply a {\ttfamily void $\ast$}. A non-\/{\ttfamily void $\ast$} may be returned via casting so long as it is of equal or lesser size. You can think of {\ttfamily args} as an array of arguments! The function being bound may not be variadic, consequently, {\ttfamily my\+\_\+func} must have a defined maximum number of \textquotesingle{}arguments\textquotesingle{}. {\itshape That is, {\ttfamily my\+\_\+func} must expect that no more {\ttfamily num\+\_\+args} number of elements to be passed.} For more info look in the {\ttfamily \hyperlink{bind_8h}{bind.\+h}} file. Parsing the {\ttfamily args} array is the job of {\ttfamily my\+\_\+func}.
 
 \subsubsection*{Full binding}
 
-To fully bind a functon, invoke 
+To fully bind a function, invoke 
 \begin{DoxyCode}
 bound\_func = \hyperlink{bind_8c_a31fdc3dfcbd70d3f32f4e3c8a2084c6a}{full\_bind}( my\_func, num\_args, arg1, arg2, arg3 );
 \end{DoxyCode}
- Here {\ttfamily num\+\_\+args} is the number of elements in the {\ttfamily args} array {\ttfamily my\+\_\+func} expects to be passed. If you pass in more arguments {\ttfamily num\+\_\+args} they will be ignored.
+ Here {\ttfamily num\+\_\+args} is the number of elements in the {\ttfamily args} array that {\ttfamily my\+\_\+func} expects to be passed. If more arguments than {\ttfamily num\+\_\+args} arguments are passed in they will be ignored.
 
 \#\#\# Full binding Example 
 \begin{DoxyCode}
 \hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} sum( arg\_t * args ) \{ \textcolor{keywordflow}{return} args[0] + args[1]; \}
-bound\_func = full\_systemv\_bind( sum, 2, \textcolor{comment}{/* Arguments begin */} 1, 2 );
+\hyperlink{bind_8h_a7c87cc0eb01b046c5adc0fb1d6fcd62c}{FullBound} bound\_func = full\_systemv\_bind( sum, 2, \textcolor{comment}{/* Arguments begin */} 1, 2 );
 printf( \textcolor{stringliteral}{"sum(1,2) = %d"}, (\textcolor{keywordtype}{int}) bound\_func() );
 \end{DoxyCode}
  The output of this code is\+: {\ttfamily sum(1,2) = 3}.
@@ -162,7 +158,7 @@ It is worth noting that fully binding a function via a partial bind is supported
 \#\#\# Partial binding Example 
 \begin{DoxyCode}
 \hyperlink{bind_8h_a54aeeb54a7a6a62c72ec8dc7718fdd91}{ret\_t} sum3( arg\_t * args ) \{ \textcolor{keywordflow}{return} args[0] + args[1] + args[2]; \}
-bound\_func = partial\_systemv\_bind( sum3, 3, 2, \textcolor{comment}{/* Arguments begin */} 100, 200 );
+\hyperlink{bind_8h_a7d9e5f01a85ce68a0352f690b76f7910}{PartBound} bound\_func = partial\_systemv\_bind( sum3, 3, 2, \textcolor{comment}{/* Arguments begin */} 100, 200 );
 printf( \textcolor{stringliteral}{"Total sum = %d"}, (\textcolor{keywordtype}{int}) bound\_func(300) );
 \end{DoxyCode}
  The output of this code is\+: {\ttfamily Total sum = 600} 
@@ -183,7 +179,7 @@ After that, run your desired test. Either {\ttfamily ./test.out} (for SystemV te
 
 \section*{Compilation}
 
-This library should be compiled as a shared object without optimizations! On {\ttfamily gcc} version{\ttfamily 7.\+3}, this library is able to compile even with the {\ttfamily -\/\+O3} flag. If you experience issues however, try compiling at a lower optimization level. See the {\ttfamily C\+Make\+Lists.\+txt} file in the {\ttfamily examples} directory for an example.
+On {\ttfamily gcc} version{\ttfamily 7.\+3}, this library is able to compile even with the {\ttfamily -\/\+O3} flag. If you experience issues however, try compiling at a lower optimization level. See the {\ttfamily C\+Make\+Lists.\+txt} file in the {\ttfamily examples} directory for an example.
 
 \section*{Docker}
 
